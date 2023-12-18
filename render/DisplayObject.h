@@ -26,7 +26,7 @@ class DisplayObject {
     string status = "DisplayObject";
     POINT scale; // 缩放因素
     utils::usePoint pivot = {0.5, 0.5}; // 变换坐标系原点0-1相对于sprite宽高
-    int angle; // 角度
+    int angle = 0; // 角度
     float width = 0;
     float height = 0;
     float x = 0; // 局部坐标系x
