@@ -19,7 +19,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
     if (SUCCEEDED(CoInitialize(NULL))) {
         {
             DemoApp app;
-            app.addFun(frame1);
+            app.addFun(frame1); // app 好像就加了这么一个函数
             if (SUCCEEDED(app.Initialize())) { //
                 app.RunMessageLoop();
             }

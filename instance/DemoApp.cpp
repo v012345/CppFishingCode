@@ -102,7 +102,9 @@ HRESULT DemoApp::Initialize() {
 void DemoApp::addFun(void (*funs)(DemoApp*)) {
     vector<void (*)(DemoApp*)>::iterator it;
     it = find(this->fun.begin(), this->fun.end(), (funs));
-    if (it == this->fun.end()) { (this->fun).push_back((funs)); }
+    if (it == this->fun.end()) { //
+        (this->fun).push_back((funs));
+    }
 };
 HWND DemoApp::getHwnd() { return this->m_hwnd; };
 LRESULT CALLBACK DemoApp::WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam) {
