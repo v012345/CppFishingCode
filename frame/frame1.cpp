@@ -368,7 +368,7 @@ void frame1::onKeyUp(int code) {
 };
 void frame1::mouseMove(int x, int y) {
     if (frame1::addBtn->inRect(frame1::app->mouse) || frame1::subtractBtn->inRect(frame1::app->mouse)) { return; }
-    utils::usePoint p1 = {x, y};
+    utils::usePoint p1 = {(FLOAT)x, (FLOAT)y};
     utils::usePoint p2 = {frame1::bottom["pt"]->g_x + frame1::bottom["pt"]->getWidth() / 2, frame1::bottom["pt"]->g_y + frame1::bottom["pt"]->getHeight()};
     float angleTest = frame1::colObj->pointAngleInfo(p2, p1);
 

@@ -5,7 +5,7 @@
 #include "frame2.h"
 
 #include "../instance/colVec.h"
-// action * frame0::scene = NULL;
+
 action* frame0::scene = NULL;
 DemoApp* frame0::app = NULL;
 colVec* frame0::colObj = NULL;

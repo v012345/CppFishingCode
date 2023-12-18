@@ -31,7 +31,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
 }
 
 void frame1(DemoApp* app) {
-    if (!(app)->sceneArr.empty()) { (app)->sceneArr[(app)->nowScene]->render(&app); }
+    if (!(app)->sceneArr.empty()) { //
+        (app)->sceneArr[(app)->nowScene]->render(&app);
+    }
     /*unsigned int len = frame0::p1.size();
     for (unsigned int i = 0;i < len;i++) {
         (app)->content->drawArc(frame0::p1[i].x, frame0::p1[i].y, 10, 10);

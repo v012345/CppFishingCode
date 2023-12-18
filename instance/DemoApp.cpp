@@ -6,7 +6,9 @@ DemoApp::DemoApp() : m_hwnd(NULL), content(NULL) {}
 
 DemoApp::~DemoApp() {}
 
-void DemoApp::addScene(action* scane) { this->sceneArr.push_back(scane); };
+void DemoApp::addScene(action* scane) { //
+    this->sceneArr.push_back(scane);
+};
 // 全屏
 void DemoApp::fullSreen() {
     // int cx = GetSysTemMetrice(SM_CXSCREEN);
@@ -40,10 +42,10 @@ void DemoApp::RunMessageLoop() {
             // 窗口处于非激活状态防止cpu爆炸
             Sleep(10);
         }
+
         this->content->beginDraw();
         QueryPerformanceCounter(&this->newtime);
         this->msTime = ((float)(newtime.QuadPart - oldtime.QuadPart) / frequency.QuadPart * 1000);
-
         if (this->msTime >= (int)1000 / 70) {
             this->content->clear();
             this->OnRender();
@@ -200,9 +202,9 @@ LRESULT CALLBACK DemoApp::WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM
 }
 HRESULT DemoApp::OnRender() {
     LRESULT hr = S_OK;
-
-    for (unsigned int i = 0; i < (this->fun).size(); i++) { (this->fun)[i](this); }
-
+    for (unsigned int i = 0; i < (this->fun).size(); i++) { //
+        (this->fun)[i](this);
+    }
     return hr;
 }
 void DemoApp::OnResize(UINT width, UINT height) {}

@@ -85,8 +85,12 @@ void Content::addArc(int x, int y, int xSize, int ySize, int angle, D2D1_SWEEP_D
     this->m_slink->AddArc(D2D1::ArcSegment(D2D1::Point2F(x, y), D2D1::SizeF(xSize, ySize), angle, angleFx, size));
 };
 void Content::fillStyle(UINT32 hex, FLOAT alpha) { this->brush->SetColor(D2D1::ColorF(hex, alpha)); };
-void Content::beginDraw() { this->m_render->BeginDraw(); }
-void Content::closeDraw() { this->m_render->EndDraw(); }
+void Content::beginDraw() { //
+    this->m_render->BeginDraw();
+}
+void Content::closeDraw() { //
+    this->m_render->EndDraw();
+}
 void Content::fillRect(int x, int y, int width, int height) { this->m_render->FillRectangle(D2D1::RectF(x, y, x + width, y + height), this->brush); }
 void Content::drawRect(int x, int y, int width, int height) {
     this->initPath();
@@ -121,17 +125,17 @@ void Content::rotate(int angle, int x, int y) {
 void Content::scale(int zoom, int x, int y) {
     RECT rc;
     GetClientRect(this->p_hwnd, &rc);
-    D2D1_SIZE_F size = {zoom, zoom};
+    D2D1_SIZE_F size = {(FLOAT)zoom, (FLOAT)zoom};
     this->m1 = this->m1 * D2D1::Matrix3x2F::Scale(size, D2D1::Point2F(x, y));
     this->m_render->SetTransform(this->m1);
 };
 void Content::skew(int angleX, int angleY, int x, int y) {
-    this->m1 = this->m1 * D2D1::Matrix3x2F::Skew(angleX, angleY, D2D1::Point2(x, y));
+    this->m1 = this->m1 * D2D1::Matrix3x2F::Skew(angleX, angleY, D2D1::Point2<FLOAT>(x, y));
     this->m_render->SetTransform(this->m1);
 };
 void Content::trisition(int x, int y) {
     if (x != 0) {}
-    D2D1_SIZE_F size = {x, y};
+    D2D1_SIZE_F size = {(FLOAT)x, (FLOAT)y};
     this->m1 = this->m1 * D2D1::Matrix3x2F::Translation(size);
     this->m_render->SetTransform(this->m1);
 };
@@ -157,8 +161,8 @@ void Content::getTextInfo(LPWSTR txt, D2D1_SIZE_F& size) {
 void Content::getTextInfo(string txt, D2D1_SIZE_F& size) {
 
     LPWSTR a = g_chartowchar2(txt.c_str());
-    this->getTextInfo(txt, size);
-};
+    this->getTextInfo(a, size);
+}
 ID2D1Bitmap* Content::getSoucre(WCHAR* url) {
     int index = -1;
     wstring ws1 = url;
@@ -192,7 +196,7 @@ ID2D1Bitmap* Content::getSoucre(WCHAR* url) {
 void Content::drawImage(WCHAR* url, int x, int y) {
     ID2D1Bitmap* g_bitmap = this->getSoucre(url);
     D2D1_SIZE_F size = g_bitmap->GetSize();
-    D2D_RECT_F imgr = {x, y, x + size.width, y + size.height};
+    D2D_RECT_F imgr = {(FLOAT)x, (FLOAT)y, (FLOAT)x + size.width, (FLOAT)y + size.height};
     this->m_render->DrawBitmap(g_bitmap, imgr);
 }
 void Content::fillImage(WCHAR* url, int x, int y, int width, int height, int srcX, int srcY, float xZoom, float yZoom, int angle) {
@@ -204,38 +208,38 @@ void Content::fillImage(ID2D1Bitmap* img, int x, int y, int width, int height, i
     this->bitmapBrush->SetExtendModeX(D2D1_EXTEND_MODE_WRAP);
     this->bitmapBrush->SetExtendModeY(D2D1_EXTEND_MODE_WRAP);
     D2D1_MATRIX_3X2_F rotation = D2D1::Matrix3x2F::Rotation(angle, D2D1::Point2F(0, 0));
-    this->bitmapBrush->SetTransform(D2D1::Matrix3x2F::Translation(D2D1::Size(srcX, srcY)) * D2D1::Matrix3x2F::Scale(D2D1::Size(xZoom, yZoom)) * rotation);
+    this->bitmapBrush->SetTransform(D2D1::Matrix3x2F::Translation(D2D1::Size<FLOAT>(srcX, srcY)) * D2D1::Matrix3x2F::Scale(D2D1::Size(xZoom, yZoom)) * rotation);
     this->m_render->FillRectangle(D2D1::RectF(x, y, x + width, y + height), this->bitmapBrush);
 }
 void Content::drawImage(ID2D1Bitmap* img, int x, int y) {
     D2D1_SIZE_F size = img->GetSize();
-    D2D_RECT_F imgr = {x, y, x + size.width, y + size.height};
+    D2D_RECT_F imgr = {(FLOAT)x, (FLOAT)y, (FLOAT)x + size.width, (FLOAT)y + size.height};
     this->m_render->DrawBitmap(img, imgr);
 }
 void Content::drawImage(WCHAR* url, int x, int y, int width, int height) {
     ID2D1Bitmap* g_bitmap = this->getSoucre(url);
-    D2D_RECT_F imgr = {x, y, x + width, y + height};
+    D2D_RECT_F imgr = {(FLOAT)x, (FLOAT)y, (FLOAT)x + width, (FLOAT)y + height};
     this->m_render->DrawBitmap(g_bitmap, imgr);
 }
 void Content::drawImage(ID2D1Bitmap* img, int x, int y, int width, int height) {
     D2D1_SIZE_F size = img->GetSize();
-    D2D_RECT_F imgr = {x, y, x + width, y + height};
+    D2D_RECT_F imgr = {(FLOAT)x, (FLOAT)y, (FLOAT)x + width, (FLOAT)y + height};
     this->m_render->DrawBitmap(img, imgr);
 }
 void Content::drawImage(WCHAR* url, int x, int y, int width, int height, int srcX, int srcY, int srcWidth, int srcHeight) {
     ID2D1Bitmap* g_bitmap = this->getSoucre(url);
-    D2D_RECT_F imgr = {x, y, x + width, y + height};
-    D2D_RECT_F srcImg = {srcX, srcY, srcX + srcWidth, srcY + srcHeight};
+    D2D_RECT_F imgr = {(FLOAT)x, (FLOAT)y, (FLOAT)x + width, (FLOAT)y + height};
+    D2D_RECT_F srcImg = {(FLOAT)srcX, (FLOAT)srcY, (FLOAT)srcX + srcWidth, (FLOAT)srcY + srcHeight};
     this->m_render->DrawBitmap(g_bitmap, imgr, 1.0f, D2D1_BITMAP_INTERPOLATION_MODE_LINEAR, &srcImg);
 }
 void Content::drawImage(ID2D1Bitmap* img, int x, int y, int width, int height, int srcX, int srcY, int srcWidth, int srcHeight) {
-    D2D_RECT_F imgr = {x, y, x + width, y + height};
-    D2D_RECT_F srcImg = {srcX, srcY, srcX + srcWidth, srcY + srcHeight};
+    D2D_RECT_F imgr = {(FLOAT)x, (FLOAT)y, (FLOAT)x + width, (FLOAT)y + height};
+    D2D_RECT_F srcImg = {(FLOAT)srcX, (FLOAT)srcY, (FLOAT)srcX + srcWidth, (FLOAT)srcY + srcHeight};
     this->m_render->DrawBitmap(img, imgr, 1.0f, D2D1_BITMAP_INTERPOLATION_MODE_LINEAR, &srcImg);
 }
 void Content::drawImage(ID2D1Bitmap* img, int x, int y, int width, int height, u_rect* frame) {
-    D2D_RECT_F imgr = {x, y, x + width, y + height};
-    D2D_RECT_F srcImg = {frame->x, frame->y, frame->x + frame->width, frame->y + frame->height};
+    D2D_RECT_F imgr = {(FLOAT)x, (FLOAT)y, (FLOAT)x + width, (FLOAT)y + height};
+    D2D_RECT_F srcImg = {(FLOAT)frame->x, (FLOAT)frame->y, (FLOAT)frame->x + frame->width, (FLOAT)frame->y + frame->height};
     this->m_render->DrawBitmap(img, imgr, 1.0f, D2D1_BITMAP_INTERPOLATION_MODE_LINEAR, &srcImg);
 };
 void Content::drawImage(WCHAR* url, int x, int y, int zoom) { this->drawImage(url, x, y, zoom, zoom); }
@@ -244,9 +248,9 @@ void Content::drawImage(ID2D1Bitmap* img, int x, int y, int zoom) { this->drawIm
 void Content::drawLine(int x, int y, int x2, int y2) {
 
     if (this->lineStyle == 0) {
-        this->m_render->DrawLine(D2D1::Point2(x, y), D2D1::Point2(x2, y2), (this->pen), this->lineWidth);
+        this->m_render->DrawLine(D2D1::Point2<FLOAT>(x, y), D2D1::Point2<FLOAT>(x2, y2), (this->pen), this->lineWidth);
     } else {
-        this->m_render->DrawLine(D2D1::Point2(x, y), D2D1::Point2(x2, y2), (this->pen), this->lineWidth, this->m_lineStyle);
+        this->m_render->DrawLine(D2D1::Point2<FLOAT>(x, y), D2D1::Point2<FLOAT>(x2, y2), (this->pen), this->lineWidth, this->m_lineStyle);
     }
 }
 void Content::drawText(LPWSTR txt, int x, int y) {
