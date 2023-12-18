@@ -1,7 +1,7 @@
 #pragma once
 // 这是一个老版本的碰撞判断 已经淘汰
-extern class sprite;
-extern class collision {
+class sprite;
+class collision {
   public:
     collision();
     ~collision();

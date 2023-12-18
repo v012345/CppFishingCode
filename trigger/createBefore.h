@@ -1,5 +1,5 @@
 #pragma once
-extern class DemoApp;
+class DemoApp;
 
 namespace createBefore {
     void createWindowBefore(DemoApp* app);
