@@ -1,0 +1,33 @@
+cmake_minimum_required(VERSION 3.20)
+project(Fishing)
+add_definitions(
+    -DUNICODE
+)
+add_executable(Fishing
+    WIN32
+    "instance/collision.cpp"
+    "instance/colVec.cpp"
+    "instance/d2dWin32.cpp"
+    "instance/DemoApp.cpp"
+    "instance/oMap.cpp"
+    "instance/stdafx.cpp"
+    "instance/utils.cpp"
+    "render/Content.cpp"
+    "render/DisplayObject.cpp"
+    "render/sprite.cpp"
+    "render/ticker.cpp"
+    "render/action.cpp"
+    "render/animateSprite.cpp"
+    "trigger/createBefore.cpp"
+    "frame/fishConfig.cpp"
+    "frame/frame0.cpp"
+    "frame/frame1.cpp"
+    "frame/frame2.cpp"
+    "frame/gold.cpp"
+    "frame/bullet.cpp"
+    "frame/files.cpp"
+    "frame/fish.cpp"
+)
+target_compile_definitions(Fishing PRIVATE
+    CMAKE_SOURCE_DIR=${CMAKE_SOURCE_DIR}
+)
