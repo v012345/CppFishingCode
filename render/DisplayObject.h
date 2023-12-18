@@ -1,48 +1,44 @@
 #pragma once
-//#include "DemoApp.h"
+// #include "DemoApp.h"
 class DemoApp;
 class sprite;
-class DisplayObject
-{
-public:
-	DisplayObject();
-	~DisplayObject();
-	virtual int addChild(sprite * child);
-	virtual int removeChild(sprite * child);
-	virtual void render(DemoApp * app);
-	virtual void setX(float x);
-	virtual void setY(float y);
-	virtual void setX(int x);
-	virtual void setY(int y);
-	virtual void setId(string id);
-	virtual float getWidth();
-	virtual float getHeight();
-	DisplayObject(float x, float y);
-	virtual sprite *  DisplayObject::getChildById(string id);
-	virtual bool DisplayObject::inRect(POINT * pt);
-	virtual void initG_x();
-	virtual void initG_y();
+class DisplayObject {
+  public:
+    DisplayObject();
+    ~DisplayObject();
+    virtual int addChild(sprite* child);
+    virtual int removeChild(sprite* child);
+    virtual void render(DemoApp* app);
+    virtual void setX(float x);
+    virtual void setY(float y);
+    virtual void setX(int x);
+    virtual void setY(int y);
+    virtual void setId(string id);
+    virtual float getWidth();
+    virtual float getHeight();
+    DisplayObject(float x, float y);
+    virtual sprite* DisplayObject::getChildById(string id);
+    virtual bool DisplayObject::inRect(POINT* pt);
+    virtual void initG_x();
+    virtual void initG_y();
 
-public:
-	string status = "DisplayObject";
-	POINT scale;//Ëõ·ÅÒòËØ
-	utils::usePoint pivot = {0.5,0.5};//±ä»»×ø±êÏµÔ­µã0-1Ïà¶ÔÓÚsprite¿í¸ß
-	int angle;//½Ç¶È
-	float width = 0;
-	float height = 0;
-	float x = 0;//¾Ö²¿×ø±êÏµx
-	float y = 0;//¾Ö²¿×ø±êÏµy
-	float g_x = 0;//È«¾Ö×ø±êÏµX
-	float g_y = 0;//È«¾Ö×ø±êÏµY
-	float zoom = 1;
-	bool visible = true;
-	string id = "";
-	//×ÓÏÔÊ¾¶ÔÏóÊı×é
-	vector <sprite * >children;
-	sprite * parent = NULL;
-	oMap<string,int> use_int;
-	oMap<string, string>use_str;
-
-
+  public:
+    string status = "DisplayObject";
+    POINT scale; // ç¼©æ”¾å› ç´ 
+    utils::usePoint pivot = {0.5, 0.5}; // å˜æ¢åæ ‡ç³»åŸç‚¹0-1ç›¸å¯¹äºspriteå®½é«˜
+    int angle; // è§’åº¦
+    float width = 0;
+    float height = 0;
+    float x = 0; // å±€éƒ¨åæ ‡ç³»x
+    float y = 0; // å±€éƒ¨åæ ‡ç³»y
+    float g_x = 0; // å…¨å±€åæ ‡ç³»X
+    float g_y = 0; // å…¨å±€åæ ‡ç³»Y
+    float zoom = 1;
+    bool visible = true;
+    string id = "";
+    // å­æ˜¾ç¤ºå¯¹è±¡æ•°ç»„
+    vector<sprite*> children;
+    sprite* parent = NULL;
+    oMap<string, int> use_int;
+    oMap<string, string> use_str;
 };
-

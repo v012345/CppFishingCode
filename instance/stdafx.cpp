@@ -1,24 +1,24 @@
-// stdafx.cpp : Ö»°üÀ¨±ê×¼°üº¬ÎÄ¼şµÄÔ´ÎÄ¼ş
-// d2dWin32.pch ½«×÷ÎªÔ¤±àÒëÍ·
-// stdafx.obj ½«°üº¬Ô¤±àÒëÀàĞÍĞÅÏ¢
+// stdafx.cpp : åªåŒ…æ‹¬æ ‡å‡†åŒ…å«æ–‡ä»¶çš„æºæ–‡ä»¶
+// d2dWin32.pch å°†ä½œä¸ºé¢„ç¼–è¯‘å¤´
+// stdafx.obj å°†åŒ…å«é¢„ç¼–è¯‘ç±»å‹ä¿¡æ¯
 
 #include "../stdafx.h"
-// TODO: ÔÚ STDAFX.H ÖĞÒıÓÃÈÎºÎËùĞèµÄ¸½¼ÓÍ·ÎÄ¼ş£¬
-//¶ø²»ÊÇÔÚ´ËÎÄ¼şÖĞÒıÓÃ
-wchar_t * g_chartowchar2(const char* cchar){
-	wchar_t *m_wchar;
+// TODO: åœ¨ STDAFX.H ä¸­å¼•ç”¨ä»»ä½•æ‰€éœ€çš„é™„åŠ å¤´æ–‡ä»¶ï¼Œ
+// è€Œä¸æ˜¯åœ¨æ­¤æ–‡ä»¶ä¸­å¼•ç”¨
+wchar_t* g_chartowchar2(const char* cchar) {
+    wchar_t* m_wchar;
 
-	int len = MultiByteToWideChar(CP_ACP, 0, cchar, strlen(cchar), NULL, 0);
-	m_wchar = new wchar_t[len + 1];
-	MultiByteToWideChar(CP_ACP, 0, cchar, strlen(cchar), m_wchar, len);
-	m_wchar[len] = '\0';
-	return m_wchar;
+    int len = MultiByteToWideChar(CP_ACP, 0, cchar, strlen(cchar), NULL, 0);
+    m_wchar = new wchar_t[len + 1];
+    MultiByteToWideChar(CP_ACP, 0, cchar, strlen(cchar), m_wchar, len);
+    m_wchar[len] = '\0';
+    return m_wchar;
 }
 
 float random() {
-	static int i = 0;
-	i++;
-	srand(time(NULL)*i);
-	float a = (float)(rand() % 1000) / 1000;
-	return a;
+    static int i = 0;
+    i++;
+    srand(time(NULL) * i);
+    float a = (float)(rand() % 1000) / 1000;
+    return a;
 }

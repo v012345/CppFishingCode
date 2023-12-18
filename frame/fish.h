@@ -1,36 +1,35 @@
 #pragma once
 class fishConfig;
-class fish
-{
-public:
-	fish();
-	fish(DemoApp * app, action * scene, colVec * colObj, sprite * img, float speed = 5);
-	~fish();
-	void setX(float x);
-	void setY(float y);
-	void frameFun();
-	void moveForword();//ÏòÇ°ÒÆ¶¯
-	void(*removeScene)(fish * b);
-	void changeType(string type);
-	bool inScreen();
-public:
-	int moveTime = 1;
-	int moveAllTime = 1;
-	fishConfig * createClass;
-	float speed = 0;
-	int deathFrameTime = 30;//ËÀÍö´æ»îÖ¡Ê±¼ä
-	int deathInt = 10;//ËÀÍö¸ÅÂÊÏà¹Ø
-	int getGold = 1; // ËÀÍö½ğ±ÒÏà¹Ø
-	float minAngle =0;//×îĞ¡½Ç¶È
-	float maxAngle = 0;//×î´ó½Ç¶È
-	bool angleAdd = true;
-	sprite * view;//ÊÓÍ¼³ÊÏÖ¾«Áé
-	vector<u_rect  > swim;//ÓÎÓ¾¶¯»­ĞÅÏ¢
-	vector<u_rect  > death; //ËÀÍö¶¯»­ĞÅÏ¢
-	DemoApp * app;
-	action * scene;
-	colVec * colObj;
-	string type = "swim";
-	sprite * scInfo;
-};
+class fish {
+  public:
+    fish();
+    fish(DemoApp* app, action* scene, colVec* colObj, sprite* img, float speed = 5);
+    ~fish();
+    void setX(float x);
+    void setY(float y);
+    void frameFun();
+    void moveForword(); // å‘å‰ç§»åŠ¨
+    void (*removeScene)(fish* b);
+    void changeType(string type);
+    bool inScreen();
 
+  public:
+    int moveTime = 1;
+    int moveAllTime = 1;
+    fishConfig* createClass;
+    float speed = 0;
+    int deathFrameTime = 30; // æ­»äº¡å­˜æ´»å¸§æ—¶é—´
+    int deathInt = 10; // æ­»äº¡æ¦‚ç‡ç›¸å…³
+    int getGold = 1; // æ­»äº¡é‡‘å¸ç›¸å…³
+    float minAngle = 0; // æœ€å°è§’åº¦
+    float maxAngle = 0; // æœ€å¤§è§’åº¦
+    bool angleAdd = true;
+    sprite* view; // è§†å›¾å‘ˆç°ç²¾çµ
+    vector<u_rect> swim; // æ¸¸æ³³åŠ¨ç”»ä¿¡æ¯
+    vector<u_rect> death; // æ­»äº¡åŠ¨ç”»ä¿¡æ¯
+    DemoApp* app;
+    action* scene;
+    colVec* colObj;
+    string type = "swim";
+    sprite* scInfo;
+};

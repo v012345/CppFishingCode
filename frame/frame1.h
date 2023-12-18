@@ -8,56 +8,56 @@ class gold;
 class files;
 class fishConfig;
 namespace frame1 {
-	extern action * scene;//µ±Ç°³¡¾°µÄ³¡¾°¶ÔÏó
-	extern DemoApp * app;//ÓÎÏ·app
-	extern colVec *colObj;//Åö×²¶ÔÏó Ìá¹©obb  aabb Ïà¹ØÅö×²Ëã·¨ <obb ²ÉÓÃÏòÁ¿>
+    extern action* scene; // å½“å‰åœºæ™¯çš„åœºæ™¯å¯¹è±¡
+    extern DemoApp* app; // æ¸¸æˆapp
+    extern colVec* colObj; // ç¢°æ’å¯¹è±¡ æä¾›obb  aabb ç›¸å…³ç¢°æ’ç®—æ³• <obb é‡‡ç”¨å‘é‡>
 
-	extern float zoom;//³¡¾°ËùÓĞ¾«ÁéÓÃµÄzoom
-	extern int nowScane;//µ±Ç°¹ØÊı
-	extern int nowPt;//µ±Ç°ÅÚÌ¨µÄÏÔÊ¾
-	extern oMap<string, sprite *> bottom;//µ×²¿¾«Áé×éºÏ
-	extern ticker * tk1; //³¡¾°¼ÆÊ±Æ÷
-	extern float timerFish;//ÖÜÆÚÅĞ¶ÏÓãÊÇ·ñÓÎ³öÆÁÄ»
-	extern int usegold;
-	extern files * saveObj;
-	extern sprite * bk;
+    extern float zoom; // åœºæ™¯æ‰€æœ‰ç²¾çµç”¨çš„zoom
+    extern int nowScane; // å½“å‰å…³æ•°
+    extern int nowPt; // å½“å‰ç‚®å°çš„æ˜¾ç¤º
+    extern oMap<string, sprite*> bottom; // åº•éƒ¨ç²¾çµç»„åˆ
+    extern ticker* tk1; // åœºæ™¯è®¡æ—¶å™¨
+    extern float timerFish; // å‘¨æœŸåˆ¤æ–­é±¼æ˜¯å¦æ¸¸å‡ºå±å¹•
+    extern int usegold;
+    extern files* saveObj;
+    extern sprite* bk;
 
-	extern vector<sprite *> jbNum;
-	extern vector<sprite * > bgArr;//ËùÓĞ¹ØÊıµÄ±³¾° 
-	extern vector<sprite * > ptArr;//ÅÚÌ¨Arr
-	extern vector<sprite * > bulletArr;//×Óµ¯Arr Img
-	extern vector<bullet * > bulletArr2;//×Óµ¯Arr
-	extern vector<sprite * > bulletWang;//×Óµ¯Arr Img
-	extern vector <fish *> fishArr;//ÓãÊı×é
-	extern vector <fishConfig *>fishConfigArr;//´´½¨ÓãµÄ¶ÔÏóÊı×é
-	extern vector <gold *> goldArr;
-	extern bool isDown; //ÔÚ´¥·¢Êó±êÌ§ÆğÊÂ¼şÖ®Ç°ÊÇ·ñÔÚÇĞ»»ÅÚÌ¨°´Å¥ÀïÃæ°´ÏÂÁËÊó±ê Èç¹ûÊÇ¾ÍÎªtrue·ñÔòÎªfalse
-	extern DisplayObject * maxBox;//×î´óÈİÆ÷
-	extern DisplayObject * bottomBox;//µ×²¿ÈİÆ÷
-	extern DisplayObject * fishBox; //ÓãÈºÈİÆ÷
-	extern sprite * addBtn;//ÇĞ»»ÅÚÌ¨ ¼Ó
-	extern sprite * subtractBtn;//ÇĞ»»ÅÚÌ¨ ¼õ
-	extern  void drawGoldNum();
-	extern void init(DemoApp ** app, colVec ** colObj);//³¡¾°³õÊ¼»¯µ÷ÓÃ
-	extern void visible();//³¡¾°ÏÔÊ¾µ÷ÓÃ
-	extern void onClick(int x, int y);//³¡¾°µã»÷ÊÂ¼ş
-	extern void onClose();//³¡¾°µã»÷ÊÂ¼ş
-	extern void onMouseDown(int x, int y);//³¡¾°Êó±ê°´ÏÂÊÂ¼ş
-	//extern void onMouseUp(int x, int y);//³¡¾°Êó±êÌ§ÆğÊÂ¼ş
-	extern void onKeyUp(int x);//³¡¾°µã»÷ÊÂ¼ş
-	extern void initPt();//³õÊ¼ÅÚÌ¨
-	extern void initPt2();//³õÊ¼»¯ÅÚÌ¨Î»ÖÃ
-	extern sprite* initAmt1(LPWSTR url,int w,int h,int frame,float zoom=1);//³õÊ¼»¯µ¥Ö¡¶¯»­
-	extern void initAmt2(sprite * v,int startY, int w, int h, int frame, float zoom);
-	extern DWORD WINAPI tk1Fun();//¼ÆÊ±Æ÷Ã¿Ò»Ö¡µ÷ÓÃº¯Êı
-	extern void tk1FunC(DemoApp ** app, ticker *tk);
-	extern void mouseMove(int x,int y);//Êó±êÒÆ¶¯´¥·¢º¯Êı
-	extern void frameSpriteInfo(sprite ** sp, int type);
-	extern void removeBullet(bullet * bt);//ÅÅĞ¹×Óµ¯
-	extern void removeFish(fish * b);//ÅÅĞ¹Óã
-	extern void removeGold(gold * b);//ÅÅĞ¹½ğ±Ò
-	extern float allPower;
-	extern float nowPower;
-	extern HANDLE  hThred;
-	extern 	fishConfig *  initFishConfig(LPWSTR url,int swimY,int w,int h ,int swimNum,int deathY,int deathNum,int getGold,int maxFish = 30,int deathInt=10);//³õÊ¼»¯´´½¨Óã¶ÔÏó
-}
+    extern vector<sprite*> jbNum;
+    extern vector<sprite*> bgArr; // æ‰€æœ‰å…³æ•°çš„èƒŒæ™¯
+    extern vector<sprite*> ptArr; // ç‚®å°Arr
+    extern vector<sprite*> bulletArr; // å­å¼¹Arr Img
+    extern vector<bullet*> bulletArr2; // å­å¼¹Arr
+    extern vector<sprite*> bulletWang; // å­å¼¹Arr Img
+    extern vector<fish*> fishArr; // é±¼æ•°ç»„
+    extern vector<fishConfig*> fishConfigArr; // åˆ›å»ºé±¼çš„å¯¹è±¡æ•°ç»„
+    extern vector<gold*> goldArr;
+    extern bool isDown; // åœ¨è§¦å‘é¼ æ ‡æŠ¬èµ·äº‹ä»¶ä¹‹å‰æ˜¯å¦åœ¨åˆ‡æ¢ç‚®å°æŒ‰é’®é‡Œé¢æŒ‰ä¸‹äº†é¼ æ ‡ å¦‚æœæ˜¯å°±ä¸ºtrueå¦åˆ™ä¸ºfalse
+    extern DisplayObject* maxBox; // æœ€å¤§å®¹å™¨
+    extern DisplayObject* bottomBox; // åº•éƒ¨å®¹å™¨
+    extern DisplayObject* fishBox; // é±¼ç¾¤å®¹å™¨
+    extern sprite* addBtn; // åˆ‡æ¢ç‚®å° åŠ 
+    extern sprite* subtractBtn; // åˆ‡æ¢ç‚®å° å‡
+    extern void drawGoldNum();
+    extern void init(DemoApp** app, colVec** colObj); // åœºæ™¯åˆå§‹åŒ–è°ƒç”¨
+    extern void visible(); // åœºæ™¯æ˜¾ç¤ºè°ƒç”¨
+    extern void onClick(int x, int y); // åœºæ™¯ç‚¹å‡»äº‹ä»¶
+    extern void onClose(); // åœºæ™¯ç‚¹å‡»äº‹ä»¶
+    extern void onMouseDown(int x, int y); // åœºæ™¯é¼ æ ‡æŒ‰ä¸‹äº‹ä»¶
+    // extern void onMouseUp(int x, int y);//åœºæ™¯é¼ æ ‡æŠ¬èµ·äº‹ä»¶
+    extern void onKeyUp(int x); // åœºæ™¯ç‚¹å‡»äº‹ä»¶
+    extern void initPt(); // åˆå§‹ç‚®å°
+    extern void initPt2(); // åˆå§‹åŒ–ç‚®å°ä½ç½®
+    extern sprite* initAmt1(LPWSTR url, int w, int h, int frame, float zoom = 1); // åˆå§‹åŒ–å•å¸§åŠ¨ç”»
+    extern void initAmt2(sprite* v, int startY, int w, int h, int frame, float zoom);
+    extern DWORD WINAPI tk1Fun(); // è®¡æ—¶å™¨æ¯ä¸€å¸§è°ƒç”¨å‡½æ•°
+    extern void tk1FunC(DemoApp** app, ticker* tk);
+    extern void mouseMove(int x, int y); // é¼ æ ‡ç§»åŠ¨è§¦å‘å‡½æ•°
+    extern void frameSpriteInfo(sprite** sp, int type);
+    extern void removeBullet(bullet* bt); // æ’æ³„å­å¼¹
+    extern void removeFish(fish* b); // æ’æ³„é±¼
+    extern void removeGold(gold* b); // æ’æ³„é‡‘å¸
+    extern float allPower;
+    extern float nowPower;
+    extern HANDLE hThred;
+    extern fishConfig* initFishConfig(LPWSTR url, int swimY, int w, int h, int swimNum, int deathY, int deathNum, int getGold, int maxFish = 30, int deathInt = 10); // åˆå§‹åŒ–åˆ›å»ºé±¼å¯¹è±¡
+} // namespace frame1

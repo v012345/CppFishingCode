@@ -1,28 +1,26 @@
 #pragma once
-class colVec
-{
-public:
-	colVec();//¹¹Ôìº¯Êı
-	~colVec();//Îö¹¹º¯Êı
-	bool colVec::obb(sprite **sp, sprite **sp2);//¼ì²éÄ£Ê½obb 
-	bool colVec::obb(utils::useSpSt st1, utils::useSpSt st2);//¼ì²éÄ£Ê½obb 
-	bool colVec::aabb(sprite **sp, sprite **sp2);//¼ì²éÄ£Ê½aabb ·ÇÏòÁ¿Ä£Ê½
-	void colVec::getShapePoints(sprite **sp,const int num);//»ñÈ¡ĞÎ×´µÄµã
-	void colVec::initVec();//½«µã×ª»¯Îªµ¥Î»ÏòÁ¿
-	void colVec::getOneVec(const utils::usePoint &p1, const utils::usePoint &p2,int num);
-	bool colVec::getVecProjection();//»ñÈ¡ÏòÁ¿Í¶Ó°
-	bool colVec::comparePoints(const int num);//¶Ô±ÈµãµÄĞÅÏ¢ÅĞ¶ÏÊÇ·ñÅö×²
-	void colVec::getSLCoordinateSystem(sprite **sp, const int num);//»ñÈ¡¾Ö²¿×ø±êÏµµãĞÅÏ¢Î´Ğı×ª
-	void colVec::getShapePoints(const utils::useSpSt st, const int num);//ÒÔ½á¹¹µÄĞÎÊ½»ñÈ¡µãĞÅÏ¢ ·½±ãÔ¤ÅĞ¶Ï
-	void colVec::getSLCoordinateSystem(const utils::useSpSt st, const int num);//ÒÔ½á¹¹µÄĞÎÊ½»ñÈ¡µãĞÅÏ¢Ô¤ÅĞ¶Ï
-	void colVec::polarCoordinates(const utils::usePoint &p,float angle,float distance,utils::usePoint &cp);//¼«×ø±êÎ»ÒÆ
-	float colVec::pointAngleInfo(const utils::usePoint point1, const utils::usePoint point2);//»ñÈ¡Á½µãÖ®¼äµÄ½Ç¶È
-	float colVec::bezierCurve(float p0, float p1, float p2, float t); //±´Èû¶ûÇúÏß
-private:
-	vector <utils::usePoint> vec;//´¢´æµ¥Î»ÏòÁ¿
-	vector <vector<utils::usePoint>> points;//´¢´æĞÎ×´µãµÄĞÅÏ¢
-	vector <utils::usePoint> proPoint;//Í¶Ó°µÄĞÅÏ¢ÕâÀïµÄµãÊÇ´¢´æµÄ×î´óÖµºÍ×îĞ¡Öµ
-private:
-	void colVec::clear(); //Çå¿ÕËùÓĞµãµÄ»º´æ
+class colVec {
+  public:
+    colVec(); // æ„é€ å‡½æ•°
+    ~colVec(); // ææ„å‡½æ•°
+    bool colVec::obb(sprite** sp, sprite** sp2); // æ£€æŸ¥æ¨¡å¼obb
+    bool colVec::obb(utils::useSpSt st1, utils::useSpSt st2); // æ£€æŸ¥æ¨¡å¼obb
+    bool colVec::aabb(sprite** sp, sprite** sp2); // æ£€æŸ¥æ¨¡å¼aabb éå‘é‡æ¨¡å¼
+    void colVec::getShapePoints(sprite** sp, const int num); // è·å–å½¢çŠ¶çš„ç‚¹
+    void colVec::initVec(); // å°†ç‚¹è½¬åŒ–ä¸ºå•ä½å‘é‡
+    void colVec::getOneVec(const utils::usePoint& p1, const utils::usePoint& p2, int num);
+    bool colVec::getVecProjection(); // è·å–å‘é‡æŠ•å½±
+    bool colVec::comparePoints(const int num); // å¯¹æ¯”ç‚¹çš„ä¿¡æ¯åˆ¤æ–­æ˜¯å¦ç¢°æ’
+    void colVec::getSLCoordinateSystem(sprite** sp, const int num); // è·å–å±€éƒ¨åæ ‡ç³»ç‚¹ä¿¡æ¯æœªæ—‹è½¬
+    void colVec::getShapePoints(const utils::useSpSt st, const int num); // ä»¥ç»“æ„çš„å½¢å¼è·å–ç‚¹ä¿¡æ¯ æ–¹ä¾¿é¢„åˆ¤æ–­
+    void colVec::getSLCoordinateSystem(const utils::useSpSt st, const int num); // ä»¥ç»“æ„çš„å½¢å¼è·å–ç‚¹ä¿¡æ¯é¢„åˆ¤æ–­
+    void colVec::polarCoordinates(const utils::usePoint& p, float angle, float distance, utils::usePoint& cp); // æåæ ‡ä½ç§»
+    float colVec::pointAngleInfo(const utils::usePoint point1, const utils::usePoint point2); // è·å–ä¸¤ç‚¹ä¹‹é—´çš„è§’åº¦
+    float colVec::bezierCurve(float p0, float p1, float p2, float t); // è´å¡å°”æ›²çº¿
+  private:
+    vector<utils::usePoint> vec; // å‚¨å­˜å•ä½å‘é‡
+    vector<vector<utils::usePoint>> points; // å‚¨å­˜å½¢çŠ¶ç‚¹çš„ä¿¡æ¯
+    vector<utils::usePoint> proPoint; // æŠ•å½±çš„ä¿¡æ¯è¿™é‡Œçš„ç‚¹æ˜¯å‚¨å­˜çš„æœ€å¤§å€¼å’Œæœ€å°å€¼
+  private:
+    void colVec::clear(); // æ¸…ç©ºæ‰€æœ‰ç‚¹çš„ç¼“å­˜
 };
-

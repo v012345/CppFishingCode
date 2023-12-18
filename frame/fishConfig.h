@@ -1,38 +1,36 @@
 #pragma once
 class fish;
-class fishConfig
-{
-public:
-	fishConfig();
-	fishConfig(DemoApp * app, action * scene, colVec * colObj,sprite * img, void(*removeScene)(fish * b));//¹¹Ôìº¯Êı
-	~fishConfig();//Îö¹¹º¯Êı
-	void setFishFrame(fish * fs, int startY, int w, int h, int num, int type, float zoom = 1);//ÉèÖÃÓãµÄÖ¡ĞÅÏ¢
-	void createFish(vector<fish *> * fishArr, DisplayObject *ds);//´´½¨Óã
-	void frameFun(vector<fish *> * fishArr, DisplayObject *ds);//Ã¿Ò»Ö¡fishConfigÓ¦¸Ã×öµÄ²Ù×÷
-	void fishConfig::setType(fish* l_fs, int type,int setType);//Ëæ»ú»ñÈ¡Ò»ÖÖÓã³öÏÖµÄÀàĞÍ²¢½øĞĞÏà¹Ø½âÊÍ
-	void(*removeScene)(fish * b);//ÒÆ³ö´´½¨Óã½øĞĞµÄ²Ù×÷
-public:
-	int createNum = 4;//Ò»´Î´´½¨´´½¨µÄÓãµÄÊıÁ¿
-	int getGold = 2;//ÕâÖÖÓãËÀÍöµÄÊ±ºò´´½¨µÄ½ğ±Ò
-	int createTimmerInt = 0;//´´½¨Ê±¼äÏà¹Ø
-	int startYSwim = 0;//ÕâÖÖÓãÓÎÓ¾¿ªÊ¼Ö¡µÄÎ»ÖÃ
-	int startYDeath= 0;//ÕâÖÖÓãËÀÍö¿ªÊ¼Ö¡µÄÎ»ÖÃ
-	int swimNum = 0;//ÕâÖÖÓãÓÎÓ¾µÄÖ¡Êı
-	int deathNum = 0;//ÕâÖÖÓãËÀÍöµÄÖ¡Êı
-	vector<fish * > fishConfigArr;//»º´æ´´½¨µÄÓãµÄÊı×é
-	int maxFish = 30; //ÕâÖÖÀàĞÍµÄÓã´´½¨µÄ×î´óÊıÁ¿
-	int fishW = 0;//ÕâÖÖÀàĞÍµÄÓãµÄ¿í¶È
-	int fishH = 0;//ÕâÖÖÀàĞÍµÄÓãµÄ¸ß¶È
-	int deathInt = 10;//ÉèÖÃÓãµÄËÀÍö¸ÅÂÊ Ô½´óÔ½²»ÈİÒ×ËÀ ²»ÄÜ´óÓÚ100
-	float speed = 2;//ÉèÖÃÓãµÄËÙ¶È
-	float zoom=1;//ÕâÖÖÀàĞÍµÄÓãµÄËõ·Å
-private:
-	sprite * img;//´¢´æÍ¼Æ¬µÄ¾«Áé
-	int createTimmer = 30;//´´½¨Ê±¼ä¼ä¸ô
-	int createAllTimmer = 30;//´´½¨×ÜÊ±¼ä
-	DemoApp * app;//ÓÎÏ·app¶ÔÏó
-	action * scene;//³¡¾°¶ÔÏó
-	colVec * colObj;//Åö×²¶ÔÏó
-	vector <vector<int>> type1;//´¦ÀíÓãµÄ½Ç¶ÈĞÅÏ¢
+class fishConfig {
+  public:
+    fishConfig();
+    fishConfig(DemoApp* app, action* scene, colVec* colObj, sprite* img, void (*removeScene)(fish* b)); // æ„é€ å‡½æ•°
+    ~fishConfig(); // ææ„å‡½æ•°
+    void setFishFrame(fish* fs, int startY, int w, int h, int num, int type, float zoom = 1); // è®¾ç½®é±¼çš„å¸§ä¿¡æ¯
+    void createFish(vector<fish*>* fishArr, DisplayObject* ds); // åˆ›å»ºé±¼
+    void frameFun(vector<fish*>* fishArr, DisplayObject* ds); // æ¯ä¸€å¸§fishConfigåº”è¯¥åšçš„æ“ä½œ
+    void fishConfig::setType(fish* l_fs, int type, int setType); // éšæœºè·å–ä¸€ç§é±¼å‡ºç°çš„ç±»å‹å¹¶è¿›è¡Œç›¸å…³è§£é‡Š
+    void (*removeScene)(fish* b); // ç§»å‡ºåˆ›å»ºé±¼è¿›è¡Œçš„æ“ä½œ
+  public:
+    int createNum = 4; // ä¸€æ¬¡åˆ›å»ºåˆ›å»ºçš„é±¼çš„æ•°é‡
+    int getGold = 2; // è¿™ç§é±¼æ­»äº¡çš„æ—¶å€™åˆ›å»ºçš„é‡‘å¸
+    int createTimmerInt = 0; // åˆ›å»ºæ—¶é—´ç›¸å…³
+    int startYSwim = 0; // è¿™ç§é±¼æ¸¸æ³³å¼€å§‹å¸§çš„ä½ç½®
+    int startYDeath = 0; // è¿™ç§é±¼æ­»äº¡å¼€å§‹å¸§çš„ä½ç½®
+    int swimNum = 0; // è¿™ç§é±¼æ¸¸æ³³çš„å¸§æ•°
+    int deathNum = 0; // è¿™ç§é±¼æ­»äº¡çš„å¸§æ•°
+    vector<fish*> fishConfigArr; // ç¼“å­˜åˆ›å»ºçš„é±¼çš„æ•°ç»„
+    int maxFish = 30; // è¿™ç§ç±»å‹çš„é±¼åˆ›å»ºçš„æœ€å¤§æ•°é‡
+    int fishW = 0; // è¿™ç§ç±»å‹çš„é±¼çš„å®½åº¦
+    int fishH = 0; // è¿™ç§ç±»å‹çš„é±¼çš„é«˜åº¦
+    int deathInt = 10; // è®¾ç½®é±¼çš„æ­»äº¡æ¦‚ç‡ è¶Šå¤§è¶Šä¸å®¹æ˜“æ­» ä¸èƒ½å¤§äº100
+    float speed = 2; // è®¾ç½®é±¼çš„é€Ÿåº¦
+    float zoom = 1; // è¿™ç§ç±»å‹çš„é±¼çš„ç¼©æ”¾
+  private:
+    sprite* img; // å‚¨å­˜å›¾ç‰‡çš„ç²¾çµ
+    int createTimmer = 30; // åˆ›å»ºæ—¶é—´é—´éš”
+    int createAllTimmer = 30; // åˆ›å»ºæ€»æ—¶é—´
+    DemoApp* app; // æ¸¸æˆappå¯¹è±¡
+    action* scene; // åœºæ™¯å¯¹è±¡
+    colVec* colObj; // ç¢°æ’å¯¹è±¡
+    vector<vector<int>> type1; // å¤„ç†é±¼çš„è§’åº¦ä¿¡æ¯
 };
-

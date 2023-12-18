@@ -1,32 +1,30 @@
 #pragma once
-//ÕâÊÇÒ»¸öÀÏ°æ±¾µÄÅö×²ÅĞ¶Ï ÒÑ¾­ÌÔÌ­
+// è¿™æ˜¯ä¸€ä¸ªè€ç‰ˆæœ¬çš„ç¢°æ’åˆ¤æ–­ å·²ç»æ·˜æ±°
 extern class sprite;
-extern class collision
-{
-public:
-	collision();
-	~collision();
-	//»ñÈ¡Ğı×ªÖĞĞÄÏà¶ÔÓÚ´°¿Ú×ø±êÏµ
-	utils::usePoint getPivotPoint(sprite ** sp);
-	//»ñÈ¡¾«Áé×ø±ê×óÉÏ½ÇµÄÎ»ÖÃ
-	utils::usePoint getPivotLocal(sprite ** sp);
-	//»ñÈ¡Ğı×ª½Ç¶È Ïà¶ÔÓÚ¾«Áé×ø±êÏµ
-	float getRotate(sprite ** sp);
-	//»ñÈ¡Ğı×ª¹ıºó¾«ÁéµÄ×óÉÏ½Ç×ø±ê
-	utils::usePoint getRotatePoint(sprite ** sp);
-	//»ñÈ¡Ğı×ªºóµÄµã
-	utils::usePoint getRotatePoint2(utils::usePoint p1,utils::usePoint p2,int angle);
-	//×ø±êÎ»ÒÆ
-	utils::usePoint transitionPoint(utils::usePoint p1, int x, int y);
-	//¼«×ø±êÎ»ÒÆ
-	utils::usePoint polarCoordinates(utils::usePoint point,int angle,int distance);
-	vector <utils::usePoint> getRotatePoints(sprite **sp);
-	float getKeyMax(vector <utils::usePoint> arr,string key);
-	float getKeyMin(vector <utils::usePoint> arr, string key);
-	bool isXj(float a1, float a2, float b1, float b2);
-	void collision::getPoint1Arr(sprite **sp1, vector <utils::usePoint> &pointArr1);
-	bool obbTest(sprite **sp1, sprite ** sp2);
-	bool obb(sprite **sp1, sprite ** sp2);
-	float pointAngleInfo(utils::usePoint point1, utils::usePoint point2);
+extern class collision {
+  public:
+    collision();
+    ~collision();
+    // è·å–æ—‹è½¬ä¸­å¿ƒç›¸å¯¹äºçª—å£åæ ‡ç³»
+    utils::usePoint getPivotPoint(sprite** sp);
+    // è·å–ç²¾çµåæ ‡å·¦ä¸Šè§’çš„ä½ç½®
+    utils::usePoint getPivotLocal(sprite** sp);
+    // è·å–æ—‹è½¬è§’åº¦ ç›¸å¯¹äºç²¾çµåæ ‡ç³»
+    float getRotate(sprite** sp);
+    // è·å–æ—‹è½¬è¿‡åç²¾çµçš„å·¦ä¸Šè§’åæ ‡
+    utils::usePoint getRotatePoint(sprite** sp);
+    // è·å–æ—‹è½¬åçš„ç‚¹
+    utils::usePoint getRotatePoint2(utils::usePoint p1, utils::usePoint p2, int angle);
+    // åæ ‡ä½ç§»
+    utils::usePoint transitionPoint(utils::usePoint p1, int x, int y);
+    // æåæ ‡ä½ç§»
+    utils::usePoint polarCoordinates(utils::usePoint point, int angle, int distance);
+    vector<utils::usePoint> getRotatePoints(sprite** sp);
+    float getKeyMax(vector<utils::usePoint> arr, string key);
+    float getKeyMin(vector<utils::usePoint> arr, string key);
+    bool isXj(float a1, float a2, float b1, float b2);
+    void collision::getPoint1Arr(sprite** sp1, vector<utils::usePoint>& pointArr1);
+    bool obbTest(sprite** sp1, sprite** sp2);
+    bool obb(sprite** sp1, sprite** sp2);
+    float pointAngleInfo(utils::usePoint point1, utils::usePoint point2);
 };
-

@@ -4,36 +4,35 @@ class action;
 class colVec;
 class gold;
 class fish;
-class bullet
-{
-public:
-	bullet();
-	bullet(DemoApp * app, action * scene, colVec  * colObj, sprite * bt, sprite * wang,  int hurt =1, float speed=8);
-	~bullet();
-	void changeType(string type);//¸Ä±äÏÔÊ¾×´Ì¬
-	void moveForword();//ÏòÇ°ÒÆ¶¯
-	int frameFun(vector<fish *>*fishArr);//Ã¿Ò»Ö¡µ÷ÓÃ
-	void isTest(vector<fish *>*fishArr);
-	void bullet::createGold(fish * fs);
-	void bullet::setX(float x);
-	void bullet::setY(float y);
-	bool bullet::inScreen();
-	utils::useSpSt st1;//×Óµ¯½á¹¹Ò»
-	utils::useSpSt st2;//Óã½á¹¹¶ş
-public:
-	string bulletType = "bt";//×Óµ¯µ±Ç°ÏÔÊ¾×´Ì¬
-	sprite * view;//ÊÓÍ¼¾«Áé
-	sprite * bt;//ÅÚÌ¨¾«Áé
-	sprite * wang; //Íø¾«Áé
-	int hurt = 0;
-	int w_time = 20;
-	float speed = 0;
-	float angle = 0;
-	void (*removeScene)(bullet * b);
-	sprite * scInfo;
-private:
-	DemoApp * app;//ÓÎÏ·app
-	action * scene;//ÓÎÏ·³¡¾°
-	colVec * colObj;//ÓÎÏ·Åö×²¶ÔÏó
-};
+class bullet {
+  public:
+    bullet();
+    bullet(DemoApp* app, action* scene, colVec* colObj, sprite* bt, sprite* wang, int hurt = 1, float speed = 8);
+    ~bullet();
+    void changeType(string type); // æ”¹å˜æ˜¾ç¤ºçŠ¶æ€
+    void moveForword(); // å‘å‰ç§»åŠ¨
+    int frameFun(vector<fish*>* fishArr); // æ¯ä¸€å¸§è°ƒç”¨
+    void isTest(vector<fish*>* fishArr);
+    void bullet::createGold(fish* fs);
+    void bullet::setX(float x);
+    void bullet::setY(float y);
+    bool bullet::inScreen();
+    utils::useSpSt st1; // å­å¼¹ç»“æ„ä¸€
+    utils::useSpSt st2; // é±¼ç»“æ„äºŒ
+  public:
+    string bulletType = "bt"; // å­å¼¹å½“å‰æ˜¾ç¤ºçŠ¶æ€
+    sprite* view; // è§†å›¾ç²¾çµ
+    sprite* bt; // ç‚®å°ç²¾çµ
+    sprite* wang; // ç½‘ç²¾çµ
+    int hurt = 0;
+    int w_time = 20;
+    float speed = 0;
+    float angle = 0;
+    void (*removeScene)(bullet* b);
+    sprite* scInfo;
 
+  private:
+    DemoApp* app; // æ¸¸æˆapp
+    action* scene; // æ¸¸æˆåœºæ™¯
+    colVec* colObj; // æ¸¸æˆç¢°æ’å¯¹è±¡
+};
