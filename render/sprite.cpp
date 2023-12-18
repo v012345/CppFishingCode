@@ -79,7 +79,9 @@ void sprite::render(DemoApp* app) {
     int y1 = 0;
     // 绘制自己的变换情况
     app->content->save();
-    if (this->angle != 0) { app->content->rotate(this->angle, this->g_x + this->getWidth() * this->pivot.x, this->g_y + this->getHeight() * this->pivot.y); }
+    if (this->angle != 0) { //
+        app->content->rotate(this->angle, this->g_x + this->getWidth() * this->pivot.x, this->g_y + this->getHeight() * this->pivot.y);
+    }
 
     if (this->frame != NULL) {
 
