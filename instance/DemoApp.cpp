@@ -2,7 +2,11 @@
 #include "../stdafx.h"
 #include "../trigger/createBefore.h"
 
-DemoApp::DemoApp() : m_hwnd(NULL), content(NULL) {}
+DemoApp::DemoApp() : m_hwnd(NULL), content(NULL) {
+    QueryPerformanceCounter(&newtime);
+    QueryPerformanceCounter(&oldtime);
+    QueryPerformanceFrequency(&this->frequency); // 10000000
+}
 
 DemoApp::~DemoApp() {}
 
@@ -31,7 +35,6 @@ void DemoApp::RunMessageLoop() {
     MSG msg;
     BOOL isLoop = TRUE;
 
-    QueryPerformanceFrequency(&this->frequency);
     while (isLoop) {
         if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) {
             TranslateMessage(&msg);
@@ -43,15 +46,15 @@ void DemoApp::RunMessageLoop() {
             Sleep(10);
         }
 
-        this->content->beginDraw();
         QueryPerformanceCounter(&this->newtime);
         this->msTime = ((float)(newtime.QuadPart - oldtime.QuadPart) / frequency.QuadPart * 1000);
-        if (this->msTime >= (int)1000 / 70) {
+        if (this->msTime >= 16.67f) { // 60 fps
+            this->content->beginDraw();
             this->content->clear();
             this->OnRender();
             QueryPerformanceCounter(&this->oldtime);
+            this->content->closeDraw();
         }
-        this->content->closeDraw();
     }
 
     // CloseHandle(this->thread1);
