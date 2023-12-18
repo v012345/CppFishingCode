@@ -1,91 +1,82 @@
-// stdafx.h : ±ê×¼ÏµÍ³°üº¬ÎÄ¼şµÄ°üº¬ÎÄ¼ş£¬
-// »òÊÇ¾­³£Ê¹ÓÃµ«²»³£¸ü¸ÄµÄ
-// ÌØ¶¨ÓÚÏîÄ¿µÄ°üº¬ÎÄ¼ş
+// stdafx.h : æ ‡å‡†ç³»ç»ŸåŒ…å«æ–‡ä»¶çš„åŒ…å«æ–‡ä»¶ï¼Œ
+// æˆ–æ˜¯ç»å¸¸ä½¿ç”¨ä½†ä¸å¸¸æ›´æ”¹çš„
+// ç‰¹å®šäºé¡¹ç›®çš„åŒ…å«æ–‡ä»¶
 //
 
 #pragma once
 
 #include "instance/targetver.h"
 
-#define WIN32_LEAN_AND_MEAN             // ´Ó Windows Í·ÖĞÅÅ³ı¼«ÉÙÊ¹ÓÃµÄ×ÊÁÏ
-// Windows Í·ÎÄ¼ş: 
+#define WIN32_LEAN_AND_MEAN // ä» Windows å¤´ä¸­æ’é™¤æå°‘ä½¿ç”¨çš„èµ„æ–™
+// Windows å¤´æ–‡ä»¶:
 #include <windows.h>
 
 #include <functional>
-// C ÔËĞĞÊ±Í·ÎÄ¼ş
-#include <stdlib.h>
+// C è¿è¡Œæ—¶å¤´æ–‡ä»¶
 #include <malloc.h>
 #include <memory.h>
+#include <stdlib.h>
 #include <wchar.h>
-//C++ÔËĞĞ¿â
+// C++è¿è¡Œåº“
 #include <iostream>
-#include <thread>
 #include <sstream>
+#include <thread>
 
 #include <set>
-#define M_PI       3.14159265358979323846   // pi
+#define M_PI 3.14159265358979323846 // pi
 #include <cmath>
 #include <time.h>
-// TODO:  ÔÚ´Ë´¦ÒıÓÃ³ÌĞòĞèÒªµÄÆäËûÍ·ÎÄ¼ş
+// TODO:  åœ¨æ­¤å¤„å¼•ç”¨ç¨‹åºéœ€è¦çš„å…¶ä»–å¤´æ–‡ä»¶
 #include <d2d1.h>
 #include <d2d1helper.h>
 #include <dwrite.h>
 #include <wincodec.h>
-#pragma comment(lib,"d2d1.lib")
-#pragma comment (lib, "dwrite.lib")
+#pragma comment(lib, "d2d1.lib")
+#pragma comment(lib, "dwrite.lib")
 #include <vector>
 using namespace std;
+#include "instance/oMap.h"
 #include "instance/utils.h"
-#include"instance/oMap.h"
-//#include "oMap.h"
-template<class Interface>
-inline void SafeRelease(
-	Interface **ppInterfaceToRelease
-)
-{
-	if (*ppInterfaceToRelease != NULL)
-	{
-		(*ppInterfaceToRelease)->Release();
-
-		(*ppInterfaceToRelease) = NULL;
-	}
+// #include "oMap.h"
+template <class Interface> inline void SafeRelease(Interface** ppInterfaceToRelease) {
+    if (*ppInterfaceToRelease != NULL) {
+        (*ppInterfaceToRelease)->Release();
+        (*ppInterfaceToRelease) = NULL;
+    }
 }
 
-
 #ifndef Assert
-#if defined( DEBUG ) || defined( _DEBUG )
-#define Assert(b) do {if (!(b)) {OutputDebugStringA("Assert: " #b "\n");}} while(0)
+#if defined(DEBUG) || defined(_DEBUG)
+#define Assert(b)                                                                                                                                                                                      \
+    do {                                                                                                                                                                                               \
+        if (!(b)) { OutputDebugStringA("Assert: " #b "\n"); }                                                                                                                                          \
+    } while (0)
 #else
 #define Assert(b)
-#endif //DEBUG || _DEBUG
+#endif // DEBUG || _DEBUG
 #endif
-
-
 
 #ifndef HINST_THISCOMPONENT
 EXTERN_C IMAGE_DOS_HEADER __ImageBase;
-#define HINST_THISCOMPONENT ((HINSTANCE)&__ImageBase)
+#define HINST_THISCOMPONENT ((HINSTANCE) & __ImageBase)
 #endif
-wchar_t * g_chartowchar2(const char* cchar);
-template <typename T1, typename T2>
-string g_concat(const T1 &v1, const T2 &v2)
-{
-	stringstream ss;
-	ss << v1 << v2;
-	return ss.str();
+wchar_t* g_chartowchar2(const char* cchar);
+template <typename T1, typename T2> string g_concat(const T1& v1, const T2& v2) {
+    stringstream ss;
+    ss << v1 << v2;
+    return ss.str();
 }
 float random();
-typedef struct  {
-	int x;
-	int y;
-	int width;
-	int height;
+typedef struct {
+    int x;
+    int y;
+    int width;
+    int height;
 } u_rect;
 
-
-#include "render/ticker.h"
-#include "render/action.h"
-#include "render/sprite.h"
-#include "render/Content.h"
 #include "instance/DemoApp.h"
 #include "instance/colVec.h"
+#include "render/Content.h"
+#include "render/action.h"
+#include "render/sprite.h"
+#include "render/ticker.h"
