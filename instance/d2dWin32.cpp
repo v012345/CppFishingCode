@@ -3,7 +3,16 @@
 #include "d2dWin32.h"
 #include "../stdafx.h"
 // #include "frame0.h"
-void frame1(DemoApp*);
+
+void update(DemoApp* app) {
+    if (!(app)->sceneArr.empty()) { //
+        (app)->sceneArr[(app)->nowScene]->render(&app);
+    }
+    /*unsigned int len = frame0::p1.size();
+    for (unsigned int i = 0;i < len;i++) {
+        (app)->content->drawArc(frame0::p1[i].x, frame0::p1[i].y, 10, 10);
+    }*/
+}
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPWSTR lpCmdLine, _In_ int nCmdShow) {
 
@@ -19,7 +28,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
     if (SUCCEEDED(CoInitialize(NULL))) {
         {
             DemoApp app;
-            app.addFun(frame1); // app 好像就加了这么一个函数
+            app.addFun(update); // app 好像就加了这么一个函数
             if (SUCCEEDED(app.Initialize())) { //
                 app.RunMessageLoop();
             }
@@ -28,14 +37,4 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
     }
 
     return 0;
-}
-
-void frame1(DemoApp* app) {
-    if (!(app)->sceneArr.empty()) { //
-        (app)->sceneArr[(app)->nowScene]->render(&app);
-    }
-    /*unsigned int len = frame0::p1.size();
-    for (unsigned int i = 0;i < len;i++) {
-        (app)->content->drawArc(frame0::p1[i].x, frame0::p1[i].y, 10, 10);
-    }*/
 }

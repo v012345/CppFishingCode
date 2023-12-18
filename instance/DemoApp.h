@@ -37,7 +37,6 @@ class DemoApp {
     vector<action*> sceneArr;
     string status = "DeamApp";
     HWND getHwnd();
-    bool gameBool = true;
     LONG wLong;
 
   private:

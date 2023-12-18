@@ -41,10 +41,6 @@ void DemoApp::RunMessageLoop() {
             DispatchMessage(&msg);
             if (msg.message == WM_QUIT) { isLoop = FALSE; }
         }
-        if (!this->gameBool) {
-            // 窗口处于非激活状态防止cpu爆炸
-            Sleep(10);
-        }
 
         QueryPerformanceCounter(&this->newtime);
         this->msTime = ((float)(newtime.QuadPart - oldtime.QuadPart) / frequency.QuadPart * 1000);
@@ -54,6 +50,8 @@ void DemoApp::RunMessageLoop() {
             this->OnRender();
             QueryPerformanceCounter(&this->oldtime);
             this->content->closeDraw();
+        } else {
+            Sleep(1);
         }
     }
 
@@ -109,7 +107,6 @@ void DemoApp::addFun(void (*funs)(DemoApp*)) {
 HWND DemoApp::getHwnd() { return this->m_hwnd; };
 LRESULT CALLBACK DemoApp::WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam) {
     LRESULT result = 0;
-    WORD isActive = HIWORD(wParam);
     if (message == WM_CREATE) {
         LPCREATESTRUCT pcs = (LPCREATESTRUCT)lParam;
 
@@ -133,7 +130,6 @@ LRESULT CALLBACK DemoApp::WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM
 
             switch (message) {
                 case WM_SIZE: {
-
                     UINT width = LOWORD(lParam);
                     UINT height = HIWORD(lParam);
                     pDemoApp->OnResize(width, height);
@@ -176,16 +172,6 @@ LRESULT CALLBACK DemoApp::WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM
                 case WM_DISPLAYCHANGE: {
                     InvalidateRect(hwnd, NULL, FALSE);
                 }
-                    result = 0;
-                    wasHandled = true;
-                    break;
-                case WM_ACTIVATE:
-                    if (isActive > 0) {
-                        pDemoApp->gameBool = false;
-                    } else {
-                        pDemoApp->gameBool = true;
-                    }
-
                     result = 0;
                     wasHandled = true;
                     break;
