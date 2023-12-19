@@ -35,7 +35,7 @@ void PlayGameScene::init(App* app, colVec* colObj) {
     this->allPower = 100;
     this->nowPower = 0;
     this->isDown = false;
-    this->usegold = 0;
+    this->mDeposit = 0;
 
     PlayGameScene::scene = new action(app);
     PlayGameScene::app = app;
@@ -68,9 +68,9 @@ void PlayGameScene::init(App* app, colVec* colObj) {
     PlayGameScene::saveObj->getFile(L"_save.sva");
     PlayGameScene::saveObj->readFile();
     if (PlayGameScene::saveObj->s == "") {
-        PlayGameScene::usegold = 1000;
+        PlayGameScene::mDeposit = 1000;
     } else {
-        PlayGameScene::usegold = PlayGameScene::saveObj->num;
+        PlayGameScene::mDeposit = PlayGameScene::saveObj->num;
     }
 
     // 设置场景
@@ -233,7 +233,7 @@ void PlayGameScene::initAmt2(Sprite* v, int startY, int w, int h, int frame, flo
     v->frameArr = arr;
 };
 void PlayGameScene::drawGoldNum() {
-    string a1 = std::to_string(PlayGameScene::usegold);
+    string a1 = std::to_string(PlayGameScene::mDeposit);
 
     int len = a1.length();
     if (len > 6) {
@@ -296,7 +296,7 @@ void PlayGameScene::removeFish(fish* b) {
 void PlayGameScene::removeGold(gold* b) {
     PlayGameScene::maxBox->removeChild(b->view);
     utils::vecRemove(PlayGameScene::goldArr, b);
-    PlayGameScene::usegold += b->goldNum;
+    PlayGameScene::mDeposit += b->goldNum;
 
     delete b;
 };
@@ -331,7 +331,7 @@ void PlayGameScene::onClick(int x, int y) {
         PlayGameScene::initPt2();
         return;
     }
-    PlayGameScene::usegold -= (PlayGameScene::nowPt + 1);
+    PlayGameScene::mDeposit -= (PlayGameScene::nowPt + 1);
     bullet* b = new bullet(PlayGameScene::app, PlayGameScene::scene, PlayGameScene::colObj, PlayGameScene::bottom["bullet"], PlayGameScene::bottom["wang"]);
     PlayGameScene::fishBox->addChild(b->view);
     b->hurt = PlayGameScene::nowPt + 3;
@@ -364,6 +364,6 @@ void PlayGameScene::mouseMove(int x, int y) {
     PlayGameScene::bottom["pt"]->angle = round(angleTest + 90);
 }
 void PlayGameScene::onClose() {
-    PlayGameScene::saveObj->num = PlayGameScene::usegold;
+    PlayGameScene::saveObj->num = PlayGameScene::mDeposit;
     PlayGameScene::saveObj->writeFile();
 };

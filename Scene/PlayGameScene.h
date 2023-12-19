@@ -25,7 +25,7 @@ class PlayGameScene : public BaseScene {
     oMap<string, Sprite*> bottom; // 底部精灵组合
     ticker* tk1; // 场景计时器
     float timerFish; // 周期判断鱼是否游出屏幕
-    int usegold;
+    int mDeposit; // 剩余金币数
     files* saveObj;
     Sprite* bk;
 
