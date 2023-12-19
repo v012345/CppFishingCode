@@ -3,7 +3,7 @@
 #include "d2dWin32.h"
 #include "../stdafx.h"
 
-void update(DemoApp* app) {
+void update(App* app) {
     if (!(app)->sceneArr.empty()) { //
         (app)->sceneArr[(app)->nowScene]->render(&app);
     }
@@ -20,7 +20,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
     HeapSetInformation(NULL, HeapEnableTerminationOnCorruption, NULL, 0);
     if (SUCCEEDED(CoInitialize(NULL))) {
         {
-            DemoApp* app = DemoApp::getInstance();
+            App* app = App::getInstance();
             app->addFun(update); // app 好像就加了这么一个函数
             if (SUCCEEDED(app->Initialize())) { //
                 app->RunMessageLoop();

@@ -15,7 +15,7 @@ void ticker::setTimmer(float time) { //
     this->timmer = time;
 }
 
-void ticker::addFun(void (*fs)(DemoApp** app, ticker* tk)) { //
+void ticker::addFun(void (*fs)(App** app, ticker* tk)) { //
     this->tickerArr.push_back(fs);
 }
 
@@ -23,7 +23,7 @@ void ticker::setId(string str) { //
     this->id = str;
 };
 
-void ticker::render(DemoApp** app) {
+void ticker::render(App** app) {
     if (this->started != true) { //
         return;
     }

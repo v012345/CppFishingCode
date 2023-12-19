@@ -1,8 +1,8 @@
 #pragma once
-class DemoApp;
+class App;
 
 namespace ResourceManager {
-    void loadImages(DemoApp* app);
+    void loadImages(App* app);
 } // namespace ResourceManager
 namespace InputManager {
     void onClick(int x, int y);

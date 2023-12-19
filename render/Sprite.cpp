@@ -7,7 +7,7 @@ Sprite::Sprite(int x, int y) {
     this->initG_x();
     this->initG_y();
 }
-Sprite::Sprite(DemoApp* app, WCHAR* url, string spriteType, int w2, int h2) {
+Sprite::Sprite(App* app, WCHAR* url, string spriteType, int w2, int h2) {
     this->img = app->mCanvas->getSoucre(url);
     if (w2 == -1) {
         this->width = (int)this->img->GetSize().width;
@@ -20,7 +20,7 @@ Sprite::Sprite(DemoApp* app, WCHAR* url, string spriteType, int w2, int h2) {
         this->height = h2;
     }
 }
-Sprite::Sprite(DemoApp* app, ID2D1Bitmap* url, string spriteType, int w2, int h2) {
+Sprite::Sprite(App* app, ID2D1Bitmap* url, string spriteType, int w2, int h2) {
     this->img = url;
     if (w2 == -1) {
         this->width = (int)this->img->GetSize().width;
@@ -33,14 +33,14 @@ Sprite::Sprite(DemoApp* app, ID2D1Bitmap* url, string spriteType, int w2, int h2
         this->height = h2;
     }
 }
-float Sprite::getTxtWidth(DemoApp* app) {
+float Sprite::getTxtWidth(App* app) {
     D2D1_SIZE_F size = {0, 0};
     //	string d = this->txt;
     LPWSTR d = g_chartowchar2(this->txt.c_str());
     app->mCanvas->getTextInfo(d, size);
     return size.width;
 };
-float Sprite::getTxtHeight(DemoApp* app) {
+float Sprite::getTxtHeight(App* app) {
     D2D1_SIZE_F size = {0, 0};
     LPWSTR d = g_chartowchar2(this->txt.c_str());
     app->mCanvas->getTextInfo(d, size);
@@ -60,7 +60,7 @@ unsigned int Sprite::getNowFrame() { //
 
     return this->mNowFrame;
 }
-void Sprite::render(DemoApp* app) {
+void Sprite::render(App* app) {
     if (!this->visible) { return; }
     if (this->spriteType == "animateSprite") {
         unsigned int len = this->frameArr.size();

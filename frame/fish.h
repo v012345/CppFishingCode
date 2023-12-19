@@ -3,7 +3,7 @@ class fishConfig;
 class fish {
   public:
     fish();
-    fish(DemoApp* app, action* scene, colVec* colObj, Sprite* img, float speed = 5);
+    fish(App* app, action* scene, colVec* colObj, Sprite* img, float speed = 5);
     ~fish();
     void setX(float x);
     void setY(float y);
@@ -27,7 +27,7 @@ class fish {
     Sprite* view; // 视图呈现精灵
     vector<u_rect> swim; // 游泳动画信息
     vector<u_rect> death; // 死亡动画信息
-    DemoApp* app;
+    App* app;
     action* scene;
     colVec* colObj;
     string type = "swim";

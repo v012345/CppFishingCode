@@ -8,7 +8,7 @@
 #include "PlayGameScene.h"
 // action * TitleScene::scene = NULL;
 action* PlayGameScene::scene = NULL;
-DemoApp* PlayGameScene::app = NULL;
+App* PlayGameScene::app = NULL;
 colVec* PlayGameScene::colObj = NULL;
 DisplayObject* PlayGameScene::maxBox = NULL;
 DisplayObject* PlayGameScene::bottomBox = NULL;
@@ -38,7 +38,7 @@ bool PlayGameScene::isDown = false;
 
 int PlayGameScene::usegold = 0;
 vector<Sprite*> PlayGameScene::jbNum;
-void PlayGameScene::init(DemoApp* app, colVec* colObj) {
+void PlayGameScene::init(App* app, colVec* colObj) {
     PlayGameScene::scene = new action(app);
     PlayGameScene::app = app;
     PlayGameScene::colObj = colObj;
@@ -249,7 +249,7 @@ void PlayGameScene::drawGoldNum() {
     }
     for (int e = len; e < 9; e++) { PlayGameScene::jbNum[e]->frame->x = 0; }
 };
-void PlayGameScene::tk1FunC(DemoApp** app, ticker* tk) {
+void PlayGameScene::tk1FunC(App** app, ticker* tk) {
     PlayGameScene::timerFish += 15;
     unsigned int i = 0;
     unsigned int len = PlayGameScene::fishConfigArr.size() - 5 + PlayGameScene::nowScane;

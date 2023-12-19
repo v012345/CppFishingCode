@@ -1,7 +1,7 @@
 #include "../stdafx.h"
 
 #include "action.h"
-action::action(DemoApp* app) {
+action::action(App* app) {
     this->Container = new DisplayObject();
     this->app = app;
 }
@@ -28,7 +28,7 @@ ticker* action::getTickerById(string id) {
     return NULL;
 }
 
-void action::render(DemoApp** app) {
+void action::render(App** app) {
     this->Container->render(this->app);
     unsigned int len = this->tk.size();
     for (unsigned int i = 0; i < len; i++) { //

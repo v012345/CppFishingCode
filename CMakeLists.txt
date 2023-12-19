@@ -8,7 +8,7 @@ add_executable(Fishing
     "instance/collision.cpp"
     "instance/colVec.cpp"
     "instance/d2dWin32.cpp"
-    "instance/DemoApp.cpp"
+    "App.cpp"
     "instance/oMap.cpp"
     "instance/stdafx.cpp"
     "instance/utils.cpp"

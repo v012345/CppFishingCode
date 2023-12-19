@@ -101,7 +101,7 @@ float DisplayObject::getHeight() { //
     return this->height * this->zoom;
 }
 
-void DisplayObject::render(DemoApp* app) {
+void DisplayObject::render(App* app) {
     if (this->visible) {
         for (unsigned int i = 0; i < this->children.size(); i++) { //
             this->children[i]->render(app);

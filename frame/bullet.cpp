@@ -15,7 +15,7 @@ template <typename t> void log(const t& v1) {
 bullet::bullet() {}
 
 bullet::~bullet() {}
-bullet::bullet(DemoApp* app, action* scene, colVec* colObj, Sprite* bt, Sprite* wang, int hurt, float speed) {
+bullet::bullet(App* app, action* scene, colVec* colObj, Sprite* bt, Sprite* wang, int hurt, float speed) {
     this->app = (app);
     this->scene = (scene);
     this->colObj = (colObj);

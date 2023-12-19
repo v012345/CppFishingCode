@@ -1,14 +1,14 @@
 #pragma once
-// #include "DemoApp.h"
+// #include "App.h"
 class DisplayObject;
-class DemoApp;
+class App;
 class ticker;
 class Sprite;
 class action {
   public:
-    action(DemoApp* app);
+    action(App* app);
     ~action();
-    void render(DemoApp** app);
+    void render(App** app);
     void addTicker(ticker* tk);
     ticker* getTickerById(string id);
     void addChild(Sprite*);
@@ -19,5 +19,5 @@ class action {
   public:
     string status = "action";
     DisplayObject* Container;
-    DemoApp* app;
+    App* app;
 };

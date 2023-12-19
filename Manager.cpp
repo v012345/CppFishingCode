@@ -6,9 +6,9 @@
 #include "Scene/StageSelectScene.h"
 #include "Scene/TitleScene.h"
 
-DemoApp* l_app = NULL;
+App* l_app = NULL;
 // 窗口显示之前调用
-void ResourceManager::loadImages(DemoApp* app) {
+void ResourceManager::loadImages(App* app) {
     l_app = app;
     vector<string> arr;
     // 背景

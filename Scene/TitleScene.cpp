@@ -7,13 +7,13 @@
 #include "../instance/colVec.h"
 
 action* TitleScene::scene = NULL;
-DemoApp* TitleScene::app = NULL;
+App* TitleScene::app = NULL;
 colVec* TitleScene::colObj = NULL;
 DisplayObject* TitleScene::maxBox = NULL;
 float TitleScene::zoom = 0.7;
 bool TitleScene::isInit = false;
 vector<utils::usePoint> TitleScene::p1;
-void TitleScene::init(DemoApp* app, colVec* colObj) {
+void TitleScene::init(App* app, colVec* colObj) {
     TitleScene::scene = new action(app);
     TitleScene::app = app;
 

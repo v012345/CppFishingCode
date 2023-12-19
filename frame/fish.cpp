@@ -6,7 +6,7 @@
 
 fish::fish() {}
 
-fish::fish(DemoApp* app, action* scene, colVec* colObj, Sprite* img, float speed) {
+fish::fish(App* app, action* scene, colVec* colObj, Sprite* img, float speed) {
     this->app = app;
     this->scene = scene;
     this->colObj = colObj;

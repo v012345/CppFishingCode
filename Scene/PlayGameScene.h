@@ -1,7 +1,7 @@
 #pragma once
 #include "../stdafx.h"
 class action;
-class DemoApp;
+class App;
 class colVec;
 class bullet;
 class fish;
@@ -10,7 +10,7 @@ class files;
 class fishConfig;
 namespace PlayGameScene {
     extern action* scene; // 当前场景的场景对象
-    extern DemoApp* app; // 游戏app
+    extern App* app; // 游戏app
     extern colVec* colObj; // 碰撞对象 提供obb  aabb 相关碰撞算法 <obb 采用向量>
 
     extern float zoom; // 场景所有精灵用的zoom
@@ -39,7 +39,7 @@ namespace PlayGameScene {
     extern Sprite* addBtn; // 切换炮台 加
     extern Sprite* subtractBtn; // 切换炮台 减
     extern void drawGoldNum();
-    extern void init(DemoApp* app, colVec* colObj); // 场景初始化调用
+    extern void init(App* app, colVec* colObj); // 场景初始化调用
     extern void visible(); // 场景显示调用
     extern void onClick(int x, int y); // 场景点击事件
     extern void onClose(); // 场景点击事件
@@ -51,7 +51,7 @@ namespace PlayGameScene {
     extern Sprite* initAmt1(LPWSTR url, int w, int h, int frame, float zoom = 1); // 初始化单帧动画
     extern void initAmt2(Sprite* v, int startY, int w, int h, int frame, float zoom);
     extern DWORD WINAPI tk1Fun(); // 计时器每一帧调用函数
-    extern void tk1FunC(DemoApp** app, ticker* tk);
+    extern void tk1FunC(App** app, ticker* tk);
     extern void mouseMove(int x, int y); // 鼠标移动触发函数
     extern void frameSpriteInfo(Sprite** sp, int type);
     extern void removeBullet(bullet* bt); // 排泄子弹

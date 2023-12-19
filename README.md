@@ -18,7 +18,7 @@ trigger 放对一些消息进行映射的文件夹
 [精灵对象sprite.h的封装](https://blog.csdn.net/baidu_38766085/article/details/83685196)  
 [场景类action.h的封装](https://blog.csdn.net/baidu_38766085/article/details/83796034)  
 [计时器对象ticker.h的封装](https://blog.csdn.net/baidu_38766085/article/details/83956184)  
-[窗口对象DemoApp.h的说明](https://blog.csdn.net/baidu_38766085/article/details/83796063)  
+[窗口对象App.h的说明](https://blog.csdn.net/baidu_38766085/article/details/83796063)  
 [消息映射和流程触发结构 Manager.h](https://blog.csdn.net/baidu_38766085/article/details/83956221)  
 [子弹对象bullet.h的封装](https://blog.csdn.net/baidu_38766085/article/details/83956242)  
 [鱼类fish.h的封装](https://blog.csdn.net/baidu_38766085/article/details/83956260)  

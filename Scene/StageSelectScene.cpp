@@ -5,12 +5,12 @@
 
 #include "../instance/colVec.h"
 action* StageSelectScene::scene = NULL;
-DemoApp* StageSelectScene::app = NULL;
+App* StageSelectScene::app = NULL;
 colVec* StageSelectScene::colObj = NULL;
 DisplayObject* StageSelectScene::maxBox = NULL;
 float StageSelectScene::zoom = 0.7;
 vector<Sprite*> StageSelectScene::spArr;
-void StageSelectScene::init(DemoApp* app, colVec* colObj) {
+void StageSelectScene::init(App* app, colVec* colObj) {
     StageSelectScene::scene = new action(app);
     StageSelectScene::app = app;
     StageSelectScene::colObj = colObj;

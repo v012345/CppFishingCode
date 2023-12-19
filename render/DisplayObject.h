@@ -1,6 +1,6 @@
 #pragma once
-// #include "DemoApp.h"
-class DemoApp;
+// #include "App.h"
+class App;
 class Sprite;
 class DisplayObject {
   public:
@@ -8,7 +8,7 @@ class DisplayObject {
     ~DisplayObject();
     virtual int addChild(Sprite* child);
     virtual int removeChild(Sprite* child);
-    virtual void render(DemoApp* app);
+    virtual void render(App* app);
     virtual void setX(float x);
     virtual void setY(float y);
     virtual void setX(int x);

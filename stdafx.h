@@ -63,9 +63,9 @@ enum SceneType {
     eStageSelectScene,
 };
 
-#include "instance/DemoApp.h"
+#include "App.h"
 #include "instance/colVec.h"
 #include "render/Canvas.h"
-#include "render/action.h"
 #include "render/Sprite.h"
+#include "render/action.h"
 #include "render/ticker.h"

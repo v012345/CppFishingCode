@@ -1,5 +1,5 @@
 #pragma once
-class DemoApp;
+class App;
 class ticker {
   public:
     ticker();
@@ -7,8 +7,8 @@ class ticker {
     void start();
     void stop();
     void setTimmer(float timmer);
-    void addFun(void (*fs)(DemoApp** app, ticker* tk));
-    void render(DemoApp** app);
+    void addFun(void (*fs)(App** app, ticker* tk));
+    void render(App** app);
     void setId(string str);
 
   public:
@@ -22,6 +22,6 @@ class ticker {
     string id = "";
 
   private:
-    vector<void (*)(DemoApp** app, ticker* tk)> tickerArr;
+    vector<void (*)(App** app, ticker* tk)> tickerArr;
     bool started = false;
 };
