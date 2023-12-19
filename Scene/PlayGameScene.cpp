@@ -8,11 +8,13 @@
 #include "PlayGameScene.h"
 PlayGameScene::PlayGameScene() {}
 PlayGameScene::~PlayGameScene() {}
+
 static DWORD WINAPI ThreadProcStatic(LPVOID lpParam) {
     PlayGameScene* pYourClass = reinterpret_cast<PlayGameScene*>(lpParam);
     pYourClass->tk1Fun();
     return 0;
 }
+
 void PlayGameScene::init(App* app, colVec* colObj) {
     this->scene = NULL;
     this->app = NULL;
@@ -140,7 +142,7 @@ void PlayGameScene::visible() {
     PlayGameScene::bgArr[PlayGameScene::nowScane]->width = PlayGameScene::app->width;
     PlayGameScene::bgArr[PlayGameScene::nowScane]->height = PlayGameScene::app->height;
 
-    if (PlayGameScene::jbNum.size() == 0) {
+    if (PlayGameScene::CoinNum.size() == 0) {
 
         // 背景
 
@@ -154,7 +156,7 @@ void PlayGameScene::visible() {
         PlayGameScene::initPt();
         for (int i = 0; i < 10; i++) {
             Sprite* l_spInit = new Sprite(PlayGameScene::app, L"img/glod/coinText.png");
-            PlayGameScene::jbNum.push_back(l_spInit);
+            PlayGameScene::CoinNum.push_back(l_spInit);
             u_rect* rc = new u_rect();
             rc->x = 0;
             rc->y = 0;
@@ -235,15 +237,15 @@ void PlayGameScene::drawGoldNum() {
 
     int len = a1.length();
     if (len > 6) {
-        for (int d = 6; d < len; d++) { PlayGameScene::jbNum[d]->visible = true; }
+        for (int d = 6; d < len; d++) { PlayGameScene::CoinNum[d]->visible = true; }
     } else {
-        for (int d = 6; d < 10; d++) { PlayGameScene::jbNum[d]->visible = false; }
+        for (int d = 6; d < 10; d++) { PlayGameScene::CoinNum[d]->visible = false; }
     }
     for (int i = len - 1, q = 0; i >= 0; i--, q++) {
         int a2 = a1[q] - 48;
-        PlayGameScene::jbNum[i]->frame->x = a2 * 36;
+        PlayGameScene::CoinNum[i]->frame->x = a2 * 36;
     }
-    for (int e = len; e < 9; e++) { PlayGameScene::jbNum[e]->frame->x = 0; }
+    for (int e = len; e < 9; e++) { PlayGameScene::CoinNum[e]->frame->x = 0; }
 };
 void PlayGameScene::tk1FunC(App** app, ticker* tk) {
     PlayGameScene::timerFish += 15;

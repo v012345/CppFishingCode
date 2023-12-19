@@ -29,7 +29,7 @@ class PlayGameScene : public BaseScene {
     files* saveObj;
     Sprite* bk;
 
-    vector<Sprite*> jbNum;
+    vector<Sprite*> CoinNum;
     vector<Sprite*> bgArr; // 所有关数的背景
     vector<Sprite*> ptArr; // 炮台Arr
     vector<Sprite*> bulletArr; // 子弹Arr Img

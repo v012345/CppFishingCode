@@ -93,9 +93,7 @@ HRESULT App::Initialize() {
     }
     return hr;
 }
-/*void App::addScene(action * scane) {
-        this->sceneArr.push_back(scane);
-};*/
+
 void App::addFun(void (*funs)(App*)) {
     vector<void (*)(App*)>::iterator it;
     it = find(this->fun.begin(), this->fun.end(), (funs));
