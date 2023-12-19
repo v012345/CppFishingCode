@@ -1,4 +1,5 @@
 #pragma once
+#include "../stdafx.h"
 class action;
 class DemoApp;
 class colVec;

@@ -9,6 +9,7 @@
 DemoApp* l_app = NULL;
 // 窗口显示之前调用
 void ResourceManager::loadImages(DemoApp* app) {
+    l_app = app;
     vector<string> arr;
     // 背景
     arr.push_back("img/Interface/startbg.jpg");
@@ -85,20 +86,6 @@ void ResourceManager::loadImages(DemoApp* app) {
     app->getSource(arr);
 }
 
-// 窗口显示之后调用
-void ResourceManager::initScenes(DemoApp* app) {
-    l_app = app;
-    colVec* colObj = new colVec();
-    TitleScene::init(app, colObj);
-    app->addScene(TitleScene::scene);
-    TitleScene::visible();
-
-    PlayGameScene::init(app, colObj);
-    app->addScene(PlayGameScene::scene);
-
-    StageSelectScene::init(app, colObj);
-    app->addScene(StageSelectScene::scene);
-};
 vector<string> SceneName{"TitleScene", "PlayGameScene", "StageSelectScene"};
 void InputManager::onKeyDown(int code) {
     string a = SceneName[l_app->nowScene];

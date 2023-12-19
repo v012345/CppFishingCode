@@ -1,5 +1,8 @@
 #include "../Manager.h"
 #include "../Resource.h"
+#include "../Scene/PlayGameScene.h"
+#include "../Scene/StageSelectScene.h"
+#include "../Scene/TitleScene.h"
 #include "../stdafx.h"
 
 DemoApp::DemoApp() : m_hwnd(NULL), mCanvas(NULL) {
@@ -85,7 +88,7 @@ HRESULT DemoApp::Initialize() {
             ResourceManager::loadImages(this);
             ShowWindow(m_hwnd, SW_SHOWNORMAL);
             UpdateWindow(m_hwnd);
-            ResourceManager::initScenes(this);
+            this->initScenes();
         }
     }
     return hr;
@@ -199,4 +202,17 @@ void DemoApp::getSource(vector<string> arr) {
     for (unsigned int i = 0; i < arr.size(); i++) { //
         this->mCanvas->getSoucre(g_chartowchar2(arr[i].c_str()));
     }
+};
+// 窗口显示之后调用
+void DemoApp::initScenes() {
+    colVec* colObj = new colVec();
+    TitleScene::init(this, colObj);
+    this->addScene(TitleScene::scene);
+    TitleScene::visible();
+
+    PlayGameScene::init(this, colObj);
+    this->addScene(PlayGameScene::scene);
+
+    StageSelectScene::init(this, colObj);
+    this->addScene(StageSelectScene::scene);
 };

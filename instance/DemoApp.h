@@ -15,6 +15,7 @@ class DemoApp {
     void cancelFullSreen();
     bool isFull = false;
     void getSource(vector<string>);
+    void initScenes();
     // DWORD  newT = 0;
     // DWORD oldT = 0;
   public:
