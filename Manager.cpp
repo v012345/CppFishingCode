@@ -93,8 +93,9 @@ void ResourceManager::initScenes(DemoApp* app) {
     app->addScene(TitleScene::scene);
     TitleScene::visible();
 
-    PlayGameScene::init(&app, &colObj);
+    PlayGameScene::init(app, colObj);
     app->addScene(PlayGameScene::scene);
+
     StageSelectScene::init(app, colObj);
     app->addScene(StageSelectScene::scene);
 };

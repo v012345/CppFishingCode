@@ -38,20 +38,20 @@ bool PlayGameScene::isDown = false;
 
 int PlayGameScene::usegold = 0;
 vector<Sprite*> PlayGameScene::jbNum;
-void PlayGameScene::init(DemoApp** app, colVec** colObj) {
-    PlayGameScene::scene = new action(*app);
-    PlayGameScene::app = *app;
-    PlayGameScene::colObj = *colObj;
+void PlayGameScene::init(DemoApp* app, colVec* colObj) {
+    PlayGameScene::scene = new action(app);
+    PlayGameScene::app = app;
+    PlayGameScene::colObj = colObj;
     PlayGameScene::tk1 = new ticker();
 
     PlayGameScene::scene->addTicker(PlayGameScene::tk1);
     PlayGameScene::tk1->addFun(PlayGameScene::tk1FunC);
     // 添加点击事件
-    (*app)->use_onClick["PlayGameScene"] = PlayGameScene::onClick;
-    (*app)->use_onMouseMove["PlayGameScene"] = PlayGameScene::mouseMove;
-    (*app)->use_onKeyUp["PlayGameScene"] = PlayGameScene::onKeyUp;
-    (*app)->use_onMouseDown["PlayGameScene"] = PlayGameScene::onMouseDown;
-    (*app)->use_onClose["PlayGameScene"] = PlayGameScene::onClose;
+    app->use_onClick["PlayGameScene"] = PlayGameScene::onClick;
+    app->use_onMouseMove["PlayGameScene"] = PlayGameScene::mouseMove;
+    app->use_onKeyUp["PlayGameScene"] = PlayGameScene::onKeyUp;
+    app->use_onMouseDown["PlayGameScene"] = PlayGameScene::onMouseDown;
+    app->use_onClose["PlayGameScene"] = PlayGameScene::onClose;
     PlayGameScene::hThred = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)PlayGameScene::tk1Fun, NULL, CREATE_SUSPENDED, NULL);
     if (PlayGameScene::hThred == NULL) { MessageBox(NULL, L"asd", L"asd", MB_OK); }
 
@@ -62,11 +62,11 @@ void PlayGameScene::init(DemoApp** app, colVec** colObj) {
     scene->addChild((Sprite*)PlayGameScene::maxBox);
     PlayGameScene::maxBox->addChild((Sprite*)PlayGameScene::fishBox);
     PlayGameScene::maxBox->addChild((Sprite*)PlayGameScene::bottomBox);
-    PlayGameScene::bottom["yin"] = new Sprite(*app, L"img/glod/coinAni1.png");
-    PlayGameScene::bottom["jin"] = new Sprite(*app, L"img/glod/coinAni2.png");
-    PlayGameScene::bottom["pdSend"] = new Sprite(*app, L"img/pwoerPd/pd.png");
-    PlayGameScene::bottom["pdBoom"] = new Sprite(*app, L"img/pwoerPd/cl.png");
-    PlayGameScene::bottom["bar"] = new Sprite(*app, L"img/Interface/energy-bar.png");
+    PlayGameScene::bottom["yin"] = new Sprite(app, L"img/glod/coinAni1.png");
+    PlayGameScene::bottom["jin"] = new Sprite(app, L"img/glod/coinAni2.png");
+    PlayGameScene::bottom["pdSend"] = new Sprite(app, L"img/pwoerPd/pd.png");
+    PlayGameScene::bottom["pdBoom"] = new Sprite(app, L"img/pwoerPd/cl.png");
+    PlayGameScene::bottom["bar"] = new Sprite(app, L"img/Interface/energy-bar.png");
     PlayGameScene::saveObj->getFile(L"_save.sva");
     PlayGameScene::saveObj->readFile();
     if (PlayGameScene::saveObj->s == "") {
@@ -76,12 +76,12 @@ void PlayGameScene::init(DemoApp** app, colVec** colObj) {
     }
 
     // 设置场景
-    PlayGameScene::bgArr.push_back(new Sprite(*app, L"img/Interface/1a.jpg"));
-    PlayGameScene::bgArr.push_back(new Sprite(*app, L"img/Interface/1b.jpg"));
-    PlayGameScene::bgArr.push_back(new Sprite(*app, L"img/Interface/1c.jpg"));
-    PlayGameScene::bgArr.push_back(new Sprite(*app, L"img/Interface/1d.jpg"));
-    PlayGameScene::bgArr.push_back(new Sprite(*app, L"img/Interface/1e.jpg"));
-    PlayGameScene::bgArr.push_back(new Sprite(*app, L"img/Interface/1f.jpg"));
+    PlayGameScene::bgArr.push_back(new Sprite(app, L"img/Interface/1a.jpg"));
+    PlayGameScene::bgArr.push_back(new Sprite(app, L"img/Interface/1b.jpg"));
+    PlayGameScene::bgArr.push_back(new Sprite(app, L"img/Interface/1c.jpg"));
+    PlayGameScene::bgArr.push_back(new Sprite(app, L"img/Interface/1d.jpg"));
+    PlayGameScene::bgArr.push_back(new Sprite(app, L"img/Interface/1e.jpg"));
+    PlayGameScene::bgArr.push_back(new Sprite(app, L"img/Interface/1f.jpg"));
     // 炮台
     PlayGameScene::ptArr.push_back(PlayGameScene::initAmt1(L"img/bullet/cannon1.png", 74, 74, 5));
     PlayGameScene::ptArr.push_back(PlayGameScene::initAmt1(L"img/bullet/cannon2.png", 74, 76, 5));
@@ -91,21 +91,21 @@ void PlayGameScene::init(DemoApp** app, colVec** colObj) {
     PlayGameScene::ptArr.push_back(PlayGameScene::initAmt1(L"img/bullet/cannon6.png", 74, 90, 5));
     PlayGameScene::ptArr.push_back(PlayGameScene::initAmt1(L"img/bullet/cannon7.png", 74, 94, 5));
     // 子弹
-    PlayGameScene::bulletArr.push_back(new Sprite(*app, L"img/bullet/bullet1.png"));
-    PlayGameScene::bulletArr.push_back(new Sprite(*app, L"img/bullet/bullet2.png"));
-    PlayGameScene::bulletArr.push_back(new Sprite(*app, L"img/bullet/bullet3.png"));
-    PlayGameScene::bulletArr.push_back(new Sprite(*app, L"img/bullet/bullet4.png"));
-    PlayGameScene::bulletArr.push_back(new Sprite(*app, L"img/bullet/bullet5.png"));
-    PlayGameScene::bulletArr.push_back(new Sprite(*app, L"img/bullet/bullet6.png"));
-    PlayGameScene::bulletArr.push_back(new Sprite(*app, L"img/bullet/bullet7.png"));
+    PlayGameScene::bulletArr.push_back(new Sprite(app, L"img/bullet/bullet1.png"));
+    PlayGameScene::bulletArr.push_back(new Sprite(app, L"img/bullet/bullet2.png"));
+    PlayGameScene::bulletArr.push_back(new Sprite(app, L"img/bullet/bullet3.png"));
+    PlayGameScene::bulletArr.push_back(new Sprite(app, L"img/bullet/bullet4.png"));
+    PlayGameScene::bulletArr.push_back(new Sprite(app, L"img/bullet/bullet5.png"));
+    PlayGameScene::bulletArr.push_back(new Sprite(app, L"img/bullet/bullet6.png"));
+    PlayGameScene::bulletArr.push_back(new Sprite(app, L"img/bullet/bullet7.png"));
     // 网
-    PlayGameScene::bulletWang.push_back(new Sprite(*app, L"img/bullet/web1s.png"));
-    PlayGameScene::bulletWang.push_back(new Sprite(*app, L"img/bullet/web2s.png"));
-    PlayGameScene::bulletWang.push_back(new Sprite(*app, L"img/bullet/web3s.png"));
-    PlayGameScene::bulletWang.push_back(new Sprite(*app, L"img/bullet/web4s.png"));
-    PlayGameScene::bulletWang.push_back(new Sprite(*app, L"img/bullet/web5s.png"));
-    PlayGameScene::bulletWang.push_back(new Sprite(*app, L"img/bullet/web6s.png"));
-    PlayGameScene::bulletWang.push_back(new Sprite(*app, L"img/bullet/web7s.png"));
+    PlayGameScene::bulletWang.push_back(new Sprite(app, L"img/bullet/web1s.png"));
+    PlayGameScene::bulletWang.push_back(new Sprite(app, L"img/bullet/web2s.png"));
+    PlayGameScene::bulletWang.push_back(new Sprite(app, L"img/bullet/web3s.png"));
+    PlayGameScene::bulletWang.push_back(new Sprite(app, L"img/bullet/web4s.png"));
+    PlayGameScene::bulletWang.push_back(new Sprite(app, L"img/bullet/web5s.png"));
+    PlayGameScene::bulletWang.push_back(new Sprite(app, L"img/bullet/web6s.png"));
+    PlayGameScene::bulletWang.push_back(new Sprite(app, L"img/bullet/web7s.png"));
 
     // 鱼
     PlayGameScene::initFishConfig(L"img/fish/fish1.png", 0, 55, 37, 4, 4 * 37, 4, 2, 15);

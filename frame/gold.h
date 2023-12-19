@@ -9,7 +9,7 @@ class gold {
     void gold::setX(float x);
     void gold::setY(float y);
     float t;
-    //	void setFrameArr(vector<u_rect>  * arr);
+
   public:
     int addNum;
     Sprite* view;

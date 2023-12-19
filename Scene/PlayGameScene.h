@@ -38,7 +38,7 @@ namespace PlayGameScene {
     extern Sprite* addBtn; // 切换炮台 加
     extern Sprite* subtractBtn; // 切换炮台 减
     extern void drawGoldNum();
-    extern void init(DemoApp** app, colVec** colObj); // 场景初始化调用
+    extern void init(DemoApp* app, colVec* colObj); // 场景初始化调用
     extern void visible(); // 场景显示调用
     extern void onClick(int x, int y); // 场景点击事件
     extern void onClose(); // 场景点击事件

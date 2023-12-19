@@ -1,7 +1,6 @@
 #include "../stdafx.h"
 
 #include "colVec.h"
-// #include "TitleScene.h"
 
 colVec::colVec() {
     // 分配预留点
