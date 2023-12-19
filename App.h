@@ -1,4 +1,5 @@
 #pragma once
+#include <functional>
 class Canvas;
 class Sprite;
 class action;
@@ -23,6 +24,7 @@ class App {
     bool isFull = false;
     void getSource(vector<string>);
     void initScenes();
+    void changeScene(SceneType);
     // DWORD  newT = 0;
     // DWORD oldT = 0;
   public:
@@ -30,7 +32,7 @@ class App {
     LARGE_INTEGER oldtime;
     LARGE_INTEGER newtime;
     LARGE_INTEGER frequency;
-    oMap<string, void (*)(int, int)> use_onClick;
+    oMap<std::string, std::function<void(int, int)>> use_onClick;
     oMap<string, void (*)(int, int)> use_onMouseDown;
     oMap<string, void (*)(int, int)> use_onMouseUp;
     oMap<string, void (*)(int, int)> use_onMouseMove;

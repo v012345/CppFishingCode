@@ -7,10 +7,10 @@ class Node {
     /* data */
   public:
     Node(/* args */);
-    void update(int);
-    void addTicker(ticker* tk);
-    ticker* getTickerById(std::string id);
-    void addChild(Node*);
+    // void update(int);
+    // void addTicker(ticker* tk);
+    // ticker* getTickerById(std::string id);
+    // void addChild(Node*);
     ~Node();
 
   private:

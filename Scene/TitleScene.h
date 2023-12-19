@@ -1,16 +1,23 @@
 #pragma once
 #include "../stdafx.h"
+#include "BaseScene.h"
 class action;
 class App;
-namespace TitleScene {
-    extern action* scene;
-    extern App* app;
-    extern colVec* colObj;
-    extern DisplayObject* maxBox;
-    extern float zoom;
-    extern bool isInit;
-    extern void init(App* app, colVec* colObj);
-    extern void onClick(int x, int y);
-    extern void visible();
-    extern vector<utils::usePoint> p1;
-} // namespace TitleScene
+class TitleScene : public BaseScene {
+  public:
+    static TitleScene* getInstance() {
+        static TitleScene instance;
+        return &instance;
+    }
+    void init(App* app, colVec* colObj);
+    action* scene;
+    App* app;
+    colVec* colObj;
+    float zoom;
+    vector<utils::usePoint> p1;
+    DisplayObject* maxBox;
+
+  private:
+    TitleScene();
+    ~TitleScene();
+};

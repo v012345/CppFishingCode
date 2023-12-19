@@ -206,13 +206,17 @@ void App::getSource(vector<string> arr) {
 // 窗口显示之后调用
 void App::initScenes() {
     colVec* colObj = new colVec();
-    TitleScene::init(this, colObj);
-    this->addScene(TitleScene::scene);
-    TitleScene::visible();
+    TitleScene* titleScene = TitleScene::getInstance();
+    titleScene->init(this, colObj);
+    this->addScene(titleScene->scene);
 
     PlayGameScene::init(this, colObj);
     this->addScene(PlayGameScene::scene);
 
-    StageSelectScene::init(this, colObj);
-    this->addScene(StageSelectScene::scene);
-};
+    StageSelectScene* stageSelectScene = StageSelectScene::getInstance();
+    stageSelectScene->init(this, colObj);
+    this->addScene(stageSelectScene->scene);
+}
+void App::changeScene(SceneType s) {
+    this->nowScene = s;
+}

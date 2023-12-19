@@ -1,56 +1,53 @@
 #include "../stdafx.h"
 
 #include "TitleScene.h"
+#include <functional>
 
 #include "StageSelectScene.h"
 
 #include "../instance/colVec.h"
-
-action* TitleScene::scene = NULL;
-App* TitleScene::app = NULL;
-colVec* TitleScene::colObj = NULL;
-DisplayObject* TitleScene::maxBox = NULL;
-float TitleScene::zoom = 0.7;
-bool TitleScene::isInit = false;
-vector<utils::usePoint> TitleScene::p1;
+TitleScene::TitleScene() {}
+TitleScene::~TitleScene() {}
 void TitleScene::init(App* app, colVec* colObj) {
-    TitleScene::scene = new action(app);
-    TitleScene::app = app;
+    this->scene = NULL;
+    this->app = NULL;
+    this->colObj = NULL;
+    this->maxBox = NULL;
+    this->zoom = 0.7f;
+    this->scene = new action(app);
+    this->app = app;
 
-    TitleScene::colObj = colObj;
-    app->use_onClick["TitleScene"] = TitleScene::onClick;
-    TitleScene::maxBox = new DisplayObject(0, 0);
-    scene->addChild((Sprite*)TitleScene::maxBox);
-}
-void TitleScene::visible() {
+    this->colObj = colObj;
+    this->maxBox = new DisplayObject(0, 0);
+    scene->addChild((Sprite*)this->maxBox);
 
-    Sprite* bg = new Sprite(TitleScene::app, L"img/Interface/startbg.jpg");
+    app->use_onClick["TitleScene"] = [this](int x, int y) {
+        DisplayObject* m = this->maxBox;
+        Sprite* sn = m->getChildById("start");
+        if (sn->inRect(this->app->mouse)) { //
+            this->app->changeScene(eStageSelectScene);
+        }
+    };
+
+    // 拼图
+    Sprite* bg = new Sprite(this->app, L"img/Interface/startbg.jpg");
     bg->width = app->width;
     bg->height = app->height;
 
-    Sprite* lg = new Sprite(TitleScene::app, L"img/Interface/login.png");
-    lg->zoom = TitleScene::zoom;
+    Sprite* lg = new Sprite(this->app, L"img/Interface/login.png");
+    lg->zoom = this->zoom;
 
-    Sprite* sn = new Sprite(TitleScene::app, L"img/Interface/sign.png");
-    sn->zoom = TitleScene::zoom;
+    Sprite* sn = new Sprite(this->app, L"img/Interface/sign.png");
+    sn->zoom = this->zoom;
     sn->setId("start");
 
-    TitleScene::maxBox->addChild(bg);
-    TitleScene::maxBox->addChild(lg);
-    TitleScene::maxBox->addChild(sn);
+    this->maxBox->addChild(bg);
+    this->maxBox->addChild(lg);
+    this->maxBox->addChild(sn);
 
     lg->setX((bg->getWidth() / 2 - lg->getWidth() / 2));
     lg->setY((bg->getHeight() / 2 - lg->getHeight() / 2) - bg->getHeight() / 100 * 15);
 
     sn->setX((bg->getWidth() / 2 - sn->getWidth() / 2));
     sn->setY((bg->getHeight() / 2 - lg->getHeight() / 2) - bg->getHeight() / 100 * 15 + lg->getHeight() + 30);
-};
-void TitleScene::onClick(int x, int y) {
-    Sprite* sn = TitleScene::maxBox->getChildById("start");
-
-    if (sn->inRect(TitleScene::app->mouse)) {
-
-        app->nowScene = eStageSelectScene;
-        StageSelectScene::visible();
-    }
 }

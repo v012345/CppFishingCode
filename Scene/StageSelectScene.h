@@ -1,17 +1,25 @@
 #pragma once
 #include "../stdafx.h"
+#include "BaseScene.h"
 class action;
 class App;
 class colVec;
-namespace StageSelectScene {
-    extern action* scene;
-    extern App* app;
-    extern colVec* colObj;
-    extern DisplayObject* maxBox;
-    extern float zoom;
-    extern void init(App* app, colVec* colObj);
-    extern void visible();
-    extern void onClick(int x, int y);
-    extern vector<Sprite*> spArr;
-    extern Sprite* initTxtSprite(string txt, int x, int y);
-} // namespace StageSelectScene
+class StageSelectScene : public BaseScene {
+  public:
+    static StageSelectScene* getInstance() {
+        static StageSelectScene instance;
+        return &instance;
+    }
+    action* scene;
+    App* app;
+    colVec* colObj;
+    DisplayObject* maxBox;
+    float zoom;
+    void init(App* app, colVec* colObj);
+    vector<Sprite*> spArr;
+    Sprite* initTxtSprite(string txt, int x, int y);
+
+  private:
+    StageSelectScene();
+    ~StageSelectScene();
+};
