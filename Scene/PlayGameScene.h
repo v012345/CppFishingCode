@@ -20,7 +20,7 @@ class PlayGameScene : public BaseScene {
     colVec* colObj; // 碰撞对象 提供obb  aabb 相关碰撞算法 <obb 采用向量>
 
     float zoom; // 场景所有精灵用的zoom
-    int nowScane; // 当前关数
+    int mStageId; // 当前关数
     int nowPt; // 当前炮台的显示
     oMap<string, Sprite*> bottom; // 底部精灵组合
     ticker* tk1; // 场景计时器

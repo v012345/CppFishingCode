@@ -25,7 +25,7 @@ void PlayGameScene::init(App* app, colVec* colObj) {
     this->addBtn = NULL;
     this->subtractBtn = NULL;
     this->zoom = 1;
-    this->nowScane = 0;
+    this->mStageId = 0;
     this->nowPt = 0;
     this->tk1 = NULL;
     this->bk = NULL;
@@ -138,9 +138,9 @@ fishConfig* PlayGameScene::initFishConfig(LPWSTR url, int swimY, int w, int h, i
 };
 void PlayGameScene::visible() {
 
-    PlayGameScene::fishBox->addChild(PlayGameScene::bgArr[PlayGameScene::nowScane]);
-    PlayGameScene::bgArr[PlayGameScene::nowScane]->width = PlayGameScene::app->width;
-    PlayGameScene::bgArr[PlayGameScene::nowScane]->height = PlayGameScene::app->height;
+    PlayGameScene::fishBox->addChild(PlayGameScene::bgArr[PlayGameScene::mStageId]);
+    PlayGameScene::bgArr[PlayGameScene::mStageId]->width = PlayGameScene::app->width;
+    PlayGameScene::bgArr[PlayGameScene::mStageId]->height = PlayGameScene::app->height;
 
     if (PlayGameScene::CoinNum.size() == 0) {
 
@@ -250,7 +250,7 @@ void PlayGameScene::drawGoldNum() {
 void PlayGameScene::tk1FunC(App** app, ticker* tk) {
     PlayGameScene::timerFish += 15;
     unsigned int i = 0;
-    unsigned int len = PlayGameScene::fishConfigArr.size() - 5 + PlayGameScene::nowScane;
+    unsigned int len = PlayGameScene::fishConfigArr.size() - 5 + PlayGameScene::mStageId;
     for (i = 0; i < len; i++) { //
         PlayGameScene::fishConfigArr[i]->frameFun(&this->fishArr, PlayGameScene::fishBox);
     }
@@ -303,7 +303,7 @@ void PlayGameScene::removeGold(gold* b) {
 void PlayGameScene::onClick(int x, int y) {
     if (PlayGameScene::bk->inRect(PlayGameScene::app->mouse)) {
         PlayGameScene::app->nowScene = eStageSelectScene;
-        PlayGameScene::fishBox->removeChild(PlayGameScene::bgArr[PlayGameScene::nowScane]);
+        PlayGameScene::fishBox->removeChild(PlayGameScene::bgArr[PlayGameScene::mStageId]);
     }
     if (PlayGameScene::isDown == true) {
         PlayGameScene::addBtn->img = PlayGameScene::app->mCanvas->getSoucre(L"img/Interface/cannon_plus.png");
