@@ -50,11 +50,6 @@ EXTERN_C IMAGE_DOS_HEADER __ImageBase;
 #define HINST_THISCOMPONENT ((HINSTANCE) & __ImageBase)
 #endif
 wchar_t* g_chartowchar2(const char* cchar);
-template <typename T1, typename T2> string g_concat(const T1& v1, const T2& v2) {
-    stringstream ss;
-    ss << v1 << v2;
-    return ss.str();
-}
 float random();
 typedef struct {
     int x;

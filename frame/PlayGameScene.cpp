@@ -235,7 +235,7 @@ void PlayGameScene::initAmt2(sprite* v, int startY, int w, int h, int frame, flo
     v->frameArr = arr;
 };
 void PlayGameScene::drawGoldNum() {
-    string a1 = g_concat(PlayGameScene::usegold, "");
+    string a1 = std::to_string(PlayGameScene::usegold);
 
     int len = a1.length();
     if (len > 6) {
@@ -269,16 +269,6 @@ void PlayGameScene::tk1FunC(DemoApp** app, ticker* tk) {
     PlayGameScene::drawGoldNum();
 }
 DWORD WINAPI PlayGameScene::tk1Fun() {
-    /*
-    string a = "";
-    for (unsigned int q = 0;q < PlayGameScene::fishConfigArr.size();q++) {
-    a=g_concat(a, "鱼");
-    a = g_concat(a, q);
-    a = g_concat(a, ":    ");
-    a = g_concat(a, PlayGameScene::fishConfigArr[q]->fishConfigArr.size());
-    a = g_concat(a, "\n");
-    }
-    (*app)->content->drawText(a, 0, 0);*/
     while (true) {
         Sleep(15);
         unsigned int i = 0;
@@ -286,7 +276,6 @@ DWORD WINAPI PlayGameScene::tk1Fun() {
             if (PlayGameScene::bulletArr2[i]->frameFun(&PlayGameScene::fishArr) == 1) { i--; };
         }
     }
-
     return 1;
 }
 
