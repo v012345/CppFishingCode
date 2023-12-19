@@ -7,9 +7,9 @@
 fish::fish() {}
 
 fish::fish(DemoApp* app, action* scene, colVec* colObj, sprite* img, float speed) {
-    this->app = (app);
-    this->scene = (scene);
-    this->colObj = (colObj);
+    this->app = app;
+    this->scene = scene;
+    this->colObj = colObj;
     this->view = new sprite(this->app, (img)->img);
     this->speed = speed;
     this->scInfo = new sprite(0, 0);
@@ -22,14 +22,6 @@ bool fish::inScreen() {
 void fish::frameFun() {
     if (this->type == "swim") {
         this->moveForword();
-        /*	if (this->moveTime <= 0) {
-
-                        this->moveTime = this->moveAllTime;
-                }
-                else {
-                        this->moveTime--;
-                }*/
-
         if (this->view->angle > this->maxAngle) {
             this->angleAdd = false;
         } else if (this->view->angle < this->minAngle) {
@@ -43,7 +35,6 @@ void fish::frameFun() {
     } else if (this->type == "death") {
         if (this->deathFrameTime <= 0) {
             this->removeScene(this);
-
         } else {
             this->deathFrameTime--;
         }
@@ -56,8 +47,12 @@ void fish::moveForword() {
     this->setX(round(l_p.x));
     this->setY(round(l_p.y));
 }
-void fish::setX(float x) { this->view->setX(x); }
-void fish::setY(float y) { this->view->setY(y); }
+void fish::setX(float x) { //
+    this->view->setX(x);
+}
+void fish::setY(float y) { //
+    this->view->setY(y);
+}
 
 void fish::changeType(string type) {
     if (type != this->type) {

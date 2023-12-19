@@ -7,15 +7,18 @@ DisplayObject::DisplayObject() {
     this->g_y = this->y;
 }
 
-bool DisplayObject::inRect(POINT* mouse) { //
-    return mouse->x >= this->g_x && mouse->x <= this->g_x + this->getWidth() && mouse->y > this->g_y && mouse->y <= this->g_y + this->getHeight();
-}
-
 DisplayObject::DisplayObject(float x, float y) {
     this->x = x;
     this->y = y;
     this->g_x = this->x;
     this->g_y = this->y;
+}
+
+// 判断鼠标是否在此对象中
+bool DisplayObject::inRect(POINT* mouse) { //
+    bool isHitX = mouse->x >= this->g_x && mouse->x <= this->g_x + this->getWidth();
+    bool isHitY = mouse->y > this->g_y && mouse->y <= this->g_y + this->getHeight();
+    return isHitX && isHitY;
 }
 
 void DisplayObject::setId(string id) { //
@@ -24,7 +27,9 @@ void DisplayObject::setId(string id) { //
 
 sprite* DisplayObject::getChildById(string id) {
     for (unsigned int i = 0; i < this->children.size(); i++) {
-        if (this->children[i]->id == id) { return this->children[i]; }
+        if (this->children[i]->id == id) { //
+            return this->children[i];
+        }
     }
     return NULL;
 }
