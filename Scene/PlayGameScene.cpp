@@ -1,11 +1,11 @@
 #include "../stdafx.h"
 
-#include "bullet.h"
-#include "files.h"
-#include "fish.h"
-#include "fishConfig.h"
+#include "../frame/bullet.h"
+#include "../frame/files.h"
+#include "../frame/fish.h"
+#include "../frame/fishConfig.h"
 #include "PlayGameScene.h"
-#include "gold.h"
+#include "../frame/gold.h"
 // action * TitleScene::scene = NULL;
 action* PlayGameScene::scene = NULL;
 DemoApp* PlayGameScene::app = NULL;

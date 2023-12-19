@@ -2,9 +2,9 @@
 //
 #include "Manager.h"
 
-#include "frame/PlayGameScene.h"
-#include "frame/StageSelectScene.h"
-#include "frame/TitleScene.h"
+#include "Scene/PlayGameScene.h"
+#include "Scene/StageSelectScene.h"
+#include "Scene/TitleScene.h"
 
 DemoApp* l_app = NULL;
 // 窗口显示之前调用

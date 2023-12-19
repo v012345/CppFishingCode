@@ -1,8 +1,8 @@
 #include "../stdafx.h"
 
+#include "../Scene/PlayGameScene.h"
 #include "fish.h"
 #include "fishConfig.h"
-#include "PlayGameScene.h"
 
 fishConfig::fishConfig() {}
 fishConfig::fishConfig(DemoApp* app, action* scene, colVec* colObj, Sprite* img, void (*removeScene)(fish* b)) {

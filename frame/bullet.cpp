@@ -2,7 +2,7 @@
 
 #include "bullet.h"
 #include "fish.h"
-#include "PlayGameScene.h"
+#include "../Scene/PlayGameScene.h"
 #include "gold.h"
 
 template <typename t> void log(const t& v1) {
