@@ -1,20 +1,13 @@
 #pragma once
-class Content {
+class Canvas {
   public:
-    Content(HWND h_wnd);
-    Content();
-    ~Content();
+    Canvas(HWND h_wnd);
+    Canvas();
+    ~Canvas();
     // 设置线样式
     void strokeStyle(UINT32 hex, FLOAT alpha);
     void setLineStyle(int model);
     // 线条绘制
-    /*app.content->initPath();
-    app.content->beginPath(0, 0);
-    app.content->addPoint(100, xxx);
-    app.content->addPoint(80+xxx, xxx+20);
-    app.content->closePath();
-    app.content->stroke();
-    app.content->releasePath();*/
     void initPath(D2D1_FILL_MODE mode = D2D1_FILL_MODE_ALTERNATE);
     void releasePath();
     void beginPath(int x, int y);
@@ -54,7 +47,7 @@ class Content {
     void fillImage(WCHAR* url, int x, int y, int width, int height, int srcX = 0, int srcY = 0, float xZoom = 1, float yZoom = 1, int angle = 0);
     void fillImage(ID2D1Bitmap* img, int x, int y, int width, int height, int srcX = 0, int srcY = 0, float xZoom = 1, float yZoom = 1, int angle = 0);
     // 获取资源
-    ID2D1Bitmap* Content::getSoucre(WCHAR* url);
+    ID2D1Bitmap* Canvas::getSoucre(WCHAR* url);
     // 变换
     void rotate(int angle, int x = 0, int y = 0);
     void scale(int zoom, int x = 0, int y = 0);
@@ -76,7 +69,7 @@ class Content {
     int lineStyle = 0; // 0 实线 1虚线
     IWICImagingFactory* m_imgFac;
     HWND p_hwnd;
-    string status = "Content";
+    string status = "Canvas";
     D2D1_MATRIX_3X2_F m1;
     D2D1_MATRIX_3X2_F bufM1;
 

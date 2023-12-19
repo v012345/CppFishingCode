@@ -5,7 +5,6 @@
 
 colVec::colVec() {
     // 分配预留点
-
     this->vec.resize(8);
     this->points.resize(2);
     this->points[0].resize(4);
@@ -25,8 +24,13 @@ colVec::colVec() {
     }
 }
 
-colVec::~colVec() { this->clear(); }
-float colVec::bezierCurve(float p0, float p1, float p2, float t) { return (1 - t) * (1 - t) * p0 + 2 * t * (1 - t) * p1 + t * t * p2; }
+colVec::~colVec() { //
+    this->clear();
+}
+
+float colVec::bezierCurve(float p0, float p1, float p2, float t) { //
+    return (1 - t) * (1 - t) * p0 + 2 * t * (1 - t) * p1 + t * t * p2;
+}
 
 void colVec::clear() {
     this->vec.clear();

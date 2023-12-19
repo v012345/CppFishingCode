@@ -1,5 +1,5 @@
 #pragma once
-class Content;
+class Canvas;
 class Sprite;
 class action;
 class DemoApp {
@@ -18,7 +18,7 @@ class DemoApp {
     // DWORD  newT = 0;
     // DWORD oldT = 0;
   public:
-    Content* content;
+    Canvas* content;
     LARGE_INTEGER oldtime;
     LARGE_INTEGER newtime;
     LARGE_INTEGER frequency;

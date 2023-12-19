@@ -12,7 +12,7 @@ add_executable(Fishing
     "instance/oMap.cpp"
     "instance/stdafx.cpp"
     "instance/utils.cpp"
-    "render/Content.cpp"
+    "render/Canvas.cpp"
     "render/DisplayObject.cpp"
     "render/Sprite.cpp"
     "render/ticker.cpp"

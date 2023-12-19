@@ -58,9 +58,7 @@ void DemoApp::RunMessageLoop() {
 }
 HRESULT DemoApp::Initialize() {
     HRESULT hr = S_OK;
-
-    // Initialize device-indpendent resources, such
-    // as the Direct2D factory.
+    // Initialize device-indpendent resources, such as the Direct2D factory.
     if (SUCCEEDED(hr)) {
         // Register the window class.
         WNDCLASSEX wcex = {sizeof(WNDCLASSEX)};
@@ -80,10 +78,10 @@ HRESULT DemoApp::Initialize() {
         m_hwnd = CreateWindow(L"MXSJ", L"捕鱼人", WS_OVERLAPPEDWINDOW ^ WS_MAXIMIZEBOX ^ WS_THICKFRAME, CW_USEDEFAULT, CW_USEDEFAULT, 1200, 750, NULL, NULL, HINST_THISCOMPONENT, this);
         hr = m_hwnd ? S_OK : E_FAIL;
         if (SUCCEEDED(hr)) {
-            content = new Content(m_hwnd);
-            content->strokeStyle(0xff00ff, 1);
-            content->lineWidth = 2;
-            content->fillStyle(0xffff00, 1);
+            this->content = new Canvas(m_hwnd);
+            this->content->strokeStyle(0xff00ff, 1);
+            this->content->lineWidth = 2;
+            this->content->fillStyle(0xffff00, 1);
             ResourceManager::loadImages(this);
             ShowWindow(m_hwnd, SW_SHOWNORMAL);
             UpdateWindow(m_hwnd);

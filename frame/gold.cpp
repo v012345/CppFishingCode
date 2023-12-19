@@ -1,6 +1,6 @@
 #include "../stdafx.h"
 
-#include "PlayGameScene.h"
+#include "../Scene/PlayGameScene.h"
 #include "gold.h"
 
 gold::gold() { this->t = 0; }
