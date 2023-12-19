@@ -1,6 +1,6 @@
 #include "../stdafx.h"
 
-#include "frame1.h"
+#include "PlayGameScene.h"
 #include "gold.h"
 
 gold::gold() { this->t = 0; }
@@ -13,7 +13,7 @@ gold::~gold() {}
 void gold::getCenterPoint() {
     this->centerPoint.x = (this->endPoint.x - this->startPoint.x) / 2;
     this->centerPoint.y = (this->endPoint.y - this->startPoint.y) / 2;
-    float angle = frame1::colObj->pointAngleInfo(this->startPoint, this->endPoint);
+    float angle = PlayGameScene::colObj->pointAngleInfo(this->startPoint, this->endPoint);
     int distance = 150;
     if (random() >= 0.5) {
         angle = angle - 90;
@@ -22,7 +22,7 @@ void gold::getCenterPoint() {
         angle = angle + 90;
     }
     utils::usePoint buf;
-    frame1::colObj->polarCoordinates(this->centerPoint, angle, 150, buf);
+    PlayGameScene::colObj->polarCoordinates(this->centerPoint, angle, 150, buf);
     this->centerPoint.x = buf.x;
     this->centerPoint.y = buf.y;
 };
@@ -56,8 +56,8 @@ void gold::frameFun() {
 
     if (this->t <= 1) {
         this->t += 0.01;
-        float x = frame1::colObj->bezierCurve(this->startPoint.x, this->centerPoint.x, this->endPoint.x, this->t);
-        float y = frame1::colObj->bezierCurve(this->startPoint.y, this->centerPoint.y, this->endPoint.y, this->t);
+        float x = PlayGameScene::colObj->bezierCurve(this->startPoint.x, this->centerPoint.x, this->endPoint.x, this->t);
+        float y = PlayGameScene::colObj->bezierCurve(this->startPoint.y, this->centerPoint.y, this->endPoint.y, this->t);
         this->setX(x);
         this->setY(y);
     } else {

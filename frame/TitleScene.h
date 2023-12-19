@@ -1,16 +1,15 @@
 #pragma once
 class action;
 class DemoApp;
-class colVec;
-namespace frame2 {
+namespace TitleScene {
     extern action* scene;
     extern DemoApp* app;
     extern colVec* colObj;
     extern DisplayObject* maxBox;
     extern float zoom;
+    extern bool isInit;
     extern void init(DemoApp* app, colVec* colObj);
-    extern void visible();
     extern void onClick(int x, int y);
-    extern vector<sprite*> spArr;
-    extern sprite* initTxtSprite(string txt, int x, int y);
-} // namespace frame2
+    extern void visible();
+    extern vector<utils::usePoint> p1;
+} // namespace TitleScene

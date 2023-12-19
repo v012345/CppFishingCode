@@ -7,7 +7,7 @@ class fish;
 class gold;
 class files;
 class fishConfig;
-namespace frame1 {
+namespace PlayGameScene {
     extern action* scene; // 当前场景的场景对象
     extern DemoApp* app; // 游戏app
     extern colVec* colObj; // 碰撞对象 提供obb  aabb 相关碰撞算法 <obb 采用向量>
@@ -60,4 +60,4 @@ namespace frame1 {
     extern float nowPower;
     extern HANDLE hThred;
     extern fishConfig* initFishConfig(LPWSTR url, int swimY, int w, int h, int swimNum, int deathY, int deathNum, int getGold, int maxFish = 30, int deathInt = 10); // 初始化创建鱼对象
-} // namespace frame1
+} // namespace PlayGameScene

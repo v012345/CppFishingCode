@@ -23,9 +23,9 @@ trigger 放对一些消息进行映射的文件夹
 [子弹对象bullet.h的封装](https://blog.csdn.net/baidu_38766085/article/details/83956242)  
 [鱼类fish.h的封装](https://blog.csdn.net/baidu_38766085/article/details/83956260)  
 [控制创建鱼类fishConfig.h的封装](https://blog.csdn.net/baidu_38766085/article/details/84074258)  
-[编写场景0结构frame0.h](https://blog.csdn.net/baidu_38766085/article/details/84074308)  
-[编写场景2结构frame2.h](https://blog.csdn.net/baidu_38766085/article/details/84260688)  
-[编写场景1结构frame1.h](https://blog.csdn.net/baidu_38766085/article/details/84260711)  
+[编写场景0结构TitleScene.h](https://blog.csdn.net/baidu_38766085/article/details/84074308)  
+[编写场景2结构StageSelectScene.h](https://blog.csdn.net/baidu_38766085/article/details/84260688)  
+[编写场景1结构PlayGameScene.h](https://blog.csdn.net/baidu_38766085/article/details/84260711)  
 [金币对象gold.h的封装](https://blog.csdn.net/baidu_38766085/article/details/84260761)  
 [检查对象colVec.h的封装](https://blog.csdn.net/baidu_38766085/article/details/84260804)  
 ## 项目目录  

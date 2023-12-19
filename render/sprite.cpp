@@ -47,21 +47,34 @@ float sprite::getTxtHeight(DemoApp* app) {
     return size.height;
 };
 sprite::~sprite() {}
+void sprite::setNowFrame(unsigned int nowFrame) { //
+    if (this->frameArr.size() <= this->mNowFrame) { //
+        cout << "jjj" << endl;
+    }
+    this->mNowFrame = nowFrame;
+}
+unsigned int sprite::getNowFrame() { //
+    if (this->frameArr.size() <= this->mNowFrame) { //
+        cout << "jjj" << endl;
+    }
+
+    return this->mNowFrame;
+}
 void sprite::render(DemoApp* app) {
     if (!this->visible) { return; }
     if (this->spriteType == "animateSprite") {
         unsigned int len = this->frameArr.size();
         if (this->speedNowTime + app->msTime >= this->speedTime) {
             this->speedNowTime = 0;
-            if (this->nowFrame < len - 1) {
-                this->nowFrame++;
+            if (this->getNowFrame() < len - 1) {
+                this->setNowFrame(this->getNowFrame() + 1);
             } else {
                 if (this->loop > 0) { this->loop--; }
                 if (this->loop == 0) {
 
                     this->amtEnd(this);
                 } else {
-                    this->nowFrame = 0;
+                    this->setNowFrame(0);
                 }
             }
         } else {
@@ -69,7 +82,7 @@ void sprite::render(DemoApp* app) {
         }
         if (len >= 0) {
 
-            this->frame = &(this->frameArr[this->nowFrame]);
+            this->frame = &(this->frameArr[this->getNowFrame()]);
 
         } else {
             this->frame = NULL;

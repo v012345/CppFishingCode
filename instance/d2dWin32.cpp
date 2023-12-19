@@ -2,15 +2,15 @@
 
 #include "d2dWin32.h"
 #include "../stdafx.h"
-// #include "frame0.h"
+// #include "TitleScene.h"
 
 void update(DemoApp* app) {
     if (!(app)->sceneArr.empty()) { //
         (app)->sceneArr[(app)->nowScene]->render(&app);
     }
-    /*unsigned int len = frame0::p1.size();
+    /*unsigned int len = TitleScene::p1.size();
     for (unsigned int i = 0;i < len;i++) {
-        (app)->content->drawArc(frame0::p1[i].x, frame0::p1[i].y, 10, 10);
+        (app)->content->drawArc(TitleScene::p1[i].x, TitleScene::p1[i].y, 10, 10);
     }*/
 }
 

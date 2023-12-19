@@ -9,6 +9,8 @@ class sprite : public DisplayObject {
     ~sprite();
     virtual void render(DemoApp*);
     u_rect* frame = NULL;
+    void setNowFrame(unsigned int);
+    unsigned int getNowFrame();
 
   public:
     ID2D1Bitmap* img;
@@ -17,7 +19,6 @@ class sprite : public DisplayObject {
 
     // animateSprite
     vector<u_rect> frameArr; // 帧数组
-    unsigned int nowFrame = 0; // 当前帧
     float speedTime = 0; // 毫秒
     float speedNowTime = 0; // 毫秒
     int loop = -1;
@@ -30,4 +31,7 @@ class sprite : public DisplayObject {
     float alpha = 1;
     float getTxtWidth(DemoApp* app);
     float getTxtHeight(DemoApp* app);
+
+  private:
+    unsigned int mNowFrame = 0; // 当前帧
 };

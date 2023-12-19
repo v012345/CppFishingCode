@@ -1,7 +1,7 @@
 #include "../stdafx.h"
 
 #include "colVec.h"
-// #include "frame0.h"
+// #include "TitleScene.h"
 
 colVec::colVec() {
     // 分配预留点
@@ -66,10 +66,10 @@ void colVec::getShapePoints(sprite** sp, const int num) {
 
     this->polarCoordinates(l_a, l_sp.angle + 90, l_sp.getHeight(), this->points[num][3]);
     /*测试用代码查看点是否获取正确*/
-    /*frame0::p1.push_back(this->points[num][0]);
-    frame0::p1.push_back(this->points[num][1]);
-    frame0::p1.push_back(this->points[num][2]);
-    frame0::p1.push_back(this->points[num][3]);*/
+    /*TitleScene::p1.push_back(this->points[num][0]);
+    TitleScene::p1.push_back(this->points[num][1]);
+    TitleScene::p1.push_back(this->points[num][2]);
+    TitleScene::p1.push_back(this->points[num][3]);*/
 };
 void colVec::getShapePoints(const utils::useSpSt st, const int num) {
     float l_o = st.angle * M_PI / 180.0f; // 角度转化为弧度
@@ -89,10 +89,10 @@ void colVec::getShapePoints(const utils::useSpSt st, const int num) {
     this->polarCoordinates(this->points[num][1], l_sp.angle + 90, l_sp.height, this->points[num][2]);
     this->polarCoordinates(l_a, l_sp.angle + 90, l_sp.height, this->points[num][3]);
     /*测试用代码查看点是否获取正确*/
-    /*frame0::p1.push_back(this->points[num][0]);
-    frame0::p1.push_back(this->points[num][1]);
-    frame0::p1.push_back(this->points[num][2]);
-    frame0::p1.push_back(this->points[num][3]);*/
+    /*TitleScene::p1.push_back(this->points[num][0]);
+    TitleScene::p1.push_back(this->points[num][1]);
+    TitleScene::p1.push_back(this->points[num][2]);
+    TitleScene::p1.push_back(this->points[num][3]);*/
 };
 void colVec::initVec() {
     unsigned int len = this->points[0].size() - 1;

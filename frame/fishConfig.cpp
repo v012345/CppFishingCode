@@ -2,7 +2,7 @@
 
 #include "fish.h"
 #include "fishConfig.h"
-#include "frame1.h"
+#include "PlayGameScene.h"
 
 fishConfig::fishConfig() {}
 fishConfig::fishConfig(DemoApp* app, action* scene, colVec* colObj, sprite* img, void (*removeScene)(fish* b)) {

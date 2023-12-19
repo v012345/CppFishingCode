@@ -2,9 +2,9 @@
 //
 #include "createBefore.h"
 
-#include "../frame/frame0.h"
-#include "../frame/frame1.h"
-#include "../frame/frame2.h"
+#include "../frame/TitleScene.h"
+#include "../frame/PlayGameScene.h"
+#include "../frame/StageSelectScene.h"
 
 DemoApp* l_app = NULL;
 // 窗口显示之前调用
@@ -89,14 +89,14 @@ void createBefore::createWindowBefore(DemoApp* app) {
 void createBefore::createWindow(DemoApp* app) {
     l_app = app;
     colVec* colObj = new colVec();
-    frame0::init(app, colObj);
-    app->addScene(frame0::scene);
-    frame0::visible();
+    TitleScene::init(app, colObj);
+    app->addScene(TitleScene::scene);
+    TitleScene::visible();
 
-    frame1::init(&app, &colObj);
-    app->addScene(frame1::scene);
-    frame2::init(app, colObj);
-    app->addScene(frame2::scene);
+    PlayGameScene::init(&app, &colObj);
+    app->addScene(PlayGameScene::scene);
+    StageSelectScene::init(app, colObj);
+    app->addScene(StageSelectScene::scene);
 };
 void messageMapping::onKeyDown(int code) {
     string a = g_concat("frame", l_app->nowScene);
