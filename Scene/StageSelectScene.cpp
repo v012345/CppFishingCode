@@ -30,47 +30,47 @@ void StageSelectScene::init(App* app, colVec* colObj) {
     int w = 1024;
     int h = 682;
 
-    this->spArr.push_back(new Sprite(this->app, L"img/Interface/1a.jpg"));
-    this->spArr.push_back(new Sprite(this->app, L"img/Interface/1b.jpg"));
-    this->spArr.push_back(new Sprite(this->app, L"img/Interface/1c.jpg"));
-    this->spArr.push_back(new Sprite(this->app, L"img/Interface/1d.jpg"));
-    this->spArr.push_back(new Sprite(this->app, L"img/Interface/1e.jpg"));
-    this->spArr.push_back(new Sprite(this->app, L"img/Interface/1f.jpg"));
-    this->spArr.push_back(this->initTxtSprite("这里有大乌龟", 0, 0));
-    this->spArr.push_back(this->initTxtSprite("这里有电鳗鱼", 0, 0));
-    this->spArr.push_back(this->initTxtSprite("这里有大鲨鱼", 0, 0));
-    this->spArr.push_back(this->initTxtSprite("这里有黄金大鲨鱼", 0, 0));
-    this->spArr.push_back(this->initTxtSprite("这里大珍珠", 0, 0));
-    this->spArr.push_back(this->initTxtSprite("这里有传说中的美人鱼哦！", 0, 0));
+    this->mStageSelectButton.push_back(new Sprite(this->app, L"img/Interface/1a.jpg"));
+    this->mStageSelectButton.push_back(new Sprite(this->app, L"img/Interface/1b.jpg"));
+    this->mStageSelectButton.push_back(new Sprite(this->app, L"img/Interface/1c.jpg"));
+    this->mStageSelectButton.push_back(new Sprite(this->app, L"img/Interface/1d.jpg"));
+    this->mStageSelectButton.push_back(new Sprite(this->app, L"img/Interface/1e.jpg"));
+    this->mStageSelectButton.push_back(new Sprite(this->app, L"img/Interface/1f.jpg"));
+    this->mStageSelectButton.push_back(this->initTxtSprite("这里有大乌龟", 0, 0));
+    this->mStageSelectButton.push_back(this->initTxtSprite("这里有电鳗鱼", 0, 0));
+    this->mStageSelectButton.push_back(this->initTxtSprite("这里有大鲨鱼", 0, 0));
+    this->mStageSelectButton.push_back(this->initTxtSprite("这里有黄金大鲨鱼", 0, 0));
+    this->mStageSelectButton.push_back(this->initTxtSprite("这里大珍珠", 0, 0));
+    this->mStageSelectButton.push_back(this->initTxtSprite("这里有传说中的美人鱼哦！", 0, 0));
 
     float zoom = (float)(300.f / w);
     int x = 0;
     int y = 0;
     bool b1 = true;
     for (unsigned int i = 0; i < 6; i++) {
-        this->spArr[i]->width = w;
-        this->spArr[i]->height = h;
+        this->mStageSelectButton[i]->width = w;
+        this->mStageSelectButton[i]->height = h;
         x = (i % 3) * (300 + 50) + 85;
         y = 320 * (int)(i / 3) + 80;
-        this->spArr[i]->use_int["useInt"] = i;
+        this->mStageSelectButton[i]->use_int["useInt"] = i;
 
-        this->maxBox->addChild(this->spArr[i]);
-        this->spArr[i]->setX(x);
-        this->spArr[i]->zoom = zoom;
-        this->spArr[i]->setY(y);
+        this->maxBox->addChild(this->mStageSelectButton[i]);
+        this->mStageSelectButton[i]->setX(x);
+        this->mStageSelectButton[i]->zoom = zoom;
+        this->mStageSelectButton[i]->setY(y);
 
-        this->maxBox->addChild(this->spArr[i + 6]);
-        this->spArr[i + 6]->setX(x);
-        this->spArr[i + 6]->setY(y + this->spArr[i]->getHeight());
+        this->maxBox->addChild(this->mStageSelectButton[i + 6]);
+        this->mStageSelectButton[i + 6]->setX(x);
+        this->mStageSelectButton[i + 6]->setY(y + this->mStageSelectButton[i]->getHeight());
     }
 
     // 点击回调
     app->use_onClick["StageSelectScene"] = [this](int x, int y) {
-        unsigned int len = this->spArr.size();
+        unsigned int len = this->mStageSelectButton.size();
         for (unsigned int i = 0; i < len; i++) {
-            if (this->spArr[i]->inRect(this->app->mouse)) {
+            if (this->mStageSelectButton[i]->inRect(this->app->mouse)) {
                 PlayGameScene* p = PlayGameScene::getInstance();
-                p->mStageId = this->spArr[i]->use_int["useInt"];
+                p->mStageId = this->mStageSelectButton[i]->use_int["useInt"];
                 this->app->nowScene = ePlayGameScene;
                 p->visible();
             }
