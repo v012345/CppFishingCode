@@ -148,37 +148,38 @@ void fishConfig::setType(fish* l_fs, int type, int angType) {
     }
 };
 void fishConfig::createFish(vector<fish*>* fishArr, DisplayObject* ds) {
-    if (this->fishConfigArr.size() > this->maxFish) { return; }
-    // 创建鱼这个对象
-    fish* l_fs = new fish(app, scene, colObj, img, round(3 + random() * 3));
-    // 设置鱼的排泄
-    l_fs->removeScene = this->removeScene;
-    // 设置鱼的游动动画
-    this->setFishFrame(l_fs, startYSwim, fishW, fishH, swimNum, 0, zoom);
-    // 设置鱼的死亡动画
-    this->setFishFrame(l_fs, startYDeath, fishW, fishH, deathNum, 1, zoom);
-    // 默认鱼一来就是游动的
-    l_fs->view->frameArr = l_fs->swim;
-    // 随机调用一种鱼的出现方式
-    float l_ran = random();
-    float l_ran2 = random();
-    unsigned int len1 = round(l_ran * (this->type1.size() - 1));
-    unsigned int len2 = round(l_ran2 * (this->type1[len1].size() - 1));
-    this->setType(l_fs, len1, this->type1[len1][len2]);
+    if (this->fishConfigArr.size() <= this->maxFish) {
+        // 创建鱼这个对象
+        fish* l_fs = new fish(app, scene, colObj, img, round(3 + random() * 3));
+        // 设置鱼的排泄
+        l_fs->removeScene = this->removeScene;
+        // 设置鱼的游动动画
+        this->setFishFrame(l_fs, startYSwim, fishW, fishH, swimNum, 0, zoom);
+        // 设置鱼的死亡动画
+        this->setFishFrame(l_fs, startYDeath, fishW, fishH, deathNum, 1, zoom);
+        // 默认鱼一来就是游动的
+        l_fs->view->frameArr = l_fs->swim;
+        // 随机调用一种鱼的出现方式
+        float l_ran = random();
+        float l_ran2 = random();
+        unsigned int len1 = round(l_ran * (this->type1.size() - 1));
+        unsigned int len2 = round(l_ran2 * (this->type1[len1].size() - 1));
+        this->setType(l_fs, len1, this->type1[len1][len2]);
 
-    // 设置鱼的屏幕信息 一定要判断鱼游出去了就排泄掉
-    l_fs->scInfo->width = this->app->width + l_fs->view->getWidth() * 2 + 100;
-    l_fs->scInfo->height = this->app->height + l_fs->view->getHeight() * 2 + 100;
-    l_fs->scInfo->setX(-l_fs->view->getWidth() - 50);
-    l_fs->scInfo->setX(-l_fs->view->getHeight() - 50);
-    l_fs->getGold = this->getGold;
-    l_fs->deathInt = this->deathInt;
-    l_fs->speed = this->speed * random() + 2;
-    // 加入场景进行渲染
-    ds->addChild(l_fs->view);
-    fishArr->push_back(l_fs);
-    this->fishConfigArr.push_back(l_fs);
-    l_fs->createClass = this;
+        // 设置鱼的屏幕信息 一定要判断鱼游出去了就排泄掉
+        l_fs->scInfo->width = this->app->width + l_fs->view->getWidth() * 2 + 100;
+        l_fs->scInfo->height = this->app->height + l_fs->view->getHeight() * 2 + 100;
+        l_fs->scInfo->setX(-l_fs->view->getWidth() - 50);
+        l_fs->scInfo->setX(-l_fs->view->getHeight() - 50);
+        l_fs->getGold = this->getGold;
+        l_fs->deathInt = this->deathInt;
+        l_fs->speed = this->speed * random() + 2;
+        // 加入场景进行渲染
+        ds->addChild(l_fs->view);
+        fishArr->push_back(l_fs);
+        this->fishConfigArr.push_back(l_fs);
+        l_fs->createClass = this;
+    }
 };
 void fishConfig::setFishFrame(fish* fs, int startY, int w, int h, int num, int type, float zoom) {
     if (fs->view->width != w || fs->view->height != h) {
