@@ -98,31 +98,31 @@ void createBefore::createWindow(DemoApp* app) {
     StageSelectScene::init(app, colObj);
     app->addScene(StageSelectScene::scene);
 };
-void messageMapping::onKeyDown(int code) {
+void InputManager::onKeyDown(int code) {
     string a = g_concat("frame", l_app->nowScene);
     if (l_app->use_onKeyDown.find(a) != -1) { l_app->use_onKeyDown[a](code); }
 }
-void messageMapping::onKeyUp(int code) {
+void InputManager::onKeyUp(int code) {
     string a = g_concat("frame", l_app->nowScene);
     if (l_app->use_onKeyUp.find(a) != -1) { l_app->use_onKeyUp[a](code); }
 }
-void messageMapping::onClick(int x, int y) {
+void InputManager::onClick(int x, int y) {
     string a = g_concat("frame", l_app->nowScene);
     if (l_app->use_onClick.find(a) != -1) { l_app->use_onClick[a](x, y); }
 }
-void messageMapping::onMouseDown(int x, int y) {
+void InputManager::onMouseDown(int x, int y) {
     string a = g_concat("frame", l_app->nowScene);
     if (l_app->use_onMouseDown.find(a) != -1) { l_app->use_onMouseDown[a](x, y); }
 }
-void messageMapping::onMouseUp(int x, int y) {
+void InputManager::onMouseUp(int x, int y) {
     string a = g_concat("frame", l_app->nowScene);
     if (l_app->use_onMouseUp.find(a) != -1) { l_app->use_onMouseUp[a](x, y); }
 }
-void messageMapping::onMouseMove(int x, int y) {
+void InputManager::onMouseMove(int x, int y) {
     string a = g_concat("frame", l_app->nowScene);
     if (l_app->use_onMouseMove.find(a) != -1) { l_app->use_onMouseMove[a](x, y); }
 }
-void messageMapping::onClose() {
+void InputManager::onClose() {
     string a = g_concat("frame", l_app->nowScene);
     if (l_app->use_onClose.find(a) != -1) { l_app->use_onClose[a](); }
 }

@@ -138,34 +138,34 @@ LRESULT CALLBACK DemoApp::WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM
                     wasHandled = true;
                     break;
                 case WM_KEYUP:
-                    messageMapping::onKeyUp(wParam);
+                    InputManager::onKeyUp(wParam);
                     result = 0;
                     wasHandled = true;
                     break;
                 case WM_KEYDOWN:
-                    messageMapping::onKeyDown(wParam);
+                    InputManager::onKeyDown(wParam);
                     result = 0;
                     wasHandled = true;
                     break;
                 case WM_MOUSEMOVE:
                     pDemoApp->mouse->x = LOWORD(lParam);
                     pDemoApp->mouse->y = HIWORD(lParam);
-                    messageMapping::onMouseMove(pDemoApp->mouse->x, pDemoApp->mouse->y);
+                    InputManager::onMouseMove(pDemoApp->mouse->x, pDemoApp->mouse->y);
                     result = 0;
                     wasHandled = true;
                     break;
                 case WM_LBUTTONUP:
                     pDemoApp->mouse->x = LOWORD(lParam);
                     pDemoApp->mouse->y = HIWORD(lParam);
-                    messageMapping::onMouseUp(pDemoApp->mouse->x, pDemoApp->mouse->y);
-                    messageMapping::onClick(pDemoApp->mouse->x, pDemoApp->mouse->y);
+                    InputManager::onMouseUp(pDemoApp->mouse->x, pDemoApp->mouse->y);
+                    InputManager::onClick(pDemoApp->mouse->x, pDemoApp->mouse->y);
                     result = 1;
                     wasHandled = true;
                     break;
                 case WM_LBUTTONDOWN:
                     pDemoApp->mouse->x = LOWORD(lParam);
                     pDemoApp->mouse->y = HIWORD(lParam);
-                    messageMapping::onMouseDown(pDemoApp->mouse->x, pDemoApp->mouse->y);
+                    InputManager::onMouseDown(pDemoApp->mouse->x, pDemoApp->mouse->y);
                     result = 1;
                     wasHandled = true;
                     break;
@@ -177,7 +177,7 @@ LRESULT CALLBACK DemoApp::WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM
                     break;
                 case WM_DESTROY: {
 
-                    messageMapping::onClose();
+                    InputManager::onClose();
                     PostQuitMessage(0);
                 }
                     result = 1;
