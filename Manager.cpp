@@ -1,14 +1,14 @@
-#include "../stdafx.h"
+#include "stdafx.h"
 //
-#include "createBefore.h"
+#include "Manager.h"
 
-#include "../frame/PlayGameScene.h"
-#include "../frame/StageSelectScene.h"
-#include "../frame/TitleScene.h"
+#include "frame/PlayGameScene.h"
+#include "frame/StageSelectScene.h"
+#include "frame/TitleScene.h"
 
 DemoApp* l_app = NULL;
 // 窗口显示之前调用
-void createBefore::createWindowBefore(DemoApp* app) {
+void ResourceManager::loadImages(DemoApp* app) {
     vector<string> arr;
     // 背景
     arr.push_back("img/Interface/startbg.jpg");
@@ -86,7 +86,7 @@ void createBefore::createWindowBefore(DemoApp* app) {
 }
 
 // 窗口显示之后调用
-void createBefore::createWindow(DemoApp* app) {
+void ResourceManager::initScenes(DemoApp* app) {
     l_app = app;
     colVec* colObj = new colVec();
     TitleScene::init(app, colObj);

@@ -18,7 +18,7 @@ add_executable(Fishing
     "render/ticker.cpp"
     "render/action.cpp"
     "render/animateSprite.cpp"
-    "trigger/createBefore.cpp"
+    "Manager.cpp"
     "frame/fishConfig.cpp"
     "frame/TitleScene.cpp"
     "frame/PlayGameScene.cpp"

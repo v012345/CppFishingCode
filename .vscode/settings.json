@@ -11,6 +11,7 @@
         "charconv": "cpp",
         "list": "cpp",
         "sstream": "cpp",
-        "xhash": "cpp"
+        "xhash": "cpp",
+        "xtree": "cpp"
     }
 }

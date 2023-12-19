@@ -1,10 +1,10 @@
 #pragma once
 class DemoApp;
 
-namespace createBefore {
-    void createWindowBefore(DemoApp* app);
-    void createWindow(DemoApp* app);
-} // namespace createBefore
+namespace ResourceManager {
+    void loadImages(DemoApp* app);
+    void initScenes(DemoApp* app);
+} // namespace ResourceManager
 namespace InputManager {
     void onClick(int x, int y);
     void onMouseDown(int x, int y);

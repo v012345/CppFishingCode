@@ -1,6 +1,6 @@
+#include "../Manager.h"
 #include "../Resource.h"
 #include "../stdafx.h"
-#include "../trigger/createBefore.h"
 
 DemoApp::DemoApp() : m_hwnd(NULL), content(NULL) {
     QueryPerformanceCounter(&newtime);
@@ -34,7 +34,6 @@ void DemoApp::cancelFullSreen() {
 void DemoApp::RunMessageLoop() {
     MSG msg;
     BOOL isLoop = TRUE;
-
     while (isLoop) {
         if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) {
             TranslateMessage(&msg);
@@ -80,18 +79,17 @@ HRESULT DemoApp::Initialize() {
         // Create the window.
         m_hwnd = CreateWindow(L"MXSJ", L"捕鱼人", WS_OVERLAPPEDWINDOW ^ WS_MAXIMIZEBOX ^ WS_THICKFRAME, CW_USEDEFAULT, CW_USEDEFAULT, 1200, 750, NULL, NULL, HINST_THISCOMPONENT, this);
         hr = m_hwnd ? S_OK : E_FAIL;
-        content = new Content(m_hwnd);
-        content->strokeStyle(0xff00ff, 1);
-        content->lineWidth = 2;
-        content->fillStyle(0xffff00, 1);
-        createBefore::createWindowBefore(this);
-
         if (SUCCEEDED(hr)) {
+            content = new Content(m_hwnd);
+            content->strokeStyle(0xff00ff, 1);
+            content->lineWidth = 2;
+            content->fillStyle(0xffff00, 1);
+            ResourceManager::loadImages(this);
             ShowWindow(m_hwnd, SW_SHOWNORMAL);
             UpdateWindow(m_hwnd);
+            ResourceManager::initScenes(this);
         }
     }
-    createBefore::createWindow(this);
     return hr;
 }
 /*void DemoApp::addScene(action * scane) {

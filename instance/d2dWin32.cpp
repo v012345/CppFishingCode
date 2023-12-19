@@ -2,23 +2,16 @@
 
 #include "d2dWin32.h"
 #include "../stdafx.h"
-// #include "TitleScene.h"
 
 void update(DemoApp* app) {
     if (!(app)->sceneArr.empty()) { //
         (app)->sceneArr[(app)->nowScene]->render(&app);
     }
-    /*unsigned int len = TitleScene::p1.size();
-    for (unsigned int i = 0;i < len;i++) {
-        (app)->content->drawArc(TitleScene::p1[i].x, TitleScene::p1[i].y, 10, 10);
-    }*/
 }
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPWSTR lpCmdLine, _In_ int nCmdShow) {
-
     UNREFERENCED_PARAMETER(hPrevInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);
-
     // Use HeapSetInformation to specify that the process should
     // terminate if the heap manager detects an error in any heap used
     // by the process.
@@ -35,6 +28,5 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
         }
         CoUninitialize();
     }
-
     return 0;
 }
