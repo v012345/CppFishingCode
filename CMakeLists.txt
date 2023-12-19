@@ -7,7 +7,7 @@ add_executable(Fishing
     WIN32
     "instance/collision.cpp"
     "instance/colVec.cpp"
-    "instance/d2dWin32.cpp"
+    "win32/d2dWin32.cpp"
     "App.cpp"
     "instance/oMap.cpp"
     "instance/stdafx.cpp"
