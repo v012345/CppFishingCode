@@ -67,5 +67,5 @@ enum SceneType {
 #include "instance/colVec.h"
 #include "render/Content.h"
 #include "render/action.h"
-#include "render/sprite.h"
+#include "render/Sprite.h"
 #include "render/ticker.h"

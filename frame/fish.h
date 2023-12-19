@@ -3,7 +3,7 @@ class fishConfig;
 class fish {
   public:
     fish();
-    fish(DemoApp* app, action* scene, colVec* colObj, sprite* img, float speed = 5);
+    fish(DemoApp* app, action* scene, colVec* colObj, Sprite* img, float speed = 5);
     ~fish();
     void setX(float x);
     void setY(float y);
@@ -24,12 +24,12 @@ class fish {
     float minAngle = 0; // 最小角度
     float maxAngle = 0; // 最大角度
     bool angleAdd = true;
-    sprite* view; // 视图呈现精灵
+    Sprite* view; // 视图呈现精灵
     vector<u_rect> swim; // 游泳动画信息
     vector<u_rect> death; // 死亡动画信息
     DemoApp* app;
     action* scene;
     colVec* colObj;
     string type = "swim";
-    sprite* scInfo;
+    Sprite* scInfo;
 };

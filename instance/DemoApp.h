@@ -1,6 +1,6 @@
 #pragma once
 class Content;
-class sprite;
+class Sprite;
 class action;
 class DemoApp {
   public:

@@ -5,7 +5,7 @@
 
 gold::gold() { this->t = 0; }
 
-gold::gold(sprite* view) {
+gold::gold(Sprite* view) {
     this->view = view;
     this->t = 0;
 };

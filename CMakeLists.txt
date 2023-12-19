@@ -14,7 +14,7 @@ add_executable(Fishing
     "instance/utils.cpp"
     "render/Content.cpp"
     "render/DisplayObject.cpp"
-    "render/sprite.cpp"
+    "render/Sprite.cpp"
     "render/ticker.cpp"
     "render/action.cpp"
     "render/animateSprite.cpp"

@@ -10,7 +10,7 @@ action::~action() { //
     delete this->Container;
 }
 
-void action::addChild(sprite* child) { //
+void action::addChild(Sprite* child) { //
     this->Container->addChild(child);
 }
 

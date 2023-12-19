@@ -35,9 +35,9 @@ void colVec::clear() {
     this->points.clear();
     this->proPoint.clear();
 }
-void colVec::getSLCoordinateSystem(sprite** sp, const int num) {
+void colVec::getSLCoordinateSystem(Sprite** sp, const int num) {
     utils::usePoint& l_a = this->points[num][0];
-    sprite l_sp = **sp;
+    Sprite l_sp = **sp;
     l_a.x = l_sp.g_x + l_sp.pivot.x * l_sp.getWidth();
     l_a.y = l_sp.g_y + l_sp.pivot.y * l_sp.getHeight();
 };
@@ -47,11 +47,11 @@ void colVec::getSLCoordinateSystem(const utils::useSpSt st, const int num) {
     l_a.x = l_sp.x + l_sp.pivotX * l_sp.width;
     l_a.y = l_sp.y + l_sp.pivotY * l_sp.height;
 };
-void colVec::getShapePoints(sprite** sp, const int num) {
+void colVec::getShapePoints(Sprite** sp, const int num) {
     float l_o = (*sp)->angle * M_PI / 180.0f; // 角度转化为弧度
     float l_sin = sin(l_o);
     float l_cos = cos(l_o);
-    sprite l_sp = **sp;
+    Sprite l_sp = **sp;
 
     // 转化旋转后的点
     this->getSLCoordinateSystem(sp, num);
@@ -146,7 +146,7 @@ bool colVec::comparePoints(const int num) {
     }
     return max1 > min2 && max2 > min1;
 };
-bool colVec::obb(sprite** sp, sprite** sp2) {
+bool colVec::obb(Sprite** sp, Sprite** sp2) {
 
     this->getShapePoints(sp, 0);
     this->getShapePoints(sp2, 1);
@@ -183,9 +183,9 @@ float colVec::pointAngleInfo(const utils::usePoint point1, const utils::usePoint
         return 180;
     }
 }
-bool colVec::aabb(sprite** sp, sprite** sp2) {
-    sprite l_sp1 = **sp;
-    sprite l_sp2 = **sp2;
+bool colVec::aabb(Sprite** sp, Sprite** sp2) {
+    Sprite l_sp1 = **sp;
+    Sprite l_sp2 = **sp2;
     if (l_sp1.x < l_sp2.x + l_sp2.width && l_sp1.x + l_sp1.width > l_sp2.x && l_sp1.y < l_sp2.y + l_sp2.height && l_sp1.height + l_sp1.y > l_sp2.y) {
         return true;
     } else {

@@ -25,7 +25,7 @@ void DisplayObject::setId(string id) { //
     this->id = id;
 }
 
-sprite* DisplayObject::getChildById(string id) {
+Sprite* DisplayObject::getChildById(string id) {
     for (unsigned int i = 0; i < this->children.size(); i++) {
         if (this->children[i]->id == id) { //
             return this->children[i];
@@ -34,8 +34,8 @@ sprite* DisplayObject::getChildById(string id) {
     return NULL;
 }
 
-int DisplayObject::addChild(sprite* child) {
-    child->parent = (sprite*)this;
+int DisplayObject::addChild(Sprite* child) {
+    child->parent = (Sprite*)this;
     this->children.push_back(child);
     child->initG_x();
     child->initG_y();
@@ -84,8 +84,8 @@ void DisplayObject::setY(int y) {
     this->initG_y();
 }
 
-int DisplayObject::removeChild(sprite* child) {
-    vector<sprite*>::iterator it = find((this->children).begin(), (this->children).end(), child);
+int DisplayObject::removeChild(Sprite* child) {
+    vector<Sprite*>::iterator it = find((this->children).begin(), (this->children).end(), child);
     this->children.erase(it);
     if (child->parent != NULL) { //
         child->parent = NULL;

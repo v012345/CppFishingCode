@@ -15,19 +15,19 @@ namespace PlayGameScene {
     extern float zoom; // 场景所有精灵用的zoom
     extern int nowScane; // 当前关数
     extern int nowPt; // 当前炮台的显示
-    extern oMap<string, sprite*> bottom; // 底部精灵组合
+    extern oMap<string, Sprite*> bottom; // 底部精灵组合
     extern ticker* tk1; // 场景计时器
     extern float timerFish; // 周期判断鱼是否游出屏幕
     extern int usegold;
     extern files* saveObj;
-    extern sprite* bk;
+    extern Sprite* bk;
 
-    extern vector<sprite*> jbNum;
-    extern vector<sprite*> bgArr; // 所有关数的背景
-    extern vector<sprite*> ptArr; // 炮台Arr
-    extern vector<sprite*> bulletArr; // 子弹Arr Img
+    extern vector<Sprite*> jbNum;
+    extern vector<Sprite*> bgArr; // 所有关数的背景
+    extern vector<Sprite*> ptArr; // 炮台Arr
+    extern vector<Sprite*> bulletArr; // 子弹Arr Img
     extern vector<bullet*> bulletArr2; // 子弹Arr
-    extern vector<sprite*> bulletWang; // 子弹Arr Img
+    extern vector<Sprite*> bulletWang; // 子弹Arr Img
     extern vector<fish*> fishArr; // 鱼数组
     extern vector<fishConfig*> fishConfigArr; // 创建鱼的对象数组
     extern vector<gold*> goldArr;
@@ -35,8 +35,8 @@ namespace PlayGameScene {
     extern DisplayObject* maxBox; // 最大容器
     extern DisplayObject* bottomBox; // 底部容器
     extern DisplayObject* fishBox; // 鱼群容器
-    extern sprite* addBtn; // 切换炮台 加
-    extern sprite* subtractBtn; // 切换炮台 减
+    extern Sprite* addBtn; // 切换炮台 加
+    extern Sprite* subtractBtn; // 切换炮台 减
     extern void drawGoldNum();
     extern void init(DemoApp** app, colVec** colObj); // 场景初始化调用
     extern void visible(); // 场景显示调用
@@ -47,12 +47,12 @@ namespace PlayGameScene {
     extern void onKeyUp(int x); // 场景点击事件
     extern void initPt(); // 初始炮台
     extern void initPt2(); // 初始化炮台位置
-    extern sprite* initAmt1(LPWSTR url, int w, int h, int frame, float zoom = 1); // 初始化单帧动画
-    extern void initAmt2(sprite* v, int startY, int w, int h, int frame, float zoom);
+    extern Sprite* initAmt1(LPWSTR url, int w, int h, int frame, float zoom = 1); // 初始化单帧动画
+    extern void initAmt2(Sprite* v, int startY, int w, int h, int frame, float zoom);
     extern DWORD WINAPI tk1Fun(); // 计时器每一帧调用函数
     extern void tk1FunC(DemoApp** app, ticker* tk);
     extern void mouseMove(int x, int y); // 鼠标移动触发函数
-    extern void frameSpriteInfo(sprite** sp, int type);
+    extern void frameSpriteInfo(Sprite** sp, int type);
     extern void removeBullet(bullet* bt); // 排泄子弹
     extern void removeFish(fish* b); // 排泄鱼
     extern void removeGold(gold* b); // 排泄金币

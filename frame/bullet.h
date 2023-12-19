@@ -7,7 +7,7 @@ class fish;
 class bullet {
   public:
     bullet();
-    bullet(DemoApp* app, action* scene, colVec* colObj, sprite* bt, sprite* wang, int hurt = 1, float speed = 8);
+    bullet(DemoApp* app, action* scene, colVec* colObj, Sprite* bt, Sprite* wang, int hurt = 1, float speed = 8);
     ~bullet();
     void changeType(string type); // 改变显示状态
     void moveForword(); // 向前移动
@@ -21,15 +21,15 @@ class bullet {
     utils::useSpSt st2; // 鱼结构二
   public:
     string bulletType = "bt"; // 子弹当前显示状态
-    sprite* view; // 视图精灵
-    sprite* bt; // 炮台精灵
-    sprite* wang; // 网精灵
+    Sprite* view; // 视图精灵
+    Sprite* bt; // 炮台精灵
+    Sprite* wang; // 网精灵
     int hurt = 0;
     int w_time = 20;
     float speed = 0;
     float angle = 0;
     void (*removeScene)(bullet* b);
-    sprite* scInfo;
+    Sprite* scInfo;
 
   private:
     DemoApp* app; // 游戏app

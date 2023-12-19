@@ -3,7 +3,7 @@ class gold {
   public:
     gold();
     ~gold();
-    gold(sprite* view);
+    gold(Sprite* view);
     void frameFun();
     void getCenterPoint();
     void gold::setX(float x);
@@ -12,7 +12,7 @@ class gold {
     //	void setFrameArr(vector<u_rect>  * arr);
   public:
     int addNum;
-    sprite* view;
+    Sprite* view;
     utils::usePoint endPoint;
     utils::usePoint centerPoint;
     utils::usePoint startPoint;

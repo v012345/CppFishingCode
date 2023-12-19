@@ -11,6 +11,6 @@ namespace StageSelectScene {
     extern void init(DemoApp* app, colVec* colObj);
     extern void visible();
     extern void onClick(int x, int y);
-    extern vector<sprite*> spArr;
-    extern sprite* initTxtSprite(string txt, int x, int y);
+    extern vector<Sprite*> spArr;
+    extern Sprite* initTxtSprite(string txt, int x, int y);
 } // namespace StageSelectScene

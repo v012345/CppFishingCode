@@ -3,7 +3,7 @@
 class DisplayObject;
 class DemoApp;
 class ticker;
-class sprite;
+class Sprite;
 class action {
   public:
     action(DemoApp* app);
@@ -11,7 +11,7 @@ class action {
     void render(DemoApp** app);
     void addTicker(ticker* tk);
     ticker* getTickerById(string id);
-    void addChild(sprite*);
+    void addChild(Sprite*);
 
   public:
     vector<ticker*> tk;

@@ -1,13 +1,13 @@
 #include "../stdafx.h"
 
-#include "sprite.h"
-sprite::sprite(int x, int y) {
+#include "Sprite.h"
+Sprite::Sprite(int x, int y) {
     this->x = x;
     this->y = y;
     this->initG_x();
     this->initG_y();
 }
-sprite::sprite(DemoApp* app, WCHAR* url, string spriteType, int w2, int h2) {
+Sprite::Sprite(DemoApp* app, WCHAR* url, string spriteType, int w2, int h2) {
     this->img = app->content->getSoucre(url);
     if (w2 == -1) {
         this->width = (int)this->img->GetSize().width;
@@ -20,7 +20,7 @@ sprite::sprite(DemoApp* app, WCHAR* url, string spriteType, int w2, int h2) {
         this->height = h2;
     }
 }
-sprite::sprite(DemoApp* app, ID2D1Bitmap* url, string spriteType, int w2, int h2) {
+Sprite::Sprite(DemoApp* app, ID2D1Bitmap* url, string spriteType, int w2, int h2) {
     this->img = url;
     if (w2 == -1) {
         this->width = (int)this->img->GetSize().width;
@@ -33,34 +33,34 @@ sprite::sprite(DemoApp* app, ID2D1Bitmap* url, string spriteType, int w2, int h2
         this->height = h2;
     }
 }
-float sprite::getTxtWidth(DemoApp* app) {
+float Sprite::getTxtWidth(DemoApp* app) {
     D2D1_SIZE_F size = {0, 0};
     //	string d = this->txt;
     LPWSTR d = g_chartowchar2(this->txt.c_str());
     app->content->getTextInfo(d, size);
     return size.width;
 };
-float sprite::getTxtHeight(DemoApp* app) {
+float Sprite::getTxtHeight(DemoApp* app) {
     D2D1_SIZE_F size = {0, 0};
     LPWSTR d = g_chartowchar2(this->txt.c_str());
     app->content->getTextInfo(d, size);
     return size.height;
 };
-sprite::~sprite() {}
-void sprite::setNowFrame(unsigned int nowFrame) { //
+Sprite::~Sprite() {}
+void Sprite::setNowFrame(unsigned int nowFrame) { //
     if (this->frameArr.size() <= this->mNowFrame) { //
         cout << "jjj" << endl;
     }
     this->mNowFrame = nowFrame;
 }
-unsigned int sprite::getNowFrame() { //
+unsigned int Sprite::getNowFrame() { //
     if (this->frameArr.size() <= this->mNowFrame) { //
         cout << "jjj" << endl;
     }
 
     return this->mNowFrame;
 }
-void sprite::render(DemoApp* app) {
+void Sprite::render(DemoApp* app) {
     if (!this->visible) { return; }
     if (this->spriteType == "animateSprite") {
         unsigned int len = this->frameArr.size();

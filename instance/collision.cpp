@@ -1,18 +1,18 @@
 #include "../stdafx.h"
 
-#include "../render/sprite.h"
+#include "../render/Sprite.h"
 #include "collision.h"
 
 collision::collision() {}
 
 collision::~collision() {}
-utils::usePoint collision::getPivotPoint(sprite** sp) {
+utils::usePoint collision::getPivotPoint(Sprite** sp) {
     utils::usePoint a = {0, 0};
     a.x = (*sp)->g_x + (*sp)->pivot.x * (*sp)->getWidth();
     a.y = (*sp)->g_y + (*sp)->pivot.y * (*sp)->getHeight();
     return a;
 };
-utils::usePoint collision::getPivotLocal(sprite** sp) {
+utils::usePoint collision::getPivotLocal(Sprite** sp) {
     utils::usePoint a = {0, 0};
     a.x = (*sp)->g_x - ((*sp)->g_x + (*sp)->pivot.x * (*sp)->getWidth());
     a.y = (*sp)->g_y - ((*sp)->g_y + (*sp)->pivot.y * (*sp)->getHeight());
@@ -39,7 +39,7 @@ float collision::pointAngleInfo(const utils::usePoint point1, const utils::usePo
         return 180;
     }
 };
-float collision::getRotate(sprite** sp) {
+float collision::getRotate(Sprite** sp) {
     utils::usePoint localPoint = this->getPivotLocal(sp);
     float angle = 0;
     if (localPoint.x > 0 && localPoint.y == 0) {
@@ -62,7 +62,7 @@ float collision::getRotate(sprite** sp) {
     }
     return round(angle);
 };
-utils::usePoint collision::getRotatePoint(sprite** sp) {
+utils::usePoint collision::getRotatePoint(Sprite** sp) {
     utils::usePoint a = {0, 0};
     utils::usePoint getRotatePoint = this->getPivotPoint(sp);
     int newRotate = (((*sp)->angle % 360) + 360) % 360;
@@ -117,7 +117,7 @@ utils::usePoint collision::polarCoordinates(const utils::usePoint point, const i
     }
     return p2;
 };
-vector<utils::usePoint> collision::getRotatePoints(sprite** sp) {
+vector<utils::usePoint> collision::getRotatePoints(Sprite** sp) {
     vector<utils::usePoint> arr;
     arr.push_back(this->getRotatePoint(sp));
     arr.push_back(this->polarCoordinates(arr[0], (*sp)->angle, (*sp)->getWidth()));
@@ -165,7 +165,7 @@ bool collision::isXj(float a1, float a2, float b1, float b2) {
         }
     }
 };
-void collision::getPoint1Arr(sprite** sp1, vector<utils::usePoint>& pointArr1) {
+void collision::getPoint1Arr(Sprite** sp1, vector<utils::usePoint>& pointArr1) {
     utils::usePoint a1 = {-(*sp1)->getWidth() * (*sp1)->pivot.x, -(*sp1)->getHeight() * (*sp1)->pivot.y};
     utils::usePoint a2 = {-(*sp1)->getWidth() * (*sp1)->pivot.x + (*sp1)->getWidth(), -(*sp1)->getHeight() * (*sp1)->pivot.y};
     utils::usePoint a3 = {-(*sp1)->getWidth() * (*sp1)->pivot.x + (*sp1)->getWidth(), -(*sp1)->getHeight() * (*sp1)->pivot.y + (*sp1)->getHeight()};
@@ -175,7 +175,7 @@ void collision::getPoint1Arr(sprite** sp1, vector<utils::usePoint>& pointArr1) {
     pointArr1.push_back(a3);
     pointArr1.push_back(a4);
 }
-bool collision::obbTest(sprite** sp1, sprite** sp2) {
+bool collision::obbTest(Sprite** sp1, Sprite** sp2) {
 
     utils::usePoint globalPoint = this->getPivotPoint(sp1);
     vector<utils::usePoint> pointArr1;
@@ -198,7 +198,7 @@ bool collision::obbTest(sprite** sp1, sprite** sp2) {
         return false;
     };
 };
-bool collision::obb(sprite** sp1, sprite** sp2) {
+bool collision::obb(Sprite** sp1, Sprite** sp2) {
     if (this->obbTest(sp1, sp2) && this->obbTest(sp2, sp1)) {
         return true;
     } else {

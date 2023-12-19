@@ -20,18 +20,18 @@ void TitleScene::init(DemoApp* app, colVec* colObj) {
     TitleScene::colObj = colObj;
     app->use_onClick["TitleScene"] = TitleScene::onClick;
     TitleScene::maxBox = new DisplayObject(0, 0);
-    scene->addChild((sprite*)TitleScene::maxBox);
+    scene->addChild((Sprite*)TitleScene::maxBox);
 }
 void TitleScene::visible() {
 
-    sprite* bg = new sprite(TitleScene::app, L"img/Interface/startbg.jpg");
+    Sprite* bg = new Sprite(TitleScene::app, L"img/Interface/startbg.jpg");
     bg->width = app->width;
     bg->height = app->height;
 
-    sprite* lg = new sprite(TitleScene::app, L"img/Interface/login.png");
+    Sprite* lg = new Sprite(TitleScene::app, L"img/Interface/login.png");
     lg->zoom = TitleScene::zoom;
 
-    sprite* sn = new sprite(TitleScene::app, L"img/Interface/sign.png");
+    Sprite* sn = new Sprite(TitleScene::app, L"img/Interface/sign.png");
     sn->zoom = TitleScene::zoom;
     sn->setId("start");
 
@@ -46,7 +46,7 @@ void TitleScene::visible() {
     sn->setY((bg->getHeight() / 2 - lg->getHeight() / 2) - bg->getHeight() / 100 * 15 + lg->getHeight() + 30);
 };
 void TitleScene::onClick(int x, int y) {
-    sprite* sn = TitleScene::maxBox->getChildById("start");
+    Sprite* sn = TitleScene::maxBox->getChildById("start");
 
     if (sn->inRect(TitleScene::app->mouse)) {
 

@@ -9,17 +9,17 @@ DemoApp* StageSelectScene::app = NULL;
 colVec* StageSelectScene::colObj = NULL;
 DisplayObject* StageSelectScene::maxBox = NULL;
 float StageSelectScene::zoom = 0.7;
-vector<sprite*> StageSelectScene::spArr;
+vector<Sprite*> StageSelectScene::spArr;
 void StageSelectScene::init(DemoApp* app, colVec* colObj) {
     StageSelectScene::scene = new action(app);
     StageSelectScene::app = app;
     StageSelectScene::colObj = colObj;
     app->use_onClick["StageSelectScene"] = StageSelectScene::onClick;
     StageSelectScene::maxBox = new DisplayObject(0, 0);
-    scene->addChild((sprite*)StageSelectScene::maxBox);
+    scene->addChild((Sprite*)StageSelectScene::maxBox);
 }
-sprite* StageSelectScene::initTxtSprite(string txt, int x, int y) {
-    sprite* txt1 = new sprite(x, y);
+Sprite* StageSelectScene::initTxtSprite(string txt, int x, int y) {
+    Sprite* txt1 = new Sprite(x, y);
     txt1->spriteType = "textSprite";
     txt1->txt = txt;
     txt1->rgb = 0xffffff;
@@ -28,21 +28,21 @@ sprite* StageSelectScene::initTxtSprite(string txt, int x, int y) {
 }
 void StageSelectScene::visible() {
     if (StageSelectScene::spArr.size() != 0) { return; }
-    sprite* bg = new sprite(StageSelectScene::app, L"img/Interface/startbg.jpg");
+    Sprite* bg = new Sprite(StageSelectScene::app, L"img/Interface/startbg.jpg");
     bg->width = app->width;
     bg->height = app->height;
     StageSelectScene::maxBox->addChild(bg);
-    sprite* txt1 = StageSelectScene::initTxtSprite("请选择场景", 15, 20);
+    Sprite* txt1 = StageSelectScene::initTxtSprite("请选择场景", 15, 20);
     StageSelectScene::maxBox->addChild(txt1);
     int w = 1024;
     int h = 682;
 
-    StageSelectScene::spArr.push_back(new sprite(StageSelectScene::app, L"img/Interface/1a.jpg"));
-    StageSelectScene::spArr.push_back(new sprite(StageSelectScene::app, L"img/Interface/1b.jpg"));
-    StageSelectScene::spArr.push_back(new sprite(StageSelectScene::app, L"img/Interface/1c.jpg"));
-    StageSelectScene::spArr.push_back(new sprite(StageSelectScene::app, L"img/Interface/1d.jpg"));
-    StageSelectScene::spArr.push_back(new sprite(StageSelectScene::app, L"img/Interface/1e.jpg"));
-    StageSelectScene::spArr.push_back(new sprite(StageSelectScene::app, L"img/Interface/1f.jpg"));
+    StageSelectScene::spArr.push_back(new Sprite(StageSelectScene::app, L"img/Interface/1a.jpg"));
+    StageSelectScene::spArr.push_back(new Sprite(StageSelectScene::app, L"img/Interface/1b.jpg"));
+    StageSelectScene::spArr.push_back(new Sprite(StageSelectScene::app, L"img/Interface/1c.jpg"));
+    StageSelectScene::spArr.push_back(new Sprite(StageSelectScene::app, L"img/Interface/1d.jpg"));
+    StageSelectScene::spArr.push_back(new Sprite(StageSelectScene::app, L"img/Interface/1e.jpg"));
+    StageSelectScene::spArr.push_back(new Sprite(StageSelectScene::app, L"img/Interface/1f.jpg"));
     StageSelectScene::spArr.push_back(StageSelectScene::initTxtSprite("这里有大乌龟", 0, 0));
     StageSelectScene::spArr.push_back(StageSelectScene::initTxtSprite("这里有电鳗鱼", 0, 0));
     StageSelectScene::spArr.push_back(StageSelectScene::initTxtSprite("这里有大鲨鱼", 0, 0));

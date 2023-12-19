@@ -3,7 +3,7 @@ class fish;
 class fishConfig {
   public:
     fishConfig();
-    fishConfig(DemoApp* app, action* scene, colVec* colObj, sprite* img, void (*removeScene)(fish* b)); // 构造函数
+    fishConfig(DemoApp* app, action* scene, colVec* colObj, Sprite* img, void (*removeScene)(fish* b)); // 构造函数
     ~fishConfig(); // 析构函数
     void setFishFrame(fish* fs, int startY, int w, int h, int num, int type, float zoom = 1); // 设置鱼的帧信息
     void createFish(vector<fish*>* fishArr, DisplayObject* ds); // 创建鱼
@@ -26,7 +26,7 @@ class fishConfig {
     float speed = 2; // 设置鱼的速度
     float zoom = 1; // 这种类型的鱼的缩放
   private:
-    sprite* img; // 储存图片的精灵
+    Sprite* img; // 储存图片的精灵
     int createTimmer = 30; // 创建时间间隔
     int createAllTimmer = 30; // 创建总时间
     DemoApp* app; // 游戏app对象

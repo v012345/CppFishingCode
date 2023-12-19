@@ -6,13 +6,13 @@
 
 fish::fish() {}
 
-fish::fish(DemoApp* app, action* scene, colVec* colObj, sprite* img, float speed) {
+fish::fish(DemoApp* app, action* scene, colVec* colObj, Sprite* img, float speed) {
     this->app = app;
     this->scene = scene;
     this->colObj = colObj;
-    this->view = new sprite(this->app, (img)->img);
+    this->view = new Sprite(this->app, (img)->img);
     this->speed = speed;
-    this->scInfo = new sprite(0, 0);
+    this->scInfo = new Sprite(0, 0);
 };
 fish::~fish() {}
 bool fish::inScreen() {

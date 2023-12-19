@@ -15,7 +15,7 @@ template <typename t> void log(const t& v1) {
 bullet::bullet() {}
 
 bullet::~bullet() {}
-bullet::bullet(DemoApp* app, action* scene, colVec* colObj, sprite* bt, sprite* wang, int hurt, float speed) {
+bullet::bullet(DemoApp* app, action* scene, colVec* colObj, Sprite* bt, Sprite* wang, int hurt, float speed) {
     this->app = (app);
     this->scene = (scene);
     this->colObj = (colObj);
@@ -23,9 +23,9 @@ bullet::bullet(DemoApp* app, action* scene, colVec* colObj, sprite* bt, sprite* 
     this->wang = wang;
     this->hurt = hurt;
     this->speed = speed;
-    this->view = new sprite(this->app, this->bt->img);
+    this->view = new Sprite(this->app, this->bt->img);
     this->changeType("bt");
-    this->scInfo = new sprite(0, 0);
+    this->scInfo = new Sprite(0, 0);
     this->scInfo->width = this->app->width;
     this->scInfo->height = this->app->height;
 };
@@ -59,7 +59,7 @@ int bullet::frameFun(vector<fish*>* fishArr) {
 };
 void initGold(string img, fish fs, int i, int xa, int num) {
     gold* l_gd = new gold();
-    l_gd->view = new sprite(PlayGameScene::app, PlayGameScene::bottom[img]->img);
+    l_gd->view = new Sprite(PlayGameScene::app, PlayGameScene::bottom[img]->img);
     PlayGameScene::initAmt2(l_gd->view, 0, 60, 60, 10, 1);
     l_gd->removeScren = PlayGameScene::removeGold;
     l_gd->goldNum = num;
