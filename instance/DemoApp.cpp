@@ -2,7 +2,7 @@
 #include "../Resource.h"
 #include "../stdafx.h"
 
-DemoApp::DemoApp() : m_hwnd(NULL), content(NULL) {
+DemoApp::DemoApp() : m_hwnd(NULL), mCanvas(NULL) {
     QueryPerformanceCounter(&newtime);
     QueryPerformanceCounter(&oldtime);
     QueryPerformanceFrequency(&this->frequency); // 10000000
@@ -44,11 +44,11 @@ void DemoApp::RunMessageLoop() {
         QueryPerformanceCounter(&this->newtime);
         this->msTime = ((float)(newtime.QuadPart - oldtime.QuadPart) / frequency.QuadPart * 1000);
         if (this->msTime >= 16.67f) { // 60 fps
-            this->content->beginDraw();
-            this->content->clear();
+            this->mCanvas->beginDraw();
+            this->mCanvas->clear();
             this->OnRender();
             QueryPerformanceCounter(&this->oldtime);
-            this->content->closeDraw();
+            this->mCanvas->closeDraw();
         } else {
             Sleep(1);
         }
@@ -78,10 +78,10 @@ HRESULT DemoApp::Initialize() {
         m_hwnd = CreateWindow(L"MXSJ", L"捕鱼人", WS_OVERLAPPEDWINDOW ^ WS_MAXIMIZEBOX ^ WS_THICKFRAME, CW_USEDEFAULT, CW_USEDEFAULT, 1200, 750, NULL, NULL, HINST_THISCOMPONENT, this);
         hr = m_hwnd ? S_OK : E_FAIL;
         if (SUCCEEDED(hr)) {
-            this->content = new Canvas(m_hwnd);
-            this->content->strokeStyle(0xff00ff, 1);
-            this->content->lineWidth = 2;
-            this->content->fillStyle(0xffff00, 1);
+            this->mCanvas = new Canvas(m_hwnd);
+            this->mCanvas->strokeStyle(0xff00ff, 1);
+            this->mCanvas->lineWidth = 2;
+            this->mCanvas->fillStyle(0xffff00, 1);
             ResourceManager::loadImages(this);
             ShowWindow(m_hwnd, SW_SHOWNORMAL);
             UpdateWindow(m_hwnd);
@@ -197,6 +197,6 @@ HRESULT DemoApp::OnRender() {
 void DemoApp::OnResize(UINT width, UINT height) {}
 void DemoApp::getSource(vector<string> arr) {
     for (unsigned int i = 0; i < arr.size(); i++) { //
-        this->content->getSoucre(g_chartowchar2(arr[i].c_str()));
+        this->mCanvas->getSoucre(g_chartowchar2(arr[i].c_str()));
     }
 };

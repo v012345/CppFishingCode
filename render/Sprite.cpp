@@ -8,7 +8,7 @@ Sprite::Sprite(int x, int y) {
     this->initG_y();
 }
 Sprite::Sprite(DemoApp* app, WCHAR* url, string spriteType, int w2, int h2) {
-    this->img = app->content->getSoucre(url);
+    this->img = app->mCanvas->getSoucre(url);
     if (w2 == -1) {
         this->width = (int)this->img->GetSize().width;
     } else {
@@ -37,13 +37,13 @@ float Sprite::getTxtWidth(DemoApp* app) {
     D2D1_SIZE_F size = {0, 0};
     //	string d = this->txt;
     LPWSTR d = g_chartowchar2(this->txt.c_str());
-    app->content->getTextInfo(d, size);
+    app->mCanvas->getTextInfo(d, size);
     return size.width;
 };
 float Sprite::getTxtHeight(DemoApp* app) {
     D2D1_SIZE_F size = {0, 0};
     LPWSTR d = g_chartowchar2(this->txt.c_str());
-    app->content->getTextInfo(d, size);
+    app->mCanvas->getTextInfo(d, size);
     return size.height;
 };
 Sprite::~Sprite() {}
@@ -91,23 +91,23 @@ void Sprite::render(DemoApp* app) {
     int x1 = 0;
     int y1 = 0;
     // 绘制自己的变换情况
-    app->content->save();
+    app->mCanvas->save();
     if (this->angle != 0) { //
-        app->content->rotate(this->angle, this->g_x + this->getWidth() * this->pivot.x, this->g_y + this->getHeight() * this->pivot.y);
+        app->mCanvas->rotate(this->angle, this->g_x + this->getWidth() * this->pivot.x, this->g_y + this->getHeight() * this->pivot.y);
     }
 
     if (this->frame != NULL) {
 
-        app->content->drawImage(this->img, this->g_x + x1, this->g_y + y1, this->width * this->zoom, this->height * this->zoom, this->frame);
+        app->mCanvas->drawImage(this->img, this->g_x + x1, this->g_y + y1, this->width * this->zoom, this->height * this->zoom, this->frame);
     } else if (this->spriteType == "fillSprite") {
-        app->content->fillImage(this->img, this->g_x + x1, this->g_y + y1, this->width * this->zoom, this->height * this->zoom);
+        app->mCanvas->fillImage(this->img, this->g_x + x1, this->g_y + y1, this->width * this->zoom, this->height * this->zoom);
     } else if (this->spriteType == "textSprite") {
-        app->content->strokeStyle(this->rgb, this->alpha);
-        app->content->drawText(this->txt, this->g_x, this->g_y, this->width, this->height);
+        app->mCanvas->strokeStyle(this->rgb, this->alpha);
+        app->mCanvas->drawText(this->txt, this->g_x, this->g_y, this->width, this->height);
     } else {
-        app->content->drawImage(this->img, this->g_x + x1, this->g_y + y1, this->width * this->zoom, this->height * this->zoom);
+        app->mCanvas->drawImage(this->img, this->g_x + x1, this->g_y + y1, this->width * this->zoom, this->height * this->zoom);
     }
-    app->content->restore();
+    app->mCanvas->restore();
     // 递归绘制所有子元素
     unsigned int len = this->children.size();
     for (unsigned int i = 0; i < len; i++) {

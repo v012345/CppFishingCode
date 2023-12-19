@@ -4,8 +4,8 @@
 #include "../frame/files.h"
 #include "../frame/fish.h"
 #include "../frame/fishConfig.h"
-#include "PlayGameScene.h"
 #include "../frame/gold.h"
+#include "PlayGameScene.h"
 // action * TitleScene::scene = NULL;
 action* PlayGameScene::scene = NULL;
 DemoApp* PlayGameScene::app = NULL;
@@ -306,8 +306,8 @@ void PlayGameScene::onClick(int x, int y) {
         PlayGameScene::fishBox->removeChild(PlayGameScene::bgArr[PlayGameScene::nowScane]);
     }
     if (PlayGameScene::isDown == true) {
-        PlayGameScene::addBtn->img = PlayGameScene::app->content->getSoucre(L"img/Interface/cannon_plus.png");
-        PlayGameScene::subtractBtn->img = PlayGameScene::app->content->getSoucre(L"img/Interface/cannon_minus.png");
+        PlayGameScene::addBtn->img = PlayGameScene::app->mCanvas->getSoucre(L"img/Interface/cannon_plus.png");
+        PlayGameScene::subtractBtn->img = PlayGameScene::app->mCanvas->getSoucre(L"img/Interface/cannon_minus.png");
         PlayGameScene::isDown = false;
     }
     if (PlayGameScene::addBtn->inRect(PlayGameScene::app->mouse)) {
@@ -346,8 +346,8 @@ void PlayGameScene::onClick(int x, int y) {
 }
 void PlayGameScene::onMouseDown(int x, int y) {
     PlayGameScene::isDown = true;
-    if (PlayGameScene::addBtn->inRect(PlayGameScene::app->mouse)) { PlayGameScene::addBtn->img = PlayGameScene::app->content->getSoucre(L"img/Interface/cannon_plus_down.png"); }
-    if (PlayGameScene::subtractBtn->inRect(PlayGameScene::app->mouse)) { PlayGameScene::subtractBtn->img = PlayGameScene::app->content->getSoucre(L"img/Interface/cannon_minus_down.png"); }
+    if (PlayGameScene::addBtn->inRect(PlayGameScene::app->mouse)) { PlayGameScene::addBtn->img = PlayGameScene::app->mCanvas->getSoucre(L"img/Interface/cannon_plus_down.png"); }
+    if (PlayGameScene::subtractBtn->inRect(PlayGameScene::app->mouse)) { PlayGameScene::subtractBtn->img = PlayGameScene::app->mCanvas->getSoucre(L"img/Interface/cannon_minus_down.png"); }
 };
 
 void PlayGameScene::onKeyUp(int code) {

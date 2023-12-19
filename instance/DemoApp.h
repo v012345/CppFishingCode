@@ -18,7 +18,7 @@ class DemoApp {
     // DWORD  newT = 0;
     // DWORD oldT = 0;
   public:
-    Canvas* content;
+    Canvas* mCanvas;
     LARGE_INTEGER oldtime;
     LARGE_INTEGER newtime;
     LARGE_INTEGER frequency;

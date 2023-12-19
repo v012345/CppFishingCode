@@ -12,7 +12,8 @@ Canvas::Canvas(HWND hwnd) {
     HRESULT hr = D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED, &(this->m_fac));
     if (SUCCEEDED(hr)) {
         // 创建着色目标
-        this->m_fac->CreateHwndRenderTarget(D2D1::RenderTargetProperties(), D2D1::HwndRenderTargetProperties(hwnd, D2D1::SizeU(rc.right - rc.left, rc.bottom - rc.top)), &(this->m_render));
+        auto hrtp = D2D1::HwndRenderTargetProperties(hwnd, D2D1::SizeU(rc.right - rc.left, rc.bottom - rc.top));
+        this->m_fac->CreateHwndRenderTarget(D2D1::RenderTargetProperties(), hrtp, &this->m_render);
         D2D1_SIZE_F size = {0, 0};
 
         this->m1 = D2D1::Matrix3x2F::Translation(size);
@@ -48,12 +49,16 @@ void Canvas::stroke() {
     //	this->m_render->DrawLine()
     this->m_render->DrawGeometry(this->m_path, this->pen, this->lineWidth, this->m_lineStyle);
 };
-void Canvas::fill() { this->m_render->FillGeometry(this->m_path, this->brush); }
+void Canvas::fill() { //
+    this->m_render->FillGeometry(this->m_path, this->brush);
+}
 void Canvas::releasePath() {
     SafeRelease(&(this->m_slink));
     SafeRelease(&(this->m_path));
 }
-void Canvas::strokeStyle(UINT32 hex, FLOAT alpha) { this->pen->SetColor(D2D1::ColorF(hex, alpha)); }
+void Canvas::strokeStyle(UINT32 hex, FLOAT alpha) { //
+    this->pen->SetColor(D2D1::ColorF(hex, alpha));
+}
 void Canvas::setLineStyle(int model) {
     this->lineStyle = model;
     SafeRelease(&(this->m_lineStyle));
@@ -71,28 +76,40 @@ void Canvas::initPath(D2D1_FILL_MODE mode) {
     HRESULT hr = this->m_path->Open(&(this->m_slink));
     m_slink->SetFillMode(mode);
 }
-void Canvas::beginPath(int x, int y) { this->m_slink->BeginFigure(D2D1::Point2F(x, y), D2D1_FIGURE_BEGIN_FILLED); }
+void Canvas::beginPath(int x, int y) { //
+    this->m_slink->BeginFigure(D2D1::Point2F(x, y), D2D1_FIGURE_BEGIN_FILLED);
+}
 
 void Canvas::closePath(D2D1_FIGURE_END type) {
     this->m_slink->EndFigure(type);
     this->m_slink->Close();
 }
 
-void Canvas::addPoint(int x, int y) { this->m_slink->AddLine(D2D1::Point2F(x, y)); };
-void Canvas::addPoint(D2D1_POINT_2F point) { this->m_slink->AddLine(point); }
+void Canvas::addPoint(int x, int y) { //
+    this->m_slink->AddLine(D2D1::Point2F(x, y));
+};
+void Canvas::addPoint(D2D1_POINT_2F point) { //
+    this->m_slink->AddLine(point);
+}
 
-void Canvas::addBezier(D2D1_POINT_2F start, D2D1_POINT_2F center, D2D1_POINT_2F end) { this->m_slink->AddBezier(D2D1::BezierSegment(start, center, end)); };
-void Canvas::addArc(int x, int y, int xSize, int ySize, int angle, D2D1_SWEEP_DIRECTION angleFx, D2D1_ARC_SIZE size) {
+void Canvas::addBezier(D2D1_POINT_2F start, D2D1_POINT_2F center, D2D1_POINT_2F end) { //
+    this->m_slink->AddBezier(D2D1::BezierSegment(start, center, end));
+};
+void Canvas::addArc(int x, int y, int xSize, int ySize, int angle, D2D1_SWEEP_DIRECTION angleFx, D2D1_ARC_SIZE size) { //
     this->m_slink->AddArc(D2D1::ArcSegment(D2D1::Point2F(x, y), D2D1::SizeF(xSize, ySize), angle, angleFx, size));
 };
-void Canvas::fillStyle(UINT32 hex, FLOAT alpha) { this->brush->SetColor(D2D1::ColorF(hex, alpha)); };
+void Canvas::fillStyle(UINT32 hex, FLOAT alpha) { //
+    this->brush->SetColor(D2D1::ColorF(hex, alpha));
+};
 void Canvas::beginDraw() { //
     this->m_render->BeginDraw();
 }
 void Canvas::closeDraw() { //
     this->m_render->EndDraw();
 }
-void Canvas::fillRect(int x, int y, int width, int height) { this->m_render->FillRectangle(D2D1::RectF(x, y, x + width, y + height), this->brush); }
+void Canvas::fillRect(int x, int y, int width, int height) { //
+    this->m_render->FillRectangle(D2D1::RectF(x, y, x + width, y + height), this->brush);
+}
 void Canvas::drawRect(int x, int y, int width, int height) {
     this->initPath();
     this->beginPath(x, y);
@@ -140,7 +157,9 @@ void Canvas::trisition(int x, int y) {
     this->m1 = this->m1 * D2D1::Matrix3x2F::Translation(size);
     this->m_render->SetTransform(this->m1);
 };
-void Canvas::save() { this->bufM1 = this->m1; }
+void Canvas::save() { //
+    this->bufM1 = this->m1;
+}
 void Canvas::restore() {
     this->m1 = this->bufM1;
     this->m_render->SetTransform(this->bufM1);
@@ -243,11 +262,14 @@ void Canvas::drawImage(ID2D1Bitmap* img, int x, int y, int width, int height, u_
     D2D_RECT_F srcImg = {(FLOAT)frame->x, (FLOAT)frame->y, (FLOAT)frame->x + frame->width, (FLOAT)frame->y + frame->height};
     this->m_render->DrawBitmap(img, imgr, 1.0f, D2D1_BITMAP_INTERPOLATION_MODE_LINEAR, &srcImg);
 };
-void Canvas::drawImage(WCHAR* url, int x, int y, int zoom) { this->drawImage(url, x, y, zoom, zoom); }
-void Canvas::drawImage(ID2D1Bitmap* img, int x, int y, int zoom) { this->drawImage(img, x, y, zoom, zoom); }
+void Canvas::drawImage(WCHAR* url, int x, int y, int zoom) { //
+    this->drawImage(url, x, y, zoom, zoom);
+}
+void Canvas::drawImage(ID2D1Bitmap* img, int x, int y, int zoom) { //
+    this->drawImage(img, x, y, zoom, zoom);
+}
 
 void Canvas::drawLine(int x, int y, int x2, int y2) {
-
     if (this->lineStyle == 0) {
         this->m_render->DrawLine(D2D1::Point2<FLOAT>(x, y), D2D1::Point2<FLOAT>(x2, y2), (this->pen), this->lineWidth);
     } else {
