@@ -313,7 +313,7 @@ void PlayGameScene::removeGold(gold* b) {
 };
 void PlayGameScene::onClick(int x, int y) {
     if (PlayGameScene::bk->inRect(PlayGameScene::app->mouse)) {
-        PlayGameScene::app->nowScene = 2;
+        PlayGameScene::app->nowScene = eStageSelectScene;
         PlayGameScene::fishBox->removeChild(PlayGameScene::bgArr[PlayGameScene::nowScane]);
     }
     if (PlayGameScene::isDown == true) {

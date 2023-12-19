@@ -50,7 +50,7 @@ void TitleScene::onClick(int x, int y) {
 
     if (sn->inRect(TitleScene::app->mouse)) {
 
-        app->nowScene = 2;
+        app->nowScene = eStageSelectScene;
         StageSelectScene::visible();
     }
 }

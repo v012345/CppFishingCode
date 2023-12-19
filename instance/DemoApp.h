@@ -32,7 +32,7 @@ class DemoApp {
     oMap<string, void (*)(int)> use_onKeyUp;
     int width;
     int height;
-    unsigned int nowScene = 0;
+    unsigned int nowScene = eTitleScene;
     float msTime = 0;
     vector<action*> sceneArr;
     string status = "DeamApp";

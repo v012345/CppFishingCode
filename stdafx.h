@@ -73,6 +73,11 @@ typedef struct {
     int width;
     int height;
 } u_rect;
+enum SceneType {
+    eTitleScene,
+    ePlayGameScene,
+    eStageSelectScene,
+};
 
 #include "instance/DemoApp.h"
 #include "instance/colVec.h"

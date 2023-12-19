@@ -6,6 +6,11 @@
         "utility": "cpp",
         "xutility": "cpp",
         "thread": "cpp",
-        "ios": "cpp"
+        "ios": "cpp",
+        "map": "cpp",
+        "charconv": "cpp",
+        "list": "cpp",
+        "sstream": "cpp",
+        "xhash": "cpp"
     }
 }

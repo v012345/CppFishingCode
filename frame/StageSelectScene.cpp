@@ -78,7 +78,7 @@ void StageSelectScene::onClick(int x, int y) {
     for (unsigned int i = 0; i < len; i++) {
         if (StageSelectScene::spArr[i]->inRect(StageSelectScene::app->mouse)) {
             PlayGameScene::nowScane = StageSelectScene::spArr[i]->use_int["useInt"];
-            StageSelectScene::app->nowScene = 1;
+            StageSelectScene::app->nowScene = ePlayGameScene;
             PlayGameScene::visible();
         }
     }
