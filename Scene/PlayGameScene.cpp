@@ -6,53 +6,49 @@
 #include "../frame/fishConfig.h"
 #include "../frame/gold.h"
 #include "PlayGameScene.h"
-// action * TitleScene::scene = NULL;
-action* PlayGameScene::scene = NULL;
-App* PlayGameScene::app = NULL;
-colVec* PlayGameScene::colObj = NULL;
-DisplayObject* PlayGameScene::maxBox = NULL;
-DisplayObject* PlayGameScene::bottomBox = NULL;
-DisplayObject* PlayGameScene::fishBox = NULL;
-Sprite* PlayGameScene::addBtn = NULL;
-Sprite* PlayGameScene::subtractBtn = NULL;
-float PlayGameScene::zoom = 1;
-int PlayGameScene::nowScane = 0;
-int PlayGameScene::nowPt = 0;
-ticker* PlayGameScene::tk1 = NULL;
-Sprite* PlayGameScene::bk = NULL;
-vector<Sprite*> PlayGameScene::bgArr;
-float PlayGameScene::timerFish = 0;
-files* PlayGameScene::saveObj = new files();
-vector<Sprite*> PlayGameScene::ptArr;
-vector<Sprite*> PlayGameScene::bulletArr;
-vector<bullet*> PlayGameScene::bulletArr2;
-vector<fish*> PlayGameScene::fishArr;
-vector<fishConfig*> PlayGameScene::fishConfigArr;
-vector<Sprite*> PlayGameScene::bulletWang;
-oMap<string, Sprite*> PlayGameScene::bottom;
-HANDLE PlayGameScene::hThred;
-float PlayGameScene::allPower = 100;
-float PlayGameScene::nowPower = 0;
-vector<gold*> PlayGameScene::goldArr;
-bool PlayGameScene::isDown = false;
-
-int PlayGameScene::usegold = 0;
-vector<Sprite*> PlayGameScene::jbNum;
+PlayGameScene::PlayGameScene() {}
+PlayGameScene::~PlayGameScene() {}
+static DWORD WINAPI ThreadProcStatic(LPVOID lpParam) {
+    PlayGameScene* pYourClass = reinterpret_cast<PlayGameScene*>(lpParam);
+    pYourClass->tk1Fun();
+    return 0;
+}
 void PlayGameScene::init(App* app, colVec* colObj) {
+    this->scene = NULL;
+    this->app = NULL;
+    this->colObj = NULL;
+    this->maxBox = NULL;
+    this->bottomBox = NULL;
+    this->fishBox = NULL;
+    this->addBtn = NULL;
+    this->subtractBtn = NULL;
+    this->zoom = 1;
+    this->nowScane = 0;
+    this->nowPt = 0;
+    this->tk1 = NULL;
+    this->bk = NULL;
+
+    this->timerFish = 0;
+    this->saveObj = new files();
+    this->allPower = 100;
+    this->nowPower = 0;
+    this->isDown = false;
+    this->usegold = 0;
+
     PlayGameScene::scene = new action(app);
     PlayGameScene::app = app;
     PlayGameScene::colObj = colObj;
     PlayGameScene::tk1 = new ticker();
 
     PlayGameScene::scene->addTicker(PlayGameScene::tk1);
-    PlayGameScene::tk1->addFun(PlayGameScene::tk1FunC);
+    PlayGameScene::tk1->addFun([this](App** app, ticker* tk) { this->tk1FunC(app, tk); });
     // 添加点击事件
-    app->use_onClick["PlayGameScene"] = PlayGameScene::onClick;
-    app->use_onMouseMove["PlayGameScene"] = PlayGameScene::mouseMove;
-    app->use_onKeyUp["PlayGameScene"] = PlayGameScene::onKeyUp;
-    app->use_onMouseDown["PlayGameScene"] = PlayGameScene::onMouseDown;
-    app->use_onClose["PlayGameScene"] = PlayGameScene::onClose;
-    PlayGameScene::hThred = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)PlayGameScene::tk1Fun, NULL, CREATE_SUSPENDED, NULL);
+    app->use_onClick["PlayGameScene"] = [this](int x, int y) { this->onClick(x, y); };
+    app->use_onMouseMove["PlayGameScene"] = [this](int x, int y) { this->mouseMove(x, y); };
+    app->use_onKeyUp["PlayGameScene"] = [this](int code) { this->onKeyUp(code); };
+    app->use_onMouseDown["PlayGameScene"] = [this](int x, int y) { this->onMouseDown(x, y); };
+    app->use_onClose["PlayGameScene"] = [this]() { this->onClose(); };
+    PlayGameScene::hThred = CreateThread(NULL, 0, ThreadProcStatic, this, CREATE_SUSPENDED, NULL);
     if (PlayGameScene::hThred == NULL) { MessageBox(NULL, L"asd", L"asd", MB_OK); }
 
     // 初始容器
@@ -125,7 +121,7 @@ void PlayGameScene::init(App* app, colVec* colObj) {
 }
 // 地址 游泳开始帧的y 宽度 高度 游泳帧数量 死亡开始帧Y 死亡帧的数量 获得的金币
 fishConfig* PlayGameScene::initFishConfig(LPWSTR url, int swimY, int w, int h, int swimNum, int deathY, int deathNum, int getGold, int maxFish, int deathInt) {
-    fishConfig* fc1 = new fishConfig(PlayGameScene::app, PlayGameScene::scene, PlayGameScene::colObj, new Sprite(PlayGameScene::app, url), PlayGameScene::removeFish);
+    fishConfig* fc1 = new fishConfig(PlayGameScene::app, PlayGameScene::scene, PlayGameScene::colObj, new Sprite(PlayGameScene::app, url), [this](fish* b) { this->removeFish(b); });
     PlayGameScene::fishConfigArr.push_back(fc1);
     fc1->startYSwim = swimY;
     fc1->fishW = w;
@@ -253,7 +249,9 @@ void PlayGameScene::tk1FunC(App** app, ticker* tk) {
     PlayGameScene::timerFish += 15;
     unsigned int i = 0;
     unsigned int len = PlayGameScene::fishConfigArr.size() - 5 + PlayGameScene::nowScane;
-    for (i = 0; i < len; i++) { PlayGameScene::fishConfigArr[i]->frameFun(&PlayGameScene::fishArr, PlayGameScene::fishBox); }
+    for (i = 0; i < len; i++) { //
+        PlayGameScene::fishConfigArr[i]->frameFun(&this->fishArr, PlayGameScene::fishBox);
+    }
     for (i = 0; i < PlayGameScene::fishArr.size(); i++) {
         if (PlayGameScene::timerFish >= 200) {
 
@@ -273,7 +271,7 @@ DWORD WINAPI PlayGameScene::tk1Fun() {
         Sleep(15);
         unsigned int i = 0;
         for (i = 0; i < PlayGameScene::bulletArr2.size(); i++) {
-            if (PlayGameScene::bulletArr2[i]->frameFun(&PlayGameScene::fishArr) == 1) { i--; };
+            if (PlayGameScene::bulletArr2[i]->frameFun(&this->fishArr) == 1) { i--; };
         }
     }
     return 1;
@@ -342,7 +340,7 @@ void PlayGameScene::onClick(int x, int y) {
     b->setY(PlayGameScene::bottom["pt"]->g_y + PlayGameScene::bottom["pt"]->getHeight() - b->view->getHeight());
 
     PlayGameScene::bulletArr2.push_back(b);
-    b->removeScene = PlayGameScene::removeBullet;
+    b->removeScene = [this](bullet* b) { PlayGameScene::removeBullet(b); };
 }
 void PlayGameScene::onMouseDown(int x, int y) {
     PlayGameScene::isDown = true;

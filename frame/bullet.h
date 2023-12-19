@@ -1,4 +1,5 @@
 #pragma once
+#include <functional>
 class App;
 class action;
 class colVec;
@@ -28,7 +29,7 @@ class bullet {
     int w_time = 20;
     float speed = 0;
     float angle = 0;
-    void (*removeScene)(bullet* b);
+    std::function<void(bullet* b)> removeScene;
     Sprite* scInfo;
 
   private:

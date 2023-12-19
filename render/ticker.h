@@ -1,4 +1,7 @@
 #pragma once
+#include <functional>
+#include <string>
+#include <vector>
 class App;
 class ticker {
   public:
@@ -7,9 +10,9 @@ class ticker {
     void start();
     void stop();
     void setTimmer(float timmer);
-    void addFun(void (*fs)(App** app, ticker* tk));
+    void addFun(std::function<void(App**, ticker*)>);
     void render(App** app);
-    void setId(string str);
+    void setId(std::string str);
 
   public:
     float timmer = 0;
@@ -19,9 +22,9 @@ class ticker {
     double oldTimmer = 0;
     double newTimmer = 0;
     double fpsTimmer = 0;
-    string id = "";
+    std::string id = "";
 
   private:
-    vector<void (*)(App** app, ticker* tk)> tickerArr;
+    std::vector<std::function<void(App**, ticker*)>> tickerArr;
     bool started = false;
 };

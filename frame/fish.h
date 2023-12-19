@@ -9,7 +9,7 @@ class fish {
     void setY(float y);
     void frameFun();
     void moveForword(); // 向前移动
-    void (*removeScene)(fish* b);
+    std::function<void(fish* b)> removeScene;
     void changeType(string type);
     bool inScreen();
 

@@ -1,4 +1,5 @@
 #pragma once
+#include <functional>
 class gold {
   public:
     gold();
@@ -17,5 +18,5 @@ class gold {
     utils::usePoint centerPoint;
     utils::usePoint startPoint;
     int goldNum;
-    void (*removeScren)(gold*);
+    std::function<void(gold*)> removeScren;
 };

@@ -69,9 +69,10 @@ void StageSelectScene::init(App* app, colVec* colObj) {
         unsigned int len = this->spArr.size();
         for (unsigned int i = 0; i < len; i++) {
             if (this->spArr[i]->inRect(this->app->mouse)) {
-                PlayGameScene::nowScane = this->spArr[i]->use_int["useInt"];
+                PlayGameScene* p = PlayGameScene::getInstance();
+                p->nowScane = this->spArr[i]->use_int["useInt"];
                 this->app->nowScene = ePlayGameScene;
-                PlayGameScene::visible();
+                p->visible();
             }
         }
     };

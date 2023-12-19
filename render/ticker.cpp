@@ -1,6 +1,6 @@
-#include "../stdafx.h"
-
 #include "ticker.h"
+#include "../stdafx.h"
+#include <functional>
 
 ticker::ticker() {}
 void ticker::start() { //
@@ -15,7 +15,7 @@ void ticker::setTimmer(float time) { //
     this->timmer = time;
 }
 
-void ticker::addFun(void (*fs)(App** app, ticker* tk)) { //
+void ticker::addFun(std::function<void(App**, ticker*)> fs) { //
     this->tickerArr.push_back(fs);
 }
 

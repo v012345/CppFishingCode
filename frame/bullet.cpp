@@ -1,8 +1,8 @@
 #include "../stdafx.h"
 
+#include "../Scene/PlayGameScene.h"
 #include "bullet.h"
 #include "fish.h"
-#include "../Scene/PlayGameScene.h"
 #include "gold.h"
 
 template <typename t> void log(const t& v1) {
@@ -59,21 +59,22 @@ int bullet::frameFun(vector<fish*>* fishArr) {
 };
 void initGold(string img, fish fs, int i, int xa, int num) {
     gold* l_gd = new gold();
-    l_gd->view = new Sprite(PlayGameScene::app, PlayGameScene::bottom[img]->img);
-    PlayGameScene::initAmt2(l_gd->view, 0, 60, 60, 10, 1);
-    l_gd->removeScren = PlayGameScene::removeGold;
+    PlayGameScene* p = PlayGameScene::getInstance();
+    l_gd->view = new Sprite(p->app, p->bottom[img]->img);
+    p->initAmt2(l_gd->view, 0, 60, 60, 10, 1);
+    l_gd->removeScren = [p](gold* b) { p->removeGold(b); };
     l_gd->goldNum = num;
     l_gd->setX(fs.view->g_x + i * xa);
     l_gd->setY(fs.view->g_y);
     l_gd->startPoint.x = l_gd->view->g_x;
     l_gd->startPoint.y = l_gd->view->g_y;
     l_gd->endPoint = {
-        PlayGameScene::bottomBox->g_x,
-        PlayGameScene::bottomBox->g_y + 10,
+        p->bottomBox->g_x,
+        p->bottomBox->g_y + 10,
     };
     l_gd->getCenterPoint();
-    PlayGameScene::goldArr.push_back(l_gd);
-    PlayGameScene::maxBox->addChild(l_gd->view);
+    p->goldArr.push_back(l_gd);
+    p->maxBox->addChild(l_gd->view);
 }
 void bullet::createGold(fish* fs) {
     int g = floor(fs->getGold / 10);

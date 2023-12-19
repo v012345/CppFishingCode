@@ -33,13 +33,13 @@ class App {
     LARGE_INTEGER newtime;
     LARGE_INTEGER frequency;
     oMap<std::string, std::function<void(int, int)>> use_onClick;
-    oMap<string, void (*)(int, int)> use_onMouseDown;
-    oMap<string, void (*)(int, int)> use_onMouseUp;
-    oMap<string, void (*)(int, int)> use_onMouseMove;
-    oMap<string, void (*)()> use_onClose;
+    oMap<string, std::function<void(int, int)>> use_onMouseDown;
+    oMap<string, std::function<void(int, int)>> use_onMouseUp;
+    oMap<string, std::function<void(int, int)>> use_onMouseMove;
+    oMap<string, std::function<void()>> use_onClose;
 
-    oMap<string, void (*)(int)> use_onKeyDown;
-    oMap<string, void (*)(int)> use_onKeyUp;
+    oMap<string, std::function<void(int)>> use_onKeyDown;
+    oMap<string, std::function<void(int)>> use_onKeyUp;
     int width;
     int height;
     unsigned int nowScene = eTitleScene;

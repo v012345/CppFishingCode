@@ -210,13 +210,12 @@ void App::initScenes() {
     titleScene->init(this, colObj);
     this->addScene(titleScene->scene);
 
-    PlayGameScene::init(this, colObj);
-    this->addScene(PlayGameScene::scene);
+    PlayGameScene* playGameScene = PlayGameScene::getInstance();
+    playGameScene->init(this, colObj);
+    this->addScene(playGameScene->scene);
 
     StageSelectScene* stageSelectScene = StageSelectScene::getInstance();
     stageSelectScene->init(this, colObj);
     this->addScene(stageSelectScene->scene);
 }
-void App::changeScene(SceneType s) {
-    this->nowScene = s;
-}
+void App::changeScene(SceneType s) { this->nowScene = s; }

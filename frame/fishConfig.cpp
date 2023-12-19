@@ -5,7 +5,7 @@
 #include "fishConfig.h"
 
 fishConfig::fishConfig() {}
-fishConfig::fishConfig(App* app, action* scene, colVec* colObj, Sprite* img, void (*removeScene)(fish* b)) {
+fishConfig::fishConfig(App* app, action* scene, colVec* colObj, Sprite* img, std::function<void(fish* b)> removeScene) {
 
     this->app = (app);
     this->scene = (scene);
