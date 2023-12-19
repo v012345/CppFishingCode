@@ -20,10 +20,10 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
     HeapSetInformation(NULL, HeapEnableTerminationOnCorruption, NULL, 0);
     if (SUCCEEDED(CoInitialize(NULL))) {
         {
-            DemoApp app;
-            app.addFun(update); // app 好像就加了这么一个函数
-            if (SUCCEEDED(app.Initialize())) { //
-                app.RunMessageLoop();
+            DemoApp* app = DemoApp::getInstance();
+            app->addFun(update); // app 好像就加了这么一个函数
+            if (SUCCEEDED(app->Initialize())) { //
+                app->RunMessageLoop();
             }
         }
         CoUninitialize();

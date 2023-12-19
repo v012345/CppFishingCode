@@ -4,8 +4,15 @@ class Sprite;
 class action;
 class DemoApp {
   public:
-    DemoApp();
-    ~DemoApp();
+    static DemoApp* getInstance() {
+        // 使用静态局部变量确保线程安全的实例创建
+        static DemoApp instance;
+        return &instance;
+    }
+    // 在实际应用中，可能需要禁用拷贝构造函数和赋值运算符重载
+    DemoApp(const DemoApp&) = delete;
+    DemoApp& operator=(const DemoApp&) = delete;
+
     HRESULT Initialize();
     void RunMessageLoop();
     void addFun(void (*fun)(DemoApp*));
@@ -41,6 +48,8 @@ class DemoApp {
     LONG wLong;
 
   private:
+    DemoApp();
+    ~DemoApp();
     HRESULT OnRender();
 
     // Resize the render target.
