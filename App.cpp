@@ -203,17 +203,14 @@ void App::getSource(vector<string> arr) {
 };
 // 窗口显示之后调用
 void App::initScenes() {
-    CollisionManger* colObj = new CollisionManger();
+
     TitleScene* titleScene = TitleScene::getInstance();
-    titleScene->init(this, colObj);
     this->addScene(titleScene->scene);
 
     PlayGameScene* playGameScene = PlayGameScene::getInstance();
-    playGameScene->init(this, colObj);
     this->addScene(playGameScene->scene);
 
     StageSelectScene* stageSelectScene = StageSelectScene::getInstance();
-    stageSelectScene->init(this, colObj);
     this->addScene(stageSelectScene->scene);
 }
 void App::changeScene(SceneType s) { this->nowScene = s; }

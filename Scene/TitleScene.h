@@ -9,7 +9,6 @@ class TitleScene : public BaseScene {
         static TitleScene instance;
         return &instance;
     }
-    void init(App* app, CollisionManger* colObj);
     action* scene;
     App* app;
     CollisionManger* colObj;

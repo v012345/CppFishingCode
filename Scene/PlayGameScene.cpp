@@ -6,19 +6,10 @@
 #include "../frame/fishConfig.h"
 #include "../frame/gold.h"
 #include "PlayGameScene.h"
-PlayGameScene::PlayGameScene() {}
-PlayGameScene::~PlayGameScene() {}
-
-static DWORD WINAPI ThreadProcStatic(LPVOID lpParam) {
-    PlayGameScene* pYourClass = reinterpret_cast<PlayGameScene*>(lpParam);
-    pYourClass->tk1Fun();
-    return 0;
-}
-
-void PlayGameScene::init(App* app, CollisionManger* colObj) {
+PlayGameScene::PlayGameScene() {
+    this->app = App::getInstance();
+    this->colObj = CollisionManger::getInstance();
     this->scene = NULL;
-    this->app = NULL;
-    this->colObj = NULL;
     this->maxBox = NULL;
     this->bottomBox = NULL;
     this->fishBox = NULL;
@@ -38,8 +29,6 @@ void PlayGameScene::init(App* app, CollisionManger* colObj) {
     this->mDeposit = 0;
 
     PlayGameScene::scene = new action(app);
-    PlayGameScene::app = app;
-    PlayGameScene::colObj = colObj;
     PlayGameScene::tk1 = new ticker();
 
     PlayGameScene::scene->addTicker(PlayGameScene::tk1);
@@ -122,6 +111,14 @@ void PlayGameScene::init(App* app, CollisionManger* colObj) {
     // PlayGameScene::hThred = CreateThread(NULL, 0, ThreadProcStatic, this, CREATE_SUSPENDED, NULL);
     // if (PlayGameScene::hThred == NULL) { MessageBox(NULL, L"asd", L"asd", MB_OK); }
 }
+PlayGameScene::~PlayGameScene() {}
+
+static DWORD WINAPI ThreadProcStatic(LPVOID lpParam) {
+    PlayGameScene* pYourClass = reinterpret_cast<PlayGameScene*>(lpParam);
+    pYourClass->tk1Fun();
+    return 0;
+}
+
 // 地址 游泳开始帧的y 宽度 高度 游泳帧数量 死亡开始帧Y 死亡帧的数量 获得的金币
 fishConfig* PlayGameScene::initFishConfig(LPWSTR url, int swimY, int w, int h, int swimNum, int deathY, int deathNum, int getGold, int maxFish, int deathInt) {
     fishConfig* fc1 = new fishConfig(PlayGameScene::app, PlayGameScene::scene, PlayGameScene::colObj, new Sprite(PlayGameScene::app, url), [this](fish* b) { this->removeFish(b); });

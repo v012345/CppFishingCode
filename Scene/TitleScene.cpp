@@ -6,16 +6,13 @@
 #include "StageSelectScene.h"
 
 #include "../Manager/CollisionManger.h"
-TitleScene::TitleScene() {}
-TitleScene::~TitleScene() {}
-void TitleScene::init(App* app, CollisionManger* colObj) {
+TitleScene::TitleScene() {
+    this->app = App::getInstance();
+    this->colObj = CollisionManger::getInstance();
     this->scene = NULL;
-    this->app = NULL;
-    this->colObj = NULL;
     this->maxBox = NULL;
     this->zoom = 0.7f;
     this->scene = new action(app);
-    this->app = app;
 
     this->colObj = colObj;
     this->maxBox = new DisplayObject(0, 0);
@@ -51,3 +48,4 @@ void TitleScene::init(App* app, CollisionManger* colObj) {
     sn->setX((bg->getWidth() / 2 - sn->getWidth() / 2));
     sn->setY((bg->getHeight() / 2 - lg->getHeight() / 2) - bg->getHeight() / 100 * 15 + lg->getHeight() + 30);
 }
+TitleScene::~TitleScene() {}

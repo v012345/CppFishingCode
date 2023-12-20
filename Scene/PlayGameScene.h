@@ -45,7 +45,6 @@ class PlayGameScene : public BaseScene {
     Sprite* addBtn; // 切换炮台 加
     Sprite* subtractBtn; // 切换炮台 减
     void drawGoldNum();
-    void init(App* app, CollisionManger* colObj); // 场景初始化调用
     void visible(); // 场景显示调用
     void onClick(int x, int y); // 场景点击事件
     void onClose(); // 场景点击事件

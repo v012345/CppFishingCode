@@ -5,17 +5,13 @@
 #include <functional>
 
 #include "../Manager/CollisionManger.h"
-StageSelectScene::StageSelectScene() {}
-StageSelectScene::~StageSelectScene() {}
-void StageSelectScene::init(App* app, CollisionManger* colObj) {
+StageSelectScene::StageSelectScene() {
+    this->app = App::getInstance();
+    this->colObj = CollisionManger::getInstance();
     this->scene = NULL;
-    this->app = NULL;
-    this->colObj = NULL;
     this->maxBox = NULL;
     this->zoom = 0.7;
     this->scene = new action(app);
-    this->app = app;
-    this->colObj = colObj;
 
     this->maxBox = new DisplayObject(0, 0);
     scene->addChild((Sprite*)this->maxBox);
@@ -77,6 +73,7 @@ void StageSelectScene::init(App* app, CollisionManger* colObj) {
         }
     };
 }
+StageSelectScene::~StageSelectScene() {}
 
 Sprite* StageSelectScene::initTxtSprite(string txt, int x, int y) {
     Sprite* txt1 = new Sprite(x, y);

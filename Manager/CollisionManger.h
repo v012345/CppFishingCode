@@ -1,8 +1,10 @@
 #pragma once
 class CollisionManger {
   public:
-    CollisionManger(); // 构造函数
-    ~CollisionManger(); // 析构函数
+    static CollisionManger* getInstance() {
+        static CollisionManger instance;
+        return &instance;
+    }
     bool CollisionManger::obb(Sprite** sp, Sprite** sp2); // 检查模式obb
     bool CollisionManger::obb(utils::useSpSt st1, utils::useSpSt st2); // 检查模式obb
     bool CollisionManger::aabb(Sprite** sp, Sprite** sp2); // 检查模式aabb 非向量模式
@@ -23,4 +25,6 @@ class CollisionManger {
     vector<utils::usePoint> proPoint; // 投影的信息这里的点是储存的最大值和最小值
   private:
     void CollisionManger::clear(); // 清空所有点的缓存
+    CollisionManger(); // 构造函数
+    ~CollisionManger(); // 析构函数
 };

@@ -15,7 +15,6 @@ class StageSelectScene : public BaseScene {
     CollisionManger* colObj;
     DisplayObject* maxBox;
     float zoom;
-    void init(App* app, CollisionManger* colObj);
     vector<Sprite*> mStageSelectButton;
     Sprite* initTxtSprite(string txt, int x, int y);
 
