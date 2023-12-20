@@ -53,6 +53,8 @@ void App::RunMessageLoop() {
             this->mCanvas->beginDraw();
             this->mCanvas->clear();
             this->OnRender();
+            int fps = (int)(1000 / this->msTime);
+            this->mCanvas->drawText(to_string(fps), 0, 0);
             QueryPerformanceCounter(&this->oldtime);
             this->mCanvas->closeDraw();
         } else {
