@@ -5,10 +5,10 @@
 
 #include "StageSelectScene.h"
 
-#include "../instance/colVec.h"
+#include "../Manager/CollisionManger.h"
 TitleScene::TitleScene() {}
 TitleScene::~TitleScene() {}
-void TitleScene::init(App* app, colVec* colObj) {
+void TitleScene::init(App* app, CollisionManger* colObj) {
     this->scene = NULL;
     this->app = NULL;
     this->colObj = NULL;

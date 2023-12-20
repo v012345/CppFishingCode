@@ -64,7 +64,7 @@ enum SceneType {
 };
 
 #include "App.h"
-#include "instance/colVec.h"
+#include "Manager/CollisionManger.h"
 #include "render/Canvas.h"
 #include "render/Sprite.h"
 #include "render/action.h"

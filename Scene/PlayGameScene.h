@@ -3,7 +3,7 @@
 #include "BaseScene.h"
 class action;
 class App;
-class colVec;
+class CollisionManger;
 class bullet;
 class fish;
 class gold;
@@ -17,7 +17,7 @@ class PlayGameScene : public BaseScene {
     }
     action* scene; // 当前场景的场景对象
     App* app; // 游戏app
-    colVec* colObj; // 碰撞对象 提供obb  aabb 相关碰撞算法 <obb 采用向量>
+    CollisionManger* colObj; // 碰撞对象 提供obb  aabb 相关碰撞算法 <obb 采用向量>
 
     float zoom; // 场景所有精灵用的zoom
     int mStageId; // 当前关数
@@ -45,7 +45,7 @@ class PlayGameScene : public BaseScene {
     Sprite* addBtn; // 切换炮台 加
     Sprite* subtractBtn; // 切换炮台 减
     void drawGoldNum();
-    void init(App* app, colVec* colObj); // 场景初始化调用
+    void init(App* app, CollisionManger* colObj); // 场景初始化调用
     void visible(); // 场景显示调用
     void onClick(int x, int y); // 场景点击事件
     void onClose(); // 场景点击事件

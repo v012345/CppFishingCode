@@ -1,8 +1,8 @@
 #include "../stdafx.h"
 
-#include "colVec.h"
+#include "CollisionManger.h"
 
-colVec::colVec() {
+CollisionManger::CollisionManger() {
     // 分配预留点
     this->vec.resize(8);
     this->points.resize(2);
@@ -23,34 +23,34 @@ colVec::colVec() {
     }
 }
 
-colVec::~colVec() { //
+CollisionManger::~CollisionManger() { //
     this->clear();
 }
 
-float colVec::bezierCurve(float p0, float p1, float p2, float t) { //
+float CollisionManger::bezierCurve(float p0, float p1, float p2, float t) { //
     return (1 - t) * (1 - t) * p0 + 2 * t * (1 - t) * p1 + t * t * p2;
 }
 
-void colVec::clear() {
+void CollisionManger::clear() {
     this->vec.clear();
     this->points[0].clear();
     this->points[1].clear();
     this->points.clear();
     this->proPoint.clear();
 }
-void colVec::getSLCoordinateSystem(Sprite** sp, const int num) {
+void CollisionManger::getSLCoordinateSystem(Sprite** sp, const int num) {
     utils::usePoint& l_a = this->points[num][0];
     Sprite l_sp = **sp;
     l_a.x = l_sp.g_x + l_sp.pivot.x * l_sp.getWidth();
     l_a.y = l_sp.g_y + l_sp.pivot.y * l_sp.getHeight();
 };
-void colVec::getSLCoordinateSystem(const utils::useSpSt st, const int num) {
+void CollisionManger::getSLCoordinateSystem(const utils::useSpSt st, const int num) {
     utils::usePoint& l_a = this->points[num][0];
     utils::useSpSt l_sp = st;
     l_a.x = l_sp.x + l_sp.pivotX * l_sp.width;
     l_a.y = l_sp.y + l_sp.pivotY * l_sp.height;
 };
-void colVec::getShapePoints(Sprite** sp, const int num) {
+void CollisionManger::getShapePoints(Sprite** sp, const int num) {
     float l_o = (*sp)->angle * M_PI / 180.0f; // 角度转化为弧度
     float l_sin = sin(l_o);
     float l_cos = cos(l_o);
@@ -74,7 +74,7 @@ void colVec::getShapePoints(Sprite** sp, const int num) {
     TitleScene::p1.push_back(this->points[num][2]);
     TitleScene::p1.push_back(this->points[num][3]);*/
 };
-void colVec::getShapePoints(const utils::useSpSt st, const int num) {
+void CollisionManger::getShapePoints(const utils::useSpSt st, const int num) {
     float l_o = st.angle * M_PI / 180.0f; // 角度转化为弧度
     float l_sin = sin(l_o);
     float l_cos = cos(l_o);
@@ -97,7 +97,7 @@ void colVec::getShapePoints(const utils::useSpSt st, const int num) {
     TitleScene::p1.push_back(this->points[num][2]);
     TitleScene::p1.push_back(this->points[num][3]);*/
 };
-void colVec::initVec() {
+void CollisionManger::initVec() {
     unsigned int len = this->points[0].size() - 1;
     unsigned int len2 = len + 1;
     unsigned int len3 = this->points[1].size();
@@ -110,7 +110,7 @@ void colVec::initVec() {
     this->getOneVec(this->points[0][len], this->points[0][0], len);
     this->getOneVec(this->points[1][len], this->points[1][0], len + len3);
 };
-void colVec::getOneVec(const utils::usePoint& p1, const utils::usePoint& p2, int num) {
+void CollisionManger::getOneVec(const utils::usePoint& p1, const utils::usePoint& p2, int num) {
     float l_m = 0;
     this->vec[num].x = p1.x - p2.x;
     this->vec[num].y = p1.y - p2.y;
@@ -118,19 +118,19 @@ void colVec::getOneVec(const utils::usePoint& p1, const utils::usePoint& p2, int
     this->vec[num].x = this->vec[num].x / l_m;
     this->vec[num].y = this->vec[num].y / l_m;
 };
-void colVec::polarCoordinates(const utils::usePoint& p, float angle, float distance, utils::usePoint& cp) {
+void CollisionManger::polarCoordinates(const utils::usePoint& p, float angle, float distance, utils::usePoint& cp) {
     float l_o = angle * M_PI / 180;
     cp.x = p.x + cos(l_o) * distance;
     cp.y = p.y + sin(l_o) * distance;
 };
-bool colVec::getVecProjection() {
+bool CollisionManger::getVecProjection() {
     unsigned int len = this->vec.size();
     for (unsigned int i = 0; i < len; i++) {
         if (!this->comparePoints(i)) { return false; };
     }
     return true;
 };
-bool colVec::comparePoints(const int num) {
+bool CollisionManger::comparePoints(const int num) {
     unsigned int l_i = 0;
     unsigned int len = this->points[0].size();
     unsigned int len2 = this->points[1].size();
@@ -149,7 +149,7 @@ bool colVec::comparePoints(const int num) {
     }
     return max1 > min2 && max2 > min1;
 };
-bool colVec::obb(Sprite** sp, Sprite** sp2) {
+bool CollisionManger::obb(Sprite** sp, Sprite** sp2) {
 
     this->getShapePoints(sp, 0);
     this->getShapePoints(sp2, 1);
@@ -157,7 +157,7 @@ bool colVec::obb(Sprite** sp, Sprite** sp2) {
 
     return this->getVecProjection();
 };
-bool colVec::obb(utils::useSpSt st1, utils::useSpSt st2) {
+bool CollisionManger::obb(utils::useSpSt st1, utils::useSpSt st2) {
 
     this->getShapePoints(st1, 0);
     this->getShapePoints(st2, 1);
@@ -165,7 +165,7 @@ bool colVec::obb(utils::useSpSt st1, utils::useSpSt st2) {
 
     return this->getVecProjection();
 };
-float colVec::pointAngleInfo(const utils::usePoint point1, const utils::usePoint point2) {
+float CollisionManger::pointAngleInfo(const utils::usePoint point1, const utils::usePoint point2) {
     if (point2.x == point1.x && point2.y == point1.y) { return 0; }
     if (point2.x > point1.x && point2.y > point1.y) { // 第一象限
         return atan((point2.y - point1.y) / (point2.x - point1.x)) / M_PI * 180.0f;
@@ -186,7 +186,7 @@ float colVec::pointAngleInfo(const utils::usePoint point1, const utils::usePoint
         return 180;
     }
 }
-bool colVec::aabb(Sprite** sp, Sprite** sp2) {
+bool CollisionManger::aabb(Sprite** sp, Sprite** sp2) {
     Sprite l_sp1 = **sp;
     Sprite l_sp2 = **sp2;
     if (l_sp1.x < l_sp2.x + l_sp2.width && l_sp1.x + l_sp1.width > l_sp2.x && l_sp1.y < l_sp2.y + l_sp2.height && l_sp1.height + l_sp1.y > l_sp2.y) {

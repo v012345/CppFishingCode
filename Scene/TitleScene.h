@@ -9,10 +9,10 @@ class TitleScene : public BaseScene {
         static TitleScene instance;
         return &instance;
     }
-    void init(App* app, colVec* colObj);
+    void init(App* app, CollisionManger* colObj);
     action* scene;
     App* app;
-    colVec* colObj;
+    CollisionManger* colObj;
     float zoom;
     vector<utils::usePoint> p1;
     DisplayObject* maxBox;

@@ -4,10 +4,10 @@
 #include "StageSelectScene.h"
 #include <functional>
 
-#include "../instance/colVec.h"
+#include "../Manager/CollisionManger.h"
 StageSelectScene::StageSelectScene() {}
 StageSelectScene::~StageSelectScene() {}
-void StageSelectScene::init(App* app, colVec* colObj) {
+void StageSelectScene::init(App* app, CollisionManger* colObj) {
     this->scene = NULL;
     this->app = NULL;
     this->colObj = NULL;

@@ -5,8 +5,7 @@ add_definitions(
 )
 add_executable(Fishing
     WIN32
-    "instance/collision.cpp"
-    "instance/colVec.cpp"
+    "Manager/CollisionManger.cpp"
     "win32/d2dWin32.cpp"
     "Scene/BaseScene.cpp"
     "Node.cpp"

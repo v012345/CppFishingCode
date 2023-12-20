@@ -203,7 +203,7 @@ void App::getSource(vector<string> arr) {
 };
 // 窗口显示之后调用
 void App::initScenes() {
-    colVec* colObj = new colVec();
+    CollisionManger* colObj = new CollisionManger();
     TitleScene* titleScene = TitleScene::getInstance();
     titleScene->init(this, colObj);
     this->addScene(titleScene->scene);

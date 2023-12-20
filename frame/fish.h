@@ -3,7 +3,7 @@ class fishConfig;
 class fish {
   public:
     fish();
-    fish(App* app, action* scene, colVec* colObj, Sprite* img, float speed = 5);
+    fish(App* app, action* scene, CollisionManger* colObj, Sprite* img, float speed = 5);
     ~fish();
     void setX(float x);
     void setY(float y);
@@ -29,7 +29,7 @@ class fish {
     vector<u_rect> death; // 死亡动画信息
     App* app;
     action* scene;
-    colVec* colObj;
+    CollisionManger* colObj;
     string type = "swim";
     Sprite* scInfo;
 };

@@ -15,7 +15,7 @@ static DWORD WINAPI ThreadProcStatic(LPVOID lpParam) {
     return 0;
 }
 
-void PlayGameScene::init(App* app, colVec* colObj) {
+void PlayGameScene::init(App* app, CollisionManger* colObj) {
     this->scene = NULL;
     this->app = NULL;
     this->colObj = NULL;

@@ -2,13 +2,13 @@
 #include <functional>
 class App;
 class action;
-class colVec;
+class CollisionManger;
 class gold;
 class fish;
 class bullet {
   public:
     bullet();
-    bullet(App* app, action* scene, colVec* colObj, Sprite* bt, Sprite* wang, int hurt = 1, float speed = 8);
+    bullet(App* app, action* scene, CollisionManger* colObj, Sprite* bt, Sprite* wang, int hurt = 1, float speed = 8);
     ~bullet();
     void changeType(string type); // 改变显示状态
     void moveForword(); // 向前移动
@@ -35,5 +35,5 @@ class bullet {
   private:
     App* app; // 游戏app
     action* scene; // 游戏场景
-    colVec* colObj; // 游戏碰撞对象
+    CollisionManger* colObj; // 游戏碰撞对象
 };
