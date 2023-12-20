@@ -19,21 +19,24 @@ void App::addScene(action* scane) { //
 // 全屏
 void App::fullSreen() {
     // int cx = GetSysTemMetrice(SM_CXSCREEN);
-    if (this->isFull) { return; }
-    this->isFull = true;
-    int width = GetSystemMetrics(SM_CXSCREEN);
-    int height = GetSystemMetrics(SM_CYSCREEN);
-    this->wLong = GetWindowLong(m_hwnd, GWL_STYLE);
-    SetWindowLong(m_hwnd, GWL_STYLE, WS_POPUP);
-    SetWindowPos(this->m_hwnd, HWND_TOPMOST, 0, 0, width, height, SWP_SHOWWINDOW);
+    if (!this->isFull) {
+        this->isFull = true;
+        int width = GetSystemMetrics(SM_CXSCREEN);
+        int height = GetSystemMetrics(SM_CYSCREEN);
+        this->wLong = GetWindowLong(m_hwnd, GWL_STYLE);
+        SetWindowLong(m_hwnd, GWL_STYLE, WS_POPUP);
+        SetWindowPos(this->m_hwnd, HWND_TOPMOST, 0, 0, width, height, SWP_SHOWWINDOW);
+    }
 }
 // 取消全屏
 void App::cancelFullSreen() {
-    if (!this->isFull) { return; }
-    this->isFull = false;
-    SetWindowLong(m_hwnd, GWL_STYLE, this->wLong);
-    SetWindowPos(this->m_hwnd, HWND_NOTOPMOST, 0, 0, width, height, SWP_SHOWWINDOW);
+    if (this->isFull) {
+        this->isFull = false;
+        SetWindowLong(m_hwnd, GWL_STYLE, this->wLong);
+        SetWindowPos(this->m_hwnd, HWND_NOTOPMOST, 0, 0, width, height, SWP_SHOWWINDOW);
+    }
 }
+
 void App::RunMessageLoop() {
     MSG msg;
     BOOL isLoop = TRUE;
