@@ -50,8 +50,6 @@ void PlayGameScene::init(App* app, colVec* colObj) {
     app->use_onKeyUp["PlayGameScene"] = [this](int code) { this->onKeyUp(code); };
     app->use_onMouseDown["PlayGameScene"] = [this](int x, int y) { this->onMouseDown(x, y); };
     app->use_onClose["PlayGameScene"] = [this]() { this->onClose(); };
-    PlayGameScene::hThred = CreateThread(NULL, 0, ThreadProcStatic, this, CREATE_SUSPENDED, NULL);
-    if (PlayGameScene::hThred == NULL) { MessageBox(NULL, L"asd", L"asd", MB_OK); }
 
     // 初始容器
     PlayGameScene::maxBox = new DisplayObject(0, 0);
@@ -120,6 +118,9 @@ void PlayGameScene::init(App* app, colVec* colObj) {
     PlayGameScene::initFishConfig(L"img/fish/shark2.png", 0, 516, 273, 8, 8 * 273, 4, 100, 1, 96);
     PlayGameScene::initFishConfig(L"img/fish/fish12.png", 0, 215, 211, 14, 14 * 211, 1, 110, 1, 97);
     PlayGameScene::initFishConfig(L"img/fish/fish11.png", 0, 274, 100, 32, 32 * 100, 1, 120, 1, 98);
+
+    // PlayGameScene::hThred = CreateThread(NULL, 0, ThreadProcStatic, this, CREATE_SUSPENDED, NULL);
+    // if (PlayGameScene::hThred == NULL) { MessageBox(NULL, L"asd", L"asd", MB_OK); }
 }
 // 地址 游泳开始帧的y 宽度 高度 游泳帧数量 死亡开始帧Y 死亡帧的数量 获得的金币
 fishConfig* PlayGameScene::initFishConfig(LPWSTR url, int swimY, int w, int h, int swimNum, int deathY, int deathNum, int getGold, int maxFish, int deathInt) {
@@ -174,7 +175,7 @@ void PlayGameScene::visible() {
 
     // 启动计时器
     PlayGameScene::tk1->start();
-    ResumeThread(PlayGameScene::hThred);
+    // ResumeThread(PlayGameScene::hThred);
 };
 void PlayGameScene::initPt() {
     Sprite* bg = new Sprite(PlayGameScene::app, L"img/Interface/bottom-bar.png");
@@ -268,16 +269,16 @@ void PlayGameScene::tk1FunC(App** app, ticker* tk) {
     }
     PlayGameScene::drawGoldNum();
 }
-DWORD WINAPI PlayGameScene::tk1Fun() {
-    while (true) {
-        Sleep(15);
-        unsigned int i = 0;
-        for (i = 0; i < PlayGameScene::bulletArr2.size(); i++) {
-            if (PlayGameScene::bulletArr2[i]->frameFun(&this->fishArr) == 1) { i--; };
-        }
-    }
-    return 1;
-}
+// DWORD WINAPI PlayGameScene::tk1Fun() {
+//     while (true) {
+//         Sleep(15);
+//         unsigned int i = 0;
+//         for (i = 0; i < PlayGameScene::bulletArr2.size(); i++) {
+//             if (PlayGameScene::bulletArr2[i]->frameFun(&this->fishArr) == 1) { i--; };
+//         }
+//     }
+//     return 1;
+// }
 
 // 每一个精灵每一帧的处理函数
 void PlayGameScene::frameSpriteInfo(Sprite** sp, int type) {}

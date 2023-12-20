@@ -62,5 +62,6 @@ void fish::changeType(string type) {
         } else if (this->type == "death") {
             this->view->frameArr = this->death;
         }
+        this->view->setNowFrame(0);
     }
 };

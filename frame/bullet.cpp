@@ -54,36 +54,11 @@ int bullet::frameFun(vector<fish*>* fishArr) {
             this->w_time--;
         }
     }
-    this->isTest(fishArr);
+    this->isHit(fishArr);
     return 0;
-};
-void initGold(string img, fish fs, int i, int xa, int num) {
-    gold* l_gd = new gold();
-    PlayGameScene* p = PlayGameScene::getInstance();
-    l_gd->view = new Sprite(p->app, p->bottom[img]->img);
-    p->initAmt2(l_gd->view, 0, 60, 60, 10, 1);
-    l_gd->removeScren = [p](gold* b) { p->removeGold(b); };
-    l_gd->goldNum = num;
-    l_gd->setX(fs.view->g_x + i * xa);
-    l_gd->setY(fs.view->g_y);
-    l_gd->startPoint.x = l_gd->view->g_x;
-    l_gd->startPoint.y = l_gd->view->g_y;
-    l_gd->endPoint = {
-        p->bottomBox->g_x,
-        p->bottomBox->g_y + 10,
-    };
-    l_gd->getCenterPoint();
-    p->goldArr.push_back(l_gd);
-    p->maxBox->addChild(l_gd->view);
 }
-void bullet::createGold(fish* fs) {
-    int g = floor(fs->getGold / 10);
-    int y = fs->getGold % 10;
-    int xa = 50;
-    for (int i = 0; i < g; i++) { initGold("jin", *fs, i, xa, 10); }
-    for (int i = 0; i < y; i++) { initGold("yin", *fs, i, xa, 1); }
-};
-void bullet::isTest(vector<fish*>* fishArr) {
+
+void bullet::isHit(vector<fish*>* fishArr) {
     unsigned int len = fishArr->size();
     if (this->bulletType == "bt") {
         for (unsigned int i = 0; i < len; i++) {
@@ -111,6 +86,33 @@ void bullet::isTest(vector<fish*>* fishArr) {
         }
     }
 };
+void initGold(string img, fish fs, int i, int xa, int num) {
+    gold* l_gd = new gold();
+    PlayGameScene* p = PlayGameScene::getInstance();
+    l_gd->view = new Sprite(p->app, p->bottom[img]->img);
+    p->initAmt2(l_gd->view, 0, 60, 60, 10, 1);
+    l_gd->removeScren = [p](gold* b) { p->removeGold(b); };
+    l_gd->goldNum = num;
+    l_gd->setX(fs.view->g_x + i * xa);
+    l_gd->setY(fs.view->g_y);
+    l_gd->startPoint.x = l_gd->view->g_x;
+    l_gd->startPoint.y = l_gd->view->g_y;
+    l_gd->endPoint = {
+        p->bottomBox->g_x,
+        p->bottomBox->g_y + 10,
+    };
+    l_gd->getCenterPoint();
+    p->goldArr.push_back(l_gd);
+    p->maxBox->addChild(l_gd->view);
+}
+void bullet::createGold(fish* fs) {
+    int g = floor(fs->getGold / 10);
+    int y = fs->getGold % 10;
+    int xa = 50;
+    for (int i = 0; i < g; i++) { initGold("jin", *fs, i, xa, 10); }
+    for (int i = 0; i < y; i++) { initGold("yin", *fs, i, xa, 1); }
+};
+
 bool bullet::inScreen() {
     bool bl = this->colObj->aabb(&this->view, &this->scInfo);
     return bl;

@@ -3,9 +3,20 @@
 #include "d2dWin32.h"
 #include "../stdafx.h"
 
+#include "../Scene/PlayGameScene.h"
+#include "../frame/bullet.h"
+
 void update(App* app) {
     if (!(app)->sceneArr.empty()) { //
         (app)->sceneArr[(app)->nowScene]->render(&app);
+        if ((app)->nowScene == ePlayGameScene) {
+            /* code */
+            PlayGameScene* p = PlayGameScene::getInstance();
+            unsigned int i = 0;
+            for (i = 0; i < p->bulletArr2.size(); i++) {
+                if (p->bulletArr2[i]->frameFun(&p->fishArr) == 1) { i--; };
+            }
+        }
     }
 }
 

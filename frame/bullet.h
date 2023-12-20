@@ -13,7 +13,7 @@ class bullet {
     void changeType(string type); // 改变显示状态
     void moveForword(); // 向前移动
     int frameFun(vector<fish*>* fishArr); // 每一帧调用
-    void isTest(vector<fish*>* fishArr);
+    void isHit(vector<fish*>* fishArr);
     void bullet::createGold(fish* fs);
     void bullet::setX(float x);
     void bullet::setY(float y);
